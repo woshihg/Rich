@@ -5,7 +5,7 @@ int main(void)
 {
     FILE *fp = NULL;
     int i = 0;
-    char filename[20] = "data.json";
+    char filename[20] = "data2.json";
 
     cJSON *root = NULL, *temp1 = NULL, *temp2 = NULL, *temp3 = NULL;
     // 创建适当类型的cJSON项。
