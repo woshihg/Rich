@@ -1,0 +1,8 @@
+# ninja log v5
+2	104	7436242797889269	The_Rich.exe	3f1d95c075283ff9
+2	298	7436231745257269	CMakeFiles/The_Rich.dir/main.cpp.obj	11e742c5bf6ef4bb
+0	141	7436242946896693	build.ninja	719c12696289b49f
+0	377	7436205202138931	CMakeFiles/The_Rich.dir/jsonread.cpp.obj	7805ede8da21b9a3
+2	426	7436218485143679	CMakeFiles/The_Rich.dir/cJSON.cpp.obj	e1759d47e327d4a1
+1	141	7436242946896693	build.ninja	719c12696289b49f
+2	344	7436242950446858	The_Rich.exe	1dc2dc51e862e0fd
