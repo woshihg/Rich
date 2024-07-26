@@ -4,7 +4,7 @@
 
 #include "json.h"
 
-void read_json(Player* use_players, jsonMap* jsonmap, char* users, char* now_user){
+void read_json(Player use_players[], jsonMap& jsonmap, char users[], char* now_user){
     char *json_data = read_file("data.json");
     if (json_data == NULL) {
         printf("Unable to read the JSON file.\n");
@@ -31,23 +31,24 @@ void read_json(Player* use_players, jsonMap* jsonmap, char* users, char* now_use
         }
     }
 
-    jsonmap = (jsonMap*)malloc(sizeof(jsonMap));
     for(int i = 0; i < CELL_NUMS; i++)
     {
-        jsonmap->cells[i].has_tool = 0;
+        jsonmap.cells[i].has_tool = 0;
     }
     for(int i=0;i<cjson_tool_size;i++){
-        jsonmap->cells[tool_cell[i]].has_tool = tool_kind[i];
+        jsonmap.cells[tool_cell[i]].has_tool = tool_kind[i];
     }
 
     //MAP读取完毕/////////////////////////////////////////////////////////////
-    std::cout<<cJSON_GetObjectItem(root, "users")->valuestring<<std::endl;
     strcpy(users, cJSON_GetObjectItem(root, "users")->valuestring);
+    char test[10];
+    strcpy(test, users);
     strcpy(now_user, cJSON_GetObjectItem(root, "now_user")->valuestring);
     //users = cJSON_GetObjectItem(root, "users")->valuestring;
     //now_user = cJSON_GetObjectItem(root, "now_user")->valuestring;
 
     cJSON *players = cJSON_GetObjectItem(root, "players");
+    strcpy(users,test);
     if (players == NULL) {
         printf("No players array found.\n");
         cJSON_Delete(root);
@@ -56,7 +57,6 @@ void read_json(Player* use_players, jsonMap* jsonmap, char* users, char* now_use
     }
 
     int player_count = cJSON_GetArraySize(players);
-    use_players = (Player*)malloc(player_count * sizeof(Player));
 
     for (int i = 0; i < player_count; i++) {
         cJSON *player = cJSON_GetArrayItem(players, i);
@@ -115,7 +115,7 @@ char *read_file(const char *filename) {
 }
 
 //这里实际上都是静态的存储方
-void write_json(Player* use_players, jsonMap* use_map,char* users,char* now_user) {
+void write_json(Player use_players[], jsonMap& use_map,char users[],char* now_user) {
     cJSON* root = cJSON_CreateObject();
     cJSON* map = cJSON_CreateObject();
     cJSON_AddItemToObject(root, "MAP", map);
@@ -123,10 +123,10 @@ void write_json(Player* use_players, jsonMap* use_map,char* users,char* now_user
     cJSON* tool = cJSON_CreateArray();
 
     for (int i = 0; i < CELL_NUMS; i++) {
-        if (use_map->cells[i].has_tool != 0) {
+        if (use_map.cells[i].has_tool != 0) {
             cJSON* temp = cJSON_CreateArray();
             cJSON_AddItemToArray(temp, cJSON_CreateNumber(i));
-            cJSON_AddItemToArray(temp, cJSON_CreateNumber(use_map->cells[i].has_tool));
+            cJSON_AddItemToArray(temp, cJSON_CreateNumber(use_map.cells[i].has_tool));
             cJSON_AddItemToArray(tool, temp);
         }
     }
