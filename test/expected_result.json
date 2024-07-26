@@ -1,5 +1,5 @@
 {
-	"admin":	{
+	"map":	{
 		"username":	"admin",
 		"password":	"123456",
 		"type":	0,
@@ -12,7 +12,7 @@
 			"other":	[1, 2, 3]
 		}, {
 			"username":	"Nymph",
-			"password":	"66",
+			"password":	"666",
 			"type":	1,
 			"other":	[4, 5, 6]
 		}, {

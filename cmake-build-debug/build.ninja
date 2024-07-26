@@ -61,6 +61,12 @@ build CMakeFiles/The_Rich.dir/json/cJSON.cpp.obj: CXX_COMPILER__The_Rich_Debug E
   OBJECT_DIR = CMakeFiles\The_Rich.dir
   OBJECT_FILE_DIR = CMakeFiles\The_Rich.dir\json
 
+build CMakeFiles/The_Rich.dir/json/json.cpp.obj: CXX_COMPILER__The_Rich_Debug E$:/The$ Rich/json/json.cpp || cmake_object_order_depends_target_The_Rich
+  DEP_FILE = CMakeFiles\The_Rich.dir\json\json.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\The_Rich.dir
+  OBJECT_FILE_DIR = CMakeFiles\The_Rich.dir\json
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target The_Rich
@@ -69,7 +75,7 @@ build CMakeFiles/The_Rich.dir/json/cJSON.cpp.obj: CXX_COMPILER__The_Rich_Debug E
 #############################################
 # Link the executable The_Rich.exe
 
-build The_Rich.exe: CXX_EXECUTABLE_LINKER__The_Rich_Debug CMakeFiles/The_Rich.dir/main.cpp.obj CMakeFiles/The_Rich.dir/json/cJSON.cpp.obj
+build The_Rich.exe: CXX_EXECUTABLE_LINKER__The_Rich_Debug CMakeFiles/The_Rich.dir/main.cpp.obj CMakeFiles/The_Rich.dir/json/cJSON.cpp.obj CMakeFiles/The_Rich.dir/json/json.cpp.obj
   FLAGS = -g
   LINK_FLAGS = -static
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
