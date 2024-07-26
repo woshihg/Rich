@@ -1,17 +1,19 @@
 #include <iostream>
 #include <cstring>
-#include "cJSON.h"
-int main(void)
+#include "json/cJSON.h"
+
+
+int main(int argc, char *argv[])
 {
     FILE *fp = NULL;
     int i = 0;
-    char filename[20] = "data2.json";
+    char filename[256] = {"result.json"};
 
     cJSON *root = NULL, *temp1 = NULL, *temp2 = NULL, *temp3 = NULL;
     // 创建适当类型的cJSON项。
     root = cJSON_CreateObject();
     // 将项附加到指定的对象。
-    cJSON_AddItemToObject(root, "admin", temp1 = cJSON_CreateObject());
+    cJSON_AddItemToObject(root, "map", temp1 = cJSON_CreateObject());
     cJSON_AddItemToObject(temp1, "username", cJSON_CreateString("admin"));
     cJSON_AddItemToObject(temp1, "password", cJSON_CreateString("123456"));
     cJSON_AddNumberToObject(temp1, "type", 0);
