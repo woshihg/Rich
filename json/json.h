@@ -49,11 +49,11 @@ typedef struct jsonMap{
 
 
 int jsonWrite(const char *filename);
-void read_json(Player use_players[], jsonMap& jsonmap,char users[],char* now_user);
+void read_json(Player use_players[], jsonMap &jsonmap, char users[], char *now_user, const char string[]);
 void replaceString(char* str, const char* from, const char* to);
 int write_file(const char *filename, const char *data);
 char *read_file(const char *filename);
-void write_json(Player use_players[], jsonMap& use_map,char users[],char* now_user);
+void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_user, const char string[]);
 
 
 #endif //THE_RICH_JSON_H
