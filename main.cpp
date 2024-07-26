@@ -21,12 +21,15 @@ int main(int argc, char *argv[])
     use_players[0].alive = true;
     use_players[0].number = 2;
     use_players[0].position = 3;
+    Cell cell[70] = {0};
+    cell[1].has_tool = 1;//炸弹
+    cell[2].has_tool = 2;//路障
 //    read_json(use_players, jsonmap, users, now_user, filename);
 //
 //    write_json(use_players, jsonmap, users, now_user, filename);
     // init初始化地图和用户
     system("");
-    Map map(users,use_players);
+    Map map(users,use_players,cell);
     map.PrintMap();
     map.TXTMap(filename);
     return 0;

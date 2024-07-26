@@ -74,12 +74,13 @@ class Map {
 private:
     MapData data[70];
 public:
-    explicit Map(char* users,Player* players_data);
+    explicit Map(char* users,Player* players_data, Cell* cell);
 //    ~Map();
     void PrintMap();
     void TXTMap(char* filename);
     void PlayerGoto(owner_enum player,int from,int to);
     void PlayerCreate(owner_enum player,int to);
+    void Toll_Creat(int poistion,Cell* cell);
 };
 
 #endif //RICH_MAN_MAPDRAW_H
