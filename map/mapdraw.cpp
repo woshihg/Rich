@@ -4,9 +4,6 @@
 
 // mapWrite(filename);
 // //test0 --> map0
-
-
-
 #include "mapdraw.h"
 #include "../json/json.h"
 #include <iostream>
