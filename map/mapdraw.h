@@ -5,12 +5,16 @@
 #ifndef RICH_MAN_MAPDRAW_H
 #define RICH_MAN_MAPDRAW_H
 
+#include "../json/json.h"
 #define COLOR_NULL "\033[0m"
 #define COLOR_RED "\033[31m"
 #define COLOR_GREEN "\033[32m"
 #define COLOR_YELLOW "\033[33m"
 #define COLOR_BLUE "\033[34m"
 #define COLOR_PURPLE "\033[35m"
+
+#define CELL_MAX_PLAYER 4
+
 
 typedef enum{
     START, //起点
@@ -52,7 +56,7 @@ public:
     int has_tool;
     owner_enum owner;  //地主
     int passer_num;  //路过的玩家数量
-    owner_enum passers[5]{};  //路过的玩家
+    owner_enum passers[CELL_MAX_PLAYER]{};  //路过的玩家
 
     MapData();
 //    ~MapData();
@@ -60,6 +64,8 @@ public:
     void Update_Passer_Num();
     void Show_Char() const;
     void Sort_Passers();
+    int Add_Passer(owner_enum passer);
+    int Remove_Passer(owner_enum passer);
 };
 
 class Map {
@@ -70,6 +76,7 @@ public:
 //    ~Map();
     void PrintMap();
     void TXTMap(char* filename);
+    void PlayerGoto(owner_enum player,int from,int to);
 };
 
 #endif //RICH_MAN_MAPDRAW_H
