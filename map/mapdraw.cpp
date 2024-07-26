@@ -86,6 +86,7 @@ Map::Map(){
 }
 
 
+
 void Map::PrintMap() {
     for (int i = 0; i <= 28; i++) {
         data[i].Show_Char();
