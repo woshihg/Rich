@@ -7,7 +7,7 @@
 int main(int argc, char *argv[])
 {
     // init初始化地图和用户
-     game_init();
+//     game_init();
 
     //
     // jsonWrite

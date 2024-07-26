@@ -72,7 +72,7 @@ void Map::PrintMap() {
     cout << endl;
     for(int i = 5; i >= 0; i--) {
         data[64+i].Show_Char();
-        for (int i = 0; i < 27; i++)
+        for (int j = 0; j < 27; j++)
         {
             cout << ' ';
         }
@@ -91,7 +91,7 @@ void Map::TXTMap(char* filename) {
     replaceString(mapname, "test", "map");
     replaceString(mapname, "json", "txt");
     fopen(mapname, "w");
-    ofstream outfile("map.txt");
+    ofstream outfile(mapname);
     if (!outfile.is_open()) {
         cerr << "Failed to open file for writing." << endl;
         return;
