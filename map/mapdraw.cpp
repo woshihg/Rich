@@ -19,6 +19,7 @@ MapData::MapData(){
     rank = RANK_NULL;
     has_tool = 0;
     owner = OWNER_NULL;
+    passer_num = 0;
     for (auto & passer : passers) //遍历passers数组
         passer = OWNER_NULL;
 }
@@ -28,7 +29,58 @@ void MapData::Show_Char() const {
     cout <<  show ;
     printf(COLOR_NULL);
 }
+void MapData::Sort_Passers(){
+    if(passer_num > 0){
+        int startchange = 0;
+        for (int i = 0; i < CELL_MAX_PLAYER-1; i++){
+            if (passers[i] == OWNER_Q && startchange == 0){
+                startchange = 1;
+            }
+            if (startchange == 1){
+                passers[i] = passers[i+1];
+            }
+        }
+    }
+}
 
+void MapData::Update_Passer_Num(){
+    int count = 0;
+    for (auto & passer : passers) {
+        if (passer != OWNER_Q){
+            ++count;
+        }
+    }
+    passer_num = count;
+}
+
+int MapData::Add_Passer(owner_enum passer){
+    int error = 0;
+    if (passer_num < CELL_MAX_PLAYER){
+        passers[passer_num] = passer;
+        ++passer_num;
+    } else{
+        error = 1;
+    }
+    return error;
+}
+int MapData::Remove_Passer(owner_enum passer){
+    int error = 0;
+    if (passer_num == 0){
+        error = 1;
+    }else{
+        for (int i = 0; i < CELL_MAX_PLAYER; ++i) {
+            if (passers[i] == passer){
+                passers[i] = OWNER_NULL;
+                --passer_num;
+                break;
+            }
+            if (i == CELL_MAX_PLAYER-1){ //如果没有找到
+                error = 2;
+            }
+        }
+    }
+    return error;
+}
 Map::Map(){
     for (int i = 0; i<=63 ;i++){
         switch (i) {
@@ -61,6 +113,22 @@ Map::Map(){
     }
 }
 
+void Map::PlayerGoto(owner_enum player,int from,int to){
+    int error = 0;
+    error = data[from].Remove_Passer(player);
+    if (!error){
+        error = data[to].Add_Passer(player);
+    }else{
+        if (error == 1) {
+            cout << "Error: Too few Passers" << error << endl;
+        } else{
+            cout << "Error: Player not in Cell" << error << endl;
+        }
+    }
+    if (error){
+        cout << "Error: Too many Passers" << error << endl;
+    }
+}
 
 void Map::PrintMap() {
     for (int i = 0; i <= 28; i++) {
