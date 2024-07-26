@@ -2,13 +2,26 @@
 #include <cstring>
 #include "json/cJSON.h"
 
+void replaceString(char* str, const char* from, const char* to) {
+    int fromLen = strlen(from);
+    int toLen = strlen(to);
+
+    char* pos = str;
+    while ((pos = strstr(pos, from)) != nullptr) {
+        memmove(pos + toLen, pos + fromLen, strlen(pos + fromLen) + 1);
+        memcpy(pos, to, toLen);
+        pos += toLen;
+    }
+}
 
 int main(int argc, char *argv[])
 {
     FILE *fp = NULL;
     int i = 0;
-    char filename[256] = {"result.json"};
 
+    char filename[256] = {};
+    strcpy(filename, argc > 1 ? argv[1] : "init.json");
+    replaceString(filename, "test", "result");
     cJSON *root = NULL, *temp1 = NULL, *temp2 = NULL, *temp3 = NULL;
     // 创建适当类型的cJSON项。
     root = cJSON_CreateObject();
