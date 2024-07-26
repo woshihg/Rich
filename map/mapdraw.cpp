@@ -150,10 +150,10 @@ Map::Map(char* players, Player* players_data){
         data[i].base = '$';
         data[i].show = '$';
     }
-    Player* p = players_data;
-    for (; p != nullptr; ++p) {
-        if (p->alive) {
-            PlayerCreate((owner_enum) p->number, p->position);
+    int count = (int)strlen(players);
+    for (int i =0; i<count; ++i) {
+        if (players_data[i].alive) {
+            PlayerCreate((owner_enum) players_data[i].number, players_data[i].position);
         }
     }
 }
