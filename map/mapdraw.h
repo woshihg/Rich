@@ -49,7 +49,8 @@ typedef enum{
 
 class MapData {
 public:
-    char show; //展示的字符
+    char base; //展示的字符
+    char show{};
     char* color; //颜色
     kind_enum kind;   //地块种类
     rank_enum rank;   //地段
@@ -62,6 +63,7 @@ public:
 //    ~MapData();
 
     void Update_Passer_Num();
+    void Update_Char();
     void Show_Char() const;
     void Sort_Passers();
     int Add_Passer(owner_enum passer);
@@ -72,11 +74,12 @@ class Map {
 private:
     MapData data[70];
 public:
-    Map();
+    explicit Map(char* users,Player* players_data);
 //    ~Map();
     void PrintMap();
     void TXTMap(char* filename);
     void PlayerGoto(owner_enum player,int from,int to);
+    void PlayerCreate(owner_enum player,int to);
 };
 
 #endif //RICH_MAN_MAPDRAW_H

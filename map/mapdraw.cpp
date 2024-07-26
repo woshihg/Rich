@@ -13,7 +13,7 @@
 using namespace std;
 
 MapData::MapData(){
-    show = '0';
+    base = '0';
     color = (char*)COLOR_NULL;
     kind = SPACE;
     rank = RANK_NULL;
@@ -42,6 +42,35 @@ void MapData::Sort_Passers(){
         }
     }
 }
+void MapData::Update_Char(){
+    if(passer_num == 0){
+        show = base;
+        color = (char*)COLOR_NULL;
+    }else{
+        switch (passers[passer_num]-1) {
+            case OWNER_Q:
+                show = 'Q';
+                color = (char*)COLOR_RED;
+                break;
+            case OWNER_A:
+                show = 'A';
+                color = (char*)COLOR_GREEN;
+                break;
+            case OWNER_S:
+                show = 'S';
+                color = (char*)COLOR_BLUE;
+                break;
+            case OWNER_J:
+                show = 'J';
+                color = (char*)COLOR_YELLOW;
+                break;
+            default:
+                show = base;
+                color = (char*)COLOR_NULL;
+                break;
+        }
+    }
+}
 
 void MapData::Update_Passer_Num(){
     int count = 0;
@@ -58,6 +87,7 @@ int MapData::Add_Passer(owner_enum passer){
     if (passer_num < CELL_MAX_PLAYER){
         passers[passer_num] = passer;
         ++passer_num;
+        Update_Char();
     } else{
         error = 1;
     }
@@ -72,6 +102,8 @@ int MapData::Remove_Passer(owner_enum passer){
             if (passers[i] == passer){
                 passers[i] = OWNER_NULL;
                 --passer_num;
+                Sort_Passers();
+                Update_Char();
                 break;
             }
             if (i == CELL_MAX_PLAYER-1){ //如果没有找到
@@ -81,35 +113,56 @@ int MapData::Remove_Passer(owner_enum passer){
     }
     return error;
 }
-Map::Map(){
+Map::Map(char* players, Player* players_data){
     for (int i = 0; i<=63 ;i++){
         switch (i) {
             case 0:
-                data[i].color = (char*)COLOR_RED;
-                data[i].show = 'Q';
+                data[i].base = 'S';
+                data[i].show = 'S';
                 break;
             case 14:
+                data[i].base = 'H';
                 data[i].show = 'H';
                 break;
             case 28:
+                data[i].base = 'T';
                 data[i].show = 'T';
                 break;
             case 35:
+                data[i].base = 'G';
                 data[i].show = 'G';
                 break;
             case 49:
+                data[i].base = 'P';
                 data[i].show = 'P';
                 break;
             case 63:
+                data[i].base = 'M';
                 data[i].show = 'M';
                 break;
             default:
+                data[i].base = '0';
                 data[i].show = '0';
                 break;
         }
     }
     for (int i = 64; i<=69 ;i++){
+        data[i].base = '$';
         data[i].show = '$';
+    }
+    Player* p = players_data;
+    for (; p != nullptr; ++p) {
+        if (p->alive) {
+            PlayerCreate((owner_enum) p->number, p->position);
+        }
+    }
+}
+
+void Map::PlayerCreate(owner_enum player,int to){
+    int error = 0;
+    error = data[to].Add_Passer(player);
+    if (error){
+        cout << "Error Create: Too many Passers" << error << endl;
     }
 }
 
@@ -127,6 +180,9 @@ void Map::PlayerGoto(owner_enum player,int from,int to){
     }
     if (error){
         cout << "Error: Too many Passers" << error << endl;
+    }
+    else {
+
     }
 }
 
@@ -153,8 +209,12 @@ void Map::PrintMap() {
 void Map::TXTMap(char* filename) {
     char mapname[256] = {};
     strcpy(mapname, filename);
-    replaceString(mapname, "test", "map");
-    replaceString(mapname, "json", "txt");
+    if(strcmp(mapname,"") == 0){
+        strcpy(mapname, "map.txt");
+    }else{
+        replaceString(mapname, "test", "map");
+        replaceString(mapname, "json", "txt");
+    }
     fopen(mapname, "w");
     ofstream outfile(mapname);
     if (!outfile.is_open()) {
@@ -163,21 +223,21 @@ void Map::TXTMap(char* filename) {
     }
 
     for (int i = 0; i <= 28; i++) {
-        outfile << data[i].show;
+        outfile << data[i].base;
     }
     outfile << endl;
 
     for(int i = 5; i >= 0; i--) {
-        outfile << data[64+i].show;
+        outfile << data[64+i].base;
         for (int j = 0; j < 27; j++) {
             outfile << ' ';
         }
-        outfile << data[34-i].show;
+        outfile << data[34-i].base;
         outfile << endl;
     }
 
     for (int i = 63; i >= 35; i--) {
-        outfile << data[i].show;
+        outfile << data[i].base;
     }
     outfile << endl;
 
