@@ -4,8 +4,14 @@
 
 #include "json.h"
 
-void read_json(Player use_players[], jsonMap& jsonmap, char users[], char* now_user){
-    char *json_data = read_file("data.json");
+void read_json(Player use_players[], jsonMap &jsonmap, char users[], char *now_user,const char string[]) {
+    char readname[256] = {};
+    strcpy(readname, string);
+    if(strcmp(string, "") == 0){
+        strcpy(readname, "../Test/test.json");
+    }
+
+    char *json_data = read_file(string);
     if (json_data == NULL) {
         printf("Unable to read the JSON file.\n");
         return ;
@@ -115,7 +121,16 @@ char *read_file(const char *filename) {
 }
 
 //这里实际上都是静态的存储方
-void write_json(Player use_players[], jsonMap& use_map,char users[],char* now_user) {
+void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_user, const char name_string[256]) {
+    char resultname[256] = {};
+    strcpy(resultname, name_string);
+
+    if(strcmp(name_string, "") == 0){
+        strcpy(resultname, "../Test/result.json");
+    }else{
+        replaceString(resultname, "test", "result");
+    }
+
     cJSON* root = cJSON_CreateObject();
     cJSON* map = cJSON_CreateObject();
     cJSON_AddItemToObject(root, "MAP", map);

@@ -12,15 +12,15 @@ int main(int argc, char *argv[])
     //
     // jsonWrite
     char filename[256] = {};
-    strcpy(filename, argc > 1 ? argv[1] : "init.json");
+    strcpy(filename, argc > 1 ? argv[1] : "");
 
     jsonMap jsonmap;
     char users[10];
     char now_user[2];
     Player use_players[4];
-    read_json(use_players, jsonmap, users, now_user);
+    read_json(use_players, jsonmap, users, now_user, filename);
 
-    write_json(use_players, jsonmap, users, now_user);
+    write_json(use_players, jsonmap, users, now_user, filename);
     // init初始化地图和用户
     system("");
     Map map;

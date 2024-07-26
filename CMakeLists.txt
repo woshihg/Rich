@@ -8,4 +8,6 @@ add_executable(The_Rich main.cpp json/cJSON.cpp json/cJSON.h json/json.cpp json/
         map/mapdraw.cpp
         map/mapdraw.h
         money/money.cpp
-        money/money.h)
+        money/money.h
+        terminal/terminal.cpp
+        terminal/terminal.h)
