@@ -1,14 +1,8 @@
 # ninja log v5
-288	638	7436708055243532	The_Rich.exe	9447b1322b478f7a
-2	287	7436708051792938	CMakeFiles/The_Rich.dir/main.cpp.obj	11e742c5bf6ef4bb
-1	141	7436709364291465	build.ninja	719c12696289b49f
+283	622	7436713875830057	The_Rich.exe	827280c7b1f8c28b
+2	282	7436713872488258	CMakeFiles/The_Rich.dir/main.cpp.obj	11e742c5bf6ef4bb
+1	141	7436724738041522	build.ninja	719c12696289b49f
 0	377	7436205202138931	CMakeFiles/The_Rich.dir/jsonread.cpp.obj	7805ede8da21b9a3
 2	426	7436218485143679	CMakeFiles/The_Rich.dir/cJSON.cpp.obj	e1759d47e327d4a1
 3	336	7436665174170053	CMakeFiles/The_Rich.dir/json/cJSON.cpp.obj	1687e9fb7d2888c0
-9	325	7436712691305741	CMakeFiles/The_Rich.dir/main.cpp.obj	11e742c5bf6ef4bb
-2	82	7436712790378387	CMakeFiles/The_Rich.dir/json/json.cpp.obj	4d4c6edb6e559a6
-83	444	7436712793928259	The_Rich.exe	827280c7b1f8c28b
 2	93	7436713066857987	CMakeFiles/The_Rich.dir/json/json.cpp.obj	4d4c6edb6e559a6
-94	441	7436713070280207	The_Rich.exe	827280c7b1f8c28b
-2	282	7436713872488258	CMakeFiles/The_Rich.dir/main.cpp.obj	11e742c5bf6ef4bb
-283	622	7436713875830057	The_Rich.exe	827280c7b1f8c28b
