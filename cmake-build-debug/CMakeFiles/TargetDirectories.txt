@@ -1,3 +1,0 @@
-E:/The Rich/cmake-build-debug/CMakeFiles/The_Rich.dir
-E:/The Rich/cmake-build-debug/CMakeFiles/edit_cache.dir
-E:/The Rich/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -3,10 +3,10 @@
 #include "json/json.h"
 int main(int argc, char *argv[])
 {
-    // µØÍ¼³õÊ¼»¯
+    // åˆå§‹åŒ–
 
 
-    // jsonÊä³ö
+    // jsonWrite
     char filename[256] = {};
     strcpy(filename, argc > 1 ? argv[1] : "init.json");
     jsonWrite(filename);
