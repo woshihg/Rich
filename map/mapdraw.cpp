@@ -47,7 +47,7 @@ void MapData::Update_Char(){
         show = base;
         color = (char*)COLOR_NULL;
     }else{
-        switch (passers[passer_num]-1) {
+        switch (passers[passer_num-1]) {
             case OWNER_Q:
                 show = 'Q';
                 color = (char*)COLOR_RED;
@@ -150,8 +150,8 @@ Map::Map(char* players, Player* players_data){
         data[i].base = '$';
         data[i].show = '$';
     }
-    int count = (int)strlen(players);
-    for (int i =0; i<count; ++i) {
+//    int count = (int)strlen(players);
+    for (int i =0; i<4; ++i) {
         if (players_data[i].alive) {
             PlayerCreate((owner_enum) players_data[i].number, players_data[i].position);
         }
@@ -223,21 +223,21 @@ void Map::TXTMap(char* filename) {
     }
 
     for (int i = 0; i <= 28; i++) {
-        outfile << data[i].base;
+        outfile << data[i].show;
     }
     outfile << endl;
 
     for(int i = 5; i >= 0; i--) {
-        outfile << data[64+i].base;
+        outfile << data[64+i].show;
         for (int j = 0; j < 27; j++) {
             outfile << ' ';
         }
-        outfile << data[34-i].base;
+        outfile << data[34-i].show;
         outfile << endl;
     }
 
     for (int i = 63; i >= 35; i--) {
-        outfile << data[i].base;
+        outfile << data[i].show;
     }
     outfile << endl;
 
