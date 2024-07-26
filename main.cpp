@@ -5,7 +5,7 @@ int main(int argc, char *argv[])
 {
     // 地图初始化
 
-
+  sddl
     // json输出
     char filename[256] = {};
     strcpy(filename, argc > 1 ? argv[1] : "init.json");
