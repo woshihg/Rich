@@ -27,7 +27,7 @@ typedef enum{
 }kind_enum;
 
 typedef enum{
-    RANK_NULL, //无主
+    RANK_NULL,
     RANK_200,
     RANK_500,
     RANK_300,
@@ -49,16 +49,17 @@ public:
     char* color; //颜色
     kind_enum kind;   //地块种类
     rank_enum rank;   //地段
-    int has_tool; //有争议
+    int has_tool;
     owner_enum owner;  //地主
+    int passer_num;  //路过的玩家数量
     owner_enum passers[5]{};  //路过的玩家
 
     MapData();
 //    ~MapData();
+
+    void Update_Passer_Num();
     void Show_Char() const;
-    void Update_Char();
     void Sort_Passers();
-    bool If_Passers();
 };
 
 class Map {
@@ -70,19 +71,5 @@ public:
     void PrintMap();
     void TXTMap(char* filename);
 };
-
-
-//typedef struct{
-//    char show_char; //展示的字�?
-//    int kind;   //地块种类
-//    int rank;   //
-//    int has_tool;
-//    char owner;
-//}Cell;
-
-//typedef struct{
-//    Cell map[70];
-//}Map;
-
 
 #endif //RICH_MAN_MAPDRAW_H

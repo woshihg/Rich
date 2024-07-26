@@ -19,6 +19,7 @@ MapData::MapData(){
     rank = RANK_NULL;
     has_tool = 0;
     owner = OWNER_NULL;
+    passer_num = 0;
     for (auto & passer : passers) //遍历passers数组
         passer = OWNER_NULL;
 }
@@ -27,6 +28,29 @@ void MapData::Show_Char() const {
     printf(color);
     cout <<  show ;
     printf(COLOR_NULL);
+}
+void MapData::Sort_Passers(){
+    if(passer_num > 0){
+        int startchange = 0;
+        for (int i = 0; i < 4; i++){
+            if (passers[i] == OWNER_Q && startchange == 0){
+                startchange = 1;
+            }
+            if (startchange == 1){
+                passers[i] = passers[i+1];
+            }
+        }
+    }
+}
+
+void MapData::Update_Passer_Num(){
+    int count = 0;
+    for (auto & passer : passers) {
+        if (passer != OWNER_Q){
+            ++count;
+        }
+    }
+    passer_num = count;
 }
 
 Map::Map(){
