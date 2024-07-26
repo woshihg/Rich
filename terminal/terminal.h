@@ -11,6 +11,7 @@
 
 #define INSTRUCTION_NUM         9
 #define INSTRUCTION_MAX_LEN     100
+#define INIT_TERMINAL           {flag = 0;parameter_temp = 0;}
 
 typedef struct{
     char instruction[INSTRUCTION_MAX_LEN];
