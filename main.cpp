@@ -1,10 +1,12 @@
 #include <iostream>
 #include <cstring>
 #include "json/json.h"
+#include "init/init.h"
+
 int main(int argc, char *argv[])
 {
     // init初始化地图和用户
-
+     game_init();
     //
     // jsonWrite
     char filename[256] = {};
