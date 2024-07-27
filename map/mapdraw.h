@@ -82,6 +82,7 @@ public:
     void PlayerCreate(owner_enum player,int to);
     void TollCreat(int poistion,int tollkind);
     void TollRemove(int position);
+    void BoughtSpace(int poistion, char owner, kind_enum kind);
 };
 
 #endif //RICH_MAN_MAPDRAW_H

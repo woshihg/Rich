@@ -5,7 +5,7 @@
 // mapWrite(filename);
 // //test0 --> map0
 #include "mapdraw.h"
-#include "../json/json.h"
+//#include "../json/json.h"
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -34,7 +34,7 @@ void MapData::Show_Char()  {
             color = (char*)COLOR_NULL;
     }
     }
-    printf(color);
+    printf("%s", color);
     cout <<  show ;
     printf(COLOR_NULL);
 }
@@ -122,7 +122,7 @@ int MapData::Remove_Passer(owner_enum passer){
     }
     return error;
 }
-Map::Map(char* players, Player* players_data,Cell* cell) {
+Map::Map( char* users,Player* players_data,Cell* cell) {
     for (int i = 0; i<=63 ;i++){
         switch (i) {
             case 0:
@@ -154,8 +154,6 @@ Map::Map(char* players, Player* players_data,Cell* cell) {
             data[i].show = '0';
             break;
         }
-
-
     }
     for (int i = 64; i<=69 ;i++){
         data[i].base = '$';
@@ -166,7 +164,7 @@ Map::Map(char* players, Player* players_data,Cell* cell) {
         if(cell[i].has_tool)     //地图上显示道具
             TollCreat(i,cell[i].has_tool);
         if(cell[i].owner != 'N'){
-            //   Bought_Space(i,cell[i].owner,cell[i].rank);
+            BoughtSpace(i,cell[i].owner,(kind_enum)cell[i].kind);
         }
     }
     for (int i =0; i<4; ++i) {
@@ -185,6 +183,9 @@ void Map::PlayerCreate(owner_enum player,int to){
 }
 
 void Map::PlayerGoto(owner_enum player,int from,int to){
+    while(to > 69){ //如果to超出地图范围
+        to -= 70;
+    }
     int error = 0;
     error = data[from].Remove_Passer(player);
     if (!error){
@@ -277,17 +278,19 @@ void Map::TollRemove(int position) {
     data[position].has_tool = 0;
 }
 //有主地块
-// void Map::Bought_Space(int poistion,char owner,int rank) {
-//     data[poistion].base += rank;
-//     switch (owner) {
-//         case OWNER_Q:
-//             data[poistion].color = (char*)COLOR_RED;
-//         case OWNER_A:
-//             data[poistion].color = (char*)COLOR_RED;
-//         case OWNER_S:
-//             data[poistion].color = (char*)COLOR_RED;
-//         case OWNER_J:
-//             data[poistion].color = (char*)COLOR_RED;
-//     }
-// }
-//
+void Map::BoughtSpace(int poistion, char owner, kind_enum kind) {
+    switch (owner) {
+        case 'Q':
+            data[poistion].owner = OWNER_Q;
+        case 'A':
+            data[poistion].owner = OWNER_A;
+        case 'S':
+            data[poistion].owner = OWNER_S;
+        case 'J':
+            data[poistion].owner = OWNER_J;
+        default:
+            break;
+    }
+    data[poistion].kind =kind;   //地块种类
+}
+
