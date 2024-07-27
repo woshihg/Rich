@@ -77,6 +77,7 @@ public:
     explicit Map(char* users,Player* players_data, Cell* cell);
 //    ~Map();
     void PrintMap();
+    void SetCell(Cell* cell);
     void TXTMap(char* filename);
     void PlayerGoto(owner_enum player,int from,int to);
     void PlayerCreate(owner_enum player,int to);
