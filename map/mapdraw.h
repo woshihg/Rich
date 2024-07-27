@@ -68,6 +68,7 @@ public:
     void Sort_Passers();
     int Add_Passer(owner_enum passer);
     int Remove_Passer(owner_enum passer);
+
 };
 
 class Map {
@@ -81,7 +82,8 @@ public:
     void PlayerGoto(owner_enum player,int from,int to);
     void PlayerCreate(owner_enum player,int to);
     void TollCreat(int poistion,int tollkind);
-    void Map::TollRemove(int position);
+   void TollRemove(int position);
+    void BoughtSpace(int poistion, char owner, kind_enum kind);
 };
 
 #endif //RICH_MAN_MAPDRAW_H

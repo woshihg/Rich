@@ -166,7 +166,7 @@ Map::Map(char* players, Player* players_data,Cell* cell) {
         if(cell[i].has_tool)     //地图上显示道具
             TollCreat(i,cell[i].has_tool);
         if(cell[i].owner != 'N'){
-            //   Bought_Space(i,cell[i].owner,cell[i].rank);
+            BoughtSpace(i,cell[i].owner,(kind_enum)cell[i].kind);
         }
     }
     for (int i =0; i<4; ++i) {
@@ -277,17 +277,19 @@ void Map::TollRemove(int position) {
     data[position].has_tool = 0;
 }
 //有主地块
-// void Map::Bought_Space(int poistion,char owner,int rank) {
-//     data[poistion].base += rank;
-//     switch (owner) {
-//         case OWNER_Q:
-//             data[poistion].color = (char*)COLOR_RED;
-//         case OWNER_A:
-//             data[poistion].color = (char*)COLOR_RED;
-//         case OWNER_S:
-//             data[poistion].color = (char*)COLOR_RED;
-//         case OWNER_J:
-//             data[poistion].color = (char*)COLOR_RED;
-//     }
-// }
-//
+void Map::BoughtSpace(int poistion, char owner, kind_enum kind) {
+    switch (owner) {
+        case 'Q':
+            data[poistion].owner = OWNER_Q;
+        case 'A':
+            data[poistion].owner = OWNER_A;
+        case 'S':
+            data[poistion].owner = OWNER_S;
+        case 'J':
+            data[poistion].owner = OWNER_J;
+        default:
+            break;
+    }
+    data[poistion].kind =kind;   //地块种类
+}
+

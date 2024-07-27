@@ -8,14 +8,14 @@
 int main(int argc, char *argv[])
 {
     // init初始化地图和用户
-     game_init();
+    //game_init();
 
     //
     // jsonWrite
     char filename[256] = {};
     //strcpy(filename, argc > 1 ? argv[1] : "");
-    Terminal_Test(filename);
-    printf("%s\n",filename);
+    //Terminal_Test(filename);
+    //printf("%s\n",filename);
 
     jsonMap jsonmap;
     char users[10];
@@ -27,9 +27,9 @@ int main(int argc, char *argv[])
     Cell cell[70] = {0};
     cell[1].has_tool = 1;//炸弹
     cell[2].has_tool = 2;//路障
-    read_json(use_players, jsonmap, users, now_user, filename);
+  //  read_json(use_players, jsonmap, users, now_user, filename);
 
-    write_json(use_players, jsonmap, users, now_user, filename);
+  //  write_json(use_players, jsonmap, users, now_user, filename);
     // init初始化地图和用户
     system("");
     Map map(users,use_players,cell);
