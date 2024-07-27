@@ -194,14 +194,24 @@ Map::Map( char* users,Player* players_data,Cell* cell) {
     for(int i = 0;i<70;i++) {
         if(cell[i].has_tool)     //地图上显示道具
             TollCreat(i,cell[i].has_tool);
-        else if(cell[i].owner != 'N' && cell[i].owner != 0){
-            BoughtSpace(i,cell[i].owner,(kind_enum)cell[i].kind);
-        }
+        // else if(cell[i].owner != 'N' && cell[i].owner != 0){
+        //     BoughtSpace(i,players_data[i].properties,(kind_enum)cell[i].kind);
+        // }
     }
     for (int i =0; i<4; ++i) {
+        for(int j =0; j<70; j++) {
+            if (players_data[i].properties[j]) {
+                BoughtSpace((owner_enum) players_data[i].number,players_data[i].properties,j);
+            }
+        }
+
+    }
+    for (int i =0; i<4; ++i) {
+
         if (players_data[i].alive) {
             PlayerCreate((owner_enum) players_data[i].number, players_data[i].position);
         }
+
     }
 }
 
@@ -346,38 +356,77 @@ void Map::TollRemove(int position) {
     data[position].has_tool = 0;
 }
 //有主地块
-void Map::BoughtSpace(int poistion, char owner, kind_enum kind) {
-    switch (owner) {
-        case 'Q':
-            data[poistion].owner = OWNER_Q;
-            break;
-        case 'A':
-            data[poistion].owner = OWNER_A;
-            break;
-        case 'S':
-            data[poistion].owner = OWNER_S;
-            break;
-        case 'J':
-            data[poistion].owner = OWNER_J;
-            break;
+void Map::BoughtSpace(owner_enum player, int properties[],int position) {
+    // switch (player) {
+    //     case 'Q':
+    //         data[position].owner = OWNER_Q;
+    //     break;
+    //     case 'A':
+    //         data[position].owner = OWNER_A;
+    //     break;
+    //     case 'S':
+    //         data[position].owner = OWNER_S;
+    //     break;
+    //     case 'J':
+    //         data[position].owner = OWNER_J;
+    //     break;
+    //     default:
+    //         data[position].owner = OWNER_NULL;
+    //     break;
+    // }
+    data[position].owner = player;
+    switch (properties[position]) {
+        case '1':
+            data[position].base = COTTAGE;
+            data[position].kind = COTTAGE;
+        break;
+        case '2':
+            data[position].base = HOUSE;
+            data[position].kind = HOUSE;
+        break;
+        case '3':
+            data[position].base = SKYSCRAPER;
+            data[position].kind = SKYSCRAPER;
+        break;
         default:
-            data[poistion].owner = OWNER_NULL;
             break;
     }
-    data[poistion].kind = kind;   //地块种类
-    switch (kind) {
-        case COTTAGE:
-            data[poistion].base = '1';
-        break;
-        case HOUSE:
-            data[poistion].base = '2';
-        break;
-        case SKYSCRAPER:
-            data[poistion].base = '3';
-        break;
-        default:
-            break;
-
-    }
+    // int** p = properties;
+    // while ((*p)!=NULL) {
+    //     switch (player) {
+    //         case 'Q':
+    //             data[**p].owner = OWNER_Q;
+    //         break;
+    //         case 'A':
+    //             data[**p].owner = OWNER_A;
+    //         break;
+    //         case 'S':
+    //             data[**p].owner = OWNER_S;
+    //         break;
+    //         case 'J':
+    //             data[**p].owner = OWNER_J;
+    //         break;
+    //         default:
+    //             data[**p].owner = OWNER_NULL;
+    //         break;
+    //     }
+    //     switch (*(*p+1)) {
+    //         case COTTAGE:
+    //             data[**p].base = '1';
+    //             data[**p].kind = COTTAGE;
+    //         break;
+    //         case HOUSE:
+    //             data[**p].base = '2';
+    //             data[**p].kind = HOUSE;
+    //         break;
+    //         case SKYSCRAPER:
+    //             data[**p].base = '3';
+    //             data[**p].kind = SKYSCRAPER;
+    //         break;
+    //         default:
+    //             break;
+    //     }
+    //     p++;
+    // }
 }
 
