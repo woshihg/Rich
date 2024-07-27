@@ -11,7 +11,7 @@
 #define COLOR_GREEN "\033[32m"
 #define COLOR_YELLOW "\033[33m"
 #define COLOR_BLUE "\033[34m"
-#define COLOR_PURPLE "\033[35m"
+//#define COLOR_PURPLE "\033[35m"
 
 #define CELL_MAX_PLAYER 4
 
@@ -75,7 +75,7 @@ class Map {
 private:
     MapData data[70];
 public:
-    explicit Map(char* users,Player* players_data, Cell* cell);
+    explicit Map(Player* players_data, Cell* cell);
 //    ~Map();
     void PrintMap();
     void TXTMap(char* filename);

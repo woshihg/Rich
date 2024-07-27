@@ -5,7 +5,7 @@
 // mapWrite(filename);
 // //test0 --> map0
 #include "mapdraw.h"
-#include "../json/json.h"
+//#include "../json/json.h"
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -34,7 +34,7 @@ void MapData::Show_Char()  {
             color = (char*)COLOR_NULL;
     }
     }
-    printf(color);
+    printf("%s", color);
     cout <<  show ;
     printf(COLOR_NULL);
 }
@@ -122,7 +122,7 @@ int MapData::Remove_Passer(owner_enum passer){
     }
     return error;
 }
-Map::Map(char* players, Player* players_data,Cell* cell) {
+Map::Map( Player* players_data,Cell* cell) {
     for (int i = 0; i<=63 ;i++){
         switch (i) {
             case 0:
@@ -154,8 +154,6 @@ Map::Map(char* players, Player* players_data,Cell* cell) {
             data[i].show = '0';
             break;
         }
-
-
     }
     for (int i = 64; i<=69 ;i++){
         data[i].base = '$';
