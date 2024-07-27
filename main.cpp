@@ -39,37 +39,36 @@ int main(int argc, char *argv[])
     int flag_ifover = 0;
     read_json(use_players, jsonmap, users, now_user, "../user.json");
     Map map(users,use_players,cell);
-    while(1)
-    {
-      flag_ifwalk = 1;
-      flag_ifover = 0;
-      int if_continue = 0;
-      if_continue = Player_Route_Start(use_players, now_user, &map, cell);
-
-      if(if_continue == 1){
-          printf("%s",now_user);
-          printf(" skip\n");
-          Route_Num_Change(use_players, now_user);
-          continue;
-      }else {
-//          printf("%s>",now_user);
-//          printf(" It`s your turn\n");
-          map.SetCell(cell);
+    map.SetCell(cell);
+    while(1) {
+        flag_ifwalk = 1;
+        flag_ifover = 0;
+        int route_num = Find_Player_Num(use_players, now_user);
+        int if_continue = 0;
+        if_continue = Player_Route_Start(use_players, now_user, &map, cell);
+        if (if_continue == 1) {
+            printf("%s", now_user);
+            printf(" skip\n");
+            Route_Num_Change(use_players, now_user);
+            continue;
+        } else {
           while (!flag_ifover) {
               //输入命令
-            terminal(use_players[0],filename);
-//              printf("%s>",now_user);//test
-//              scanf("%s", RichStructure.instruction);//test
+            terminal(use_players[route_num],filename);
               if (strcmp(RichStructure.instruction, "Quit") == 0) {
-                  break;
+                  flag_ifover = 1;
+              }
+              if (strcmp(RichStructure.instruction, "Step") == 0) {
+                  map.PlayerGoto((owner_enum)use_players[route_num].number, use_players[route_num].position,
+                                 use_players[route_num].position + RichStructure.parameter );
+                  map.SetCell(cell);
               }
               // init初始化地图和用户
-              if (strcmp(RichStructure.instruction, "ROLL") == 0 && flag_ifwalk) {
+              if (strcmp(RichStructure.instruction, "Roll") == 0 && flag_ifwalk) {
                   //投掷骰子
                   walk_roll(use_players, now_user, &map);
-//                  map.SetCell(cell);
+                  map.SetCell(cell);
                   flag_ifwalk = 0;
-                  flag_ifover = 1;
               }
               write_json(use_players, jsonmap, users, now_user, filename);
           }
