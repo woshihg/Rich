@@ -21,15 +21,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="143539dc-07f4-47ff-b048-9f87988c71b9" name="更改" comment="框架">
-      <change afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/The_Rich.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/init/init.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/init/init.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/init/init.h" beforeDir="false" afterPath="$PROJECT_DIR$/init/init.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json/json.h" beforeDir="false" afterPath="$PROJECT_DIR$/json/json.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/money/money.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/money/money.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/money/money.h" beforeDir="false" afterPath="$PROJECT_DIR$/money/money.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,12 +44,12 @@
     &quot;assignee&quot;: &quot;First-light&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/woshihg/Rich.git",
-    "accountId": "e86eb92c-09a5-4cfd-a945-418b3f969c4f"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/woshihg/Rich.git&quot;,
+    &quot;accountId&quot;: &quot;e86eb92c-09a5-4cfd-a945-418b3f969c4f&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/init/init.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/main.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -81,6 +76,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "CMake Application.The_Rich.executor": "Run",
     "CMake 应用程序.The_Rich.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
@@ -232,5 +228,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="框架" />
     <option name="LAST_COMMIT_MESSAGE" value="框架" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
