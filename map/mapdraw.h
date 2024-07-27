@@ -82,6 +82,7 @@ public:
     void ToolCreat(int poistion, int tollkind);
     void ToolRemove(int position);
     void BoughtSpace(owner_enum player, int properties[],int position);
+    void RemoveSpace(int position);
 
     MapData data[70];
 };
