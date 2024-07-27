@@ -12,6 +12,7 @@ void game_init()
     int tempCash;
     char extra;
     int result;
+
     while (1) {
         printf("请输入初始金额\n");
         if (fgets(input, 100, stdin) == NULL) {
@@ -45,5 +46,9 @@ void game_init()
         }
         printf("输入金额有误\n");
     }
+
+
     printf("初始金额为：%d\n", cash);
+
+
 }
