@@ -193,7 +193,7 @@ Map::Map( char* users,Player* players_data,Cell* cell) {
     //    int count = (int)strlen(players);
     for(int i = 0;i<70;i++) {
         if(cell[i].has_tool)     //地图上显示道具
-            TollCreat(i,cell[i].has_tool);
+            ToolCreat(i, cell[i].has_tool);
         // else if(cell[i].owner != 'N' && cell[i].owner != 0){
         //     BoughtSpace(i,players_data[i].properties,(kind_enum)cell[i].kind);
         // }
@@ -342,7 +342,7 @@ void Map::TXTMap(char* filename) {
     outfile.close();
 }
 //地图道具显示与修改
-void Map::TollCreat(int poistion,int tollkind){
+void Map::ToolCreat(int poistion, int tollkind){
     if(tollkind==1) {
         // data[poistion].show = '@';
         data[poistion].has_tool = 1;
@@ -352,7 +352,7 @@ void Map::TollCreat(int poistion,int tollkind){
         data[poistion].has_tool = 2;
     }
 }
-void Map::TollRemove(int position) {
+void Map::ToolRemove(int position) {
     data[position].has_tool = 0;
 }
 //有主地块
