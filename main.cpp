@@ -47,10 +47,6 @@ int main(int argc, char *argv[])
         }
         map.PlayerGoto((owner_enum)use_players[0].number, use_players[0].position, use_players[0].position + RichStructure.parameter);
 
-        use_players[0].position+=RichStructure.parameter;
-        if(use_players[0].position>69)
-            use_players[0].position-=70;
-
         map.SetCell(cell);
     }
     return 0;
