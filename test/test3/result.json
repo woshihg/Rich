@@ -3,10 +3,10 @@
 		"tool":	[]
 	},
 	"users":	"QASJ",
-	"now_user":	"Q",
+	"now_user":	"A",
 	"players":	[{
 			"alive":	1,
-			"money":	5200,
+			"money":	800,
 			"point":	0,
 			"number":	1,
 			"tool1":	0,
@@ -17,8 +17,8 @@
 			"debuff0":	0,
 			"debuff1":	0,
 			"decontinue":	0,
-			"position":	10,
-			"properties":	[[4, 1], [10, 0]]
+			"position":	6,
+			"properties":	[[6, 0]]
 		}, {
 			"alive":	1,
 			"money":	0,
@@ -32,7 +32,7 @@
 			"debuff0":	0,
 			"debuff1":	0,
 			"decontinue":	0,
-			"position":	7,
+			"position":	0,
 			"properties":	[]
 		}, {
 			"alive":	1,
@@ -47,11 +47,11 @@
 			"debuff0":	0,
 			"debuff1":	0,
 			"decontinue":	0,
-			"position":	8,
+			"position":	0,
 			"properties":	[]
 		}, {
 			"alive":	1,
-			"money":	-4800,
+			"money":	0,
 			"point":	0,
 			"number":	4,
 			"tool1":	0,
@@ -62,7 +62,7 @@
 			"debuff0":	0,
 			"debuff1":	0,
 			"decontinue":	0,
-			"position":	6,
+			"position":	0,
 			"properties":	[]
 		}]
 }
