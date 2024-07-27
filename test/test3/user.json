@@ -1,9 +1,9 @@
 {
   "MAP": {
-    "tool":[]
+    "tool":[[1,2]]
   },
   "users": "QASJ",
-  "now_user": "S",
+  "now_user": "Q",
   "players": [
     {
       "alive": 1,

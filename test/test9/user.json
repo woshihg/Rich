@@ -3,7 +3,7 @@
     "tool":[[0,1],[14,1],[28,2],[35,1],[49,2],[63,1]]
   },
   "users": "QASJ",
-  "now_user": "S",
+  "now_user": "J",
   "players": [
     {
       "alive": 1,
@@ -67,7 +67,7 @@
       "debuff0": 0,
       "debuff1": 0,
       "decontinue": 0,
-      "position": 28,
+      "position": 69,
       "properties":[]
     }
   ]

@@ -1,2 +1,2 @@
-load test/test1/user.json
-step 5
+load test/test2/user.json
+step 1
