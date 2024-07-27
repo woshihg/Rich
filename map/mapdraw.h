@@ -11,7 +11,7 @@
 #define COLOR_GREEN "\033[32m"
 #define COLOR_YELLOW "\033[33m"
 #define COLOR_BLUE "\033[34m"
-//#define COLOR_PURPLE "\033[35m"
+#define COLOR_PURPLE "\033[35m"
 
 #define CELL_MAX_PLAYER 4
 
@@ -68,21 +68,20 @@ public:
     void Sort_Passers();
     int Add_Passer(owner_enum passer);
     int Remove_Passer(owner_enum passer);
-
 };
 
 class Map {
 private:
     MapData data[70];
 public:
-    explicit Map(Player* players_data, Cell* cell);
+    explicit Map(char* users,Player* players_data, Cell* cell);
 //    ~Map();
     void PrintMap();
     void TXTMap(char* filename);
     void PlayerGoto(owner_enum player,int from,int to);
     void PlayerCreate(owner_enum player,int to);
     void TollCreat(int poistion,int tollkind);
-   void TollRemove(int position);
+    void TollRemove(int position);
     void BoughtSpace(int poistion, char owner, kind_enum kind);
 };
 
