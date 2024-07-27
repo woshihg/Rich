@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     Player use_players[4] = {0};
     use_players[0].alive = true;
     use_players[0].number = 2;
-    use_players[0].position = 3;
+    use_players[0].position = 2;
     Cell cell[70] = {0};
     cell[1].has_tool = 1;//炸弹
     cell[2].has_tool = 2;//路障
@@ -32,5 +32,7 @@ int main(int argc, char *argv[])
     Map map(users,use_players,cell);
     map.PrintMap();
     map.TXTMap(filename);
+    map.PlayerGoto(OWNER_A,2,3);
+    map.PrintMap();
     return 0;
 }

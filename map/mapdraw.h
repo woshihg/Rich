@@ -64,7 +64,7 @@ public:
 
     void Update_Passer_Num();
     void Update_Char();
-    void Show_Char() const;
+    void Show_Char() ;
     void Sort_Passers();
     int Add_Passer(owner_enum passer);
     int Remove_Passer(owner_enum passer);
@@ -80,7 +80,8 @@ public:
     void TXTMap(char* filename);
     void PlayerGoto(owner_enum player,int from,int to);
     void PlayerCreate(owner_enum player,int to);
-    void Toll_Creat(int poistion,int tollkind);
+    void TollCreat(int poistion,int tollkind);
+    void Map::TollRemove(int position);
 };
 
 #endif //RICH_MAN_MAPDRAW_H
