@@ -1,2 +1,2 @@
-load test/test9/user.json
+load test/test12/user.json
 step 4

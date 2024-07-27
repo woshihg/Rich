@@ -1,2 +1,2 @@
-load test/test9/user.json
+load test/test20/user.json
 Boom 6
