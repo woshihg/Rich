@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     char now_user[2];
     Player use_players[4] = {0};
     use_players[0].alive = true;
-    use_players[0].number = 2;
+    use_players[0].number = 1;
     use_players[0].position = 2;
     Cell cell[70] = {0};
     cell[1].has_tool = 1;//炸弹
@@ -22,19 +22,28 @@ int main(int argc, char *argv[])
     //设置初始资金
     Set_Init_Money(use_players);
 
-    //测试命令
-    Terminal_Test(filename);
-    printf("%s\n",filename);
-
-    //读写json
-    read_json(use_players, jsonmap, users, now_user, filename);
-    write_json(use_players, jsonmap, users, now_user, filename);
+//    //测试命令
+//    Terminal_Test(filename);
+//    printf("%s\n",filename);
+//
+//    //读写json
+//    read_json(use_players, jsonmap, users, now_user, filename);
+//    write_json(use_players, jsonmap, users, now_user, filename);
 
     // init初始化地图和用户
     system("");
     Map map(users,use_players,cell);
     map.PrintMap();
-    map.PlayerGoto(OWNER_A,2,3);
-    map.PrintMap();
+
+    while(1) {
+        terminal(use_players[0]);
+        map.PlayerGoto((owner_enum)use_players[0].number, use_players[0].position, use_players[0].position + RichStructure.parameter);
+
+        use_players[0].position+=RichStructure.parameter;
+        if(use_players[0].position>69)
+            use_players[0].position-=70;
+
+        map.PrintMap();
+    }
     return 0;
 }
