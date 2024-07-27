@@ -357,23 +357,6 @@ void Map::TollRemove(int position) {
 }
 //有主地块
 void Map::BoughtSpace(owner_enum player, int properties[],int position) {
-    // switch (player) {
-    //     case 'Q':
-    //         data[position].owner = OWNER_Q;
-    //     break;
-    //     case 'A':
-    //         data[position].owner = OWNER_A;
-    //     break;
-    //     case 'S':
-    //         data[position].owner = OWNER_S;
-    //     break;
-    //     case 'J':
-    //         data[position].owner = OWNER_J;
-    //     break;
-    //     default:
-    //         data[position].owner = OWNER_NULL;
-    //     break;
-    // }
     data[position].owner = player;
     switch (properties[position]) {
         case '1':
@@ -391,42 +374,6 @@ void Map::BoughtSpace(owner_enum player, int properties[],int position) {
         default:
             break;
     }
-    // int** p = properties;
-    // while ((*p)!=NULL) {
-    //     switch (player) {
-    //         case 'Q':
-    //             data[**p].owner = OWNER_Q;
-    //         break;
-    //         case 'A':
-    //             data[**p].owner = OWNER_A;
-    //         break;
-    //         case 'S':
-    //             data[**p].owner = OWNER_S;
-    //         break;
-    //         case 'J':
-    //             data[**p].owner = OWNER_J;
-    //         break;
-    //         default:
-    //             data[**p].owner = OWNER_NULL;
-    //         break;
-    //     }
-    //     switch (*(*p+1)) {
-    //         case COTTAGE:
-    //             data[**p].base = '1';
-    //             data[**p].kind = COTTAGE;
-    //         break;
-    //         case HOUSE:
-    //             data[**p].base = '2';
-    //             data[**p].kind = HOUSE;
-    //         break;
-    //         case SKYSCRAPER:
-    //             data[**p].base = '3';
-    //             data[**p].kind = SKYSCRAPER;
-    //         break;
-    //         default:
-    //             break;
-    //     }
-    //     p++;
-    // }
+
 }
 
