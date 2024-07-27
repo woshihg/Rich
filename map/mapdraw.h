@@ -78,11 +78,12 @@ public:
     explicit Map(Player* players_data, Cell* cell);
 //    ~Map();
     void PrintMap();
+    void SetCell(Cell* cell);
     void TXTMap(char* filename);
     void PlayerGoto(owner_enum player,int from,int to);
     void PlayerCreate(owner_enum player,int to);
     void TollCreat(int poistion,int tollkind);
-   void TollRemove(int position);
+    void TollRemove(int position);
     void BoughtSpace(int poistion, char owner, kind_enum kind);
 };
 

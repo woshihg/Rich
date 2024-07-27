@@ -205,6 +205,43 @@ void Map::PlayerGoto(owner_enum player,int from,int to){
     }
 }
 
+void Map::SetCell(Cell* cell){
+//    typedef struct Cell{
+//        char show_char;
+//        int kind;
+//        int rank;
+//        int has_tool;
+//        char owner;     // owner = 'N' , means owner is None
+//    } Cell;
+    for (int i = 0; i < 70; ++i) {
+        cell[i].show_char = data[i].show;
+        cell[i].kind = data[i].kind;
+        cell[i].rank = data[i].rank;
+        cell[i].has_tool = data[i].has_tool;
+        switch (data[i].has_tool) {
+            case OWNER_NULL:
+                cell[i].owner = 'N';
+                break;
+            case OWNER_Q:
+                cell[i].owner = 'Q';
+                break;
+            case OWNER_A:
+                cell[i].owner = 'A';
+                break;
+            case OWNER_S:
+                cell[i].owner = 'S';
+                break;
+            case OWNER_J:
+                cell[i].owner = 'J';
+                break;
+            default:
+                cell[i].owner = 'N';
+                break;
+        }
+    }
+    PrintMap();//test
+}
+
 void Map::PrintMap() {
     for (int i = 0; i <= 28; i++) {
         data[i].Show_Char();
