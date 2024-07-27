@@ -1,0 +1,2 @@
+load test/test20/user.json
+Boom 6

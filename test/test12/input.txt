@@ -1,0 +1,2 @@
+load test/test12/user.json
+step 4

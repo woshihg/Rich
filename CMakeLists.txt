@@ -10,4 +10,6 @@ add_executable(The_Rich main.cpp json/cJSON.cpp json/cJSON.h json/json.cpp json/
         money/money.cpp
         money/money.h
         terminal/terminal.cpp
-        terminal/terminal.h)
+        terminal/terminal.h
+        player/player.cpp
+        tool/tool.cpp)

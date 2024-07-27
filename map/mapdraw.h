@@ -81,8 +81,8 @@ public:
     void TXTMap(char* filename);
     void PlayerGoto(owner_enum player,int from,int to);
     void PlayerCreate(owner_enum player,int to);
-    void TollCreat(int poistion,int tollkind);
-    void TollRemove(int position);
+    void ToolCreat(int poistion, int tollkind);
+    void ToolRemove(int position);
     void BoughtSpace(owner_enum player, int properties[],int position);
 };
 

@@ -138,7 +138,7 @@ void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_
     strcpy(resultname, name_string);
 
     if(strcmp(name_string, "") == 0){
-        strcpy(resultname, "../Test/result.json");
+        strcpy(resultname, "result.json");
     }else{
         replaceString(resultname, "user", "result");
     }

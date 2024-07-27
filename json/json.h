@@ -9,28 +9,27 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstdio>
-# include <stdio.h>
-# include <stdbool.h>
+
 
 // jsonMap's size
 # define CELL_NUMS 70
 
 typedef struct Player{
-    int number;
-    bool alive;
-    int money;
-    int point;
-    int block;
-    int bomb;
-    int robot;
-    bool buff;
-    int _continue;
-    bool prison;
-    bool hospital;
-    int de_continue;
-    int position;
+    int number{};
+    bool alive{};
+    int money{};
+    int point{};
+    int block{};
+    int bomb{};
+    int robot{};
+    bool buff{};
+    int _continue{};
+    bool prison{};
+    bool hospital{};
+    int de_continue{};
+    int position{};
     int properties[70]={0};
-    int property_count;
+    int property_count{};
 } Player;
 
 typedef struct Cell{
