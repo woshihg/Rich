@@ -2,11 +2,10 @@
 // Created by Zhang Junling on 24-7-27.
 //
 #include "tool.h"
-#include"../json/json.h"
-#include"../map/mapdraw.h"
-
+#include <cstdio>
+#include <cstdlib>
 //todo 触发道具屋
-void PlayerTool(Player* player){
+void PlayerTool(Player* player ,Map* map) {
     char input[100];
     char* token;
     int tool_id;
@@ -97,7 +96,7 @@ void PlayerGetBomb(Player* player) {
     player->bomb++;
 }
 
-void tool_use(Player* player) {
+void tool_use(Player* player,Map* map) {
     char *token;
     char input[100];
     printf("now you can choose to use a tool or not\n");
@@ -123,7 +122,7 @@ void tool_use(Player* player) {
                 printf("2 robot\n");
                 printf("3 bomb\n");
                 //use tools in map
-                tool_map(player);
+                tool_map(player,map);
                 return;
             }
         }
@@ -131,8 +130,8 @@ void tool_use(Player* player) {
 
 }
 
-void tool_map(Player* player) {
-    int use_position;
+void tool_map(Player* player,Map* map) {
+    int use_position = 0;
     int tool_id;
     char input[100];
     char *token;
@@ -146,7 +145,7 @@ void tool_map(Player* player) {
                 printf("successful use block\n");
                 player->block--;
                 //todo
-                ToolCreat(use_position, 1);
+                map->ToolCreat(use_position, 1);
                 return;
             }
             else {
@@ -171,16 +170,14 @@ void tool_map(Player* player) {
                 printf("successful use\n");
                 player->bomb--;
                 //todo
-                ToolCreat(use_position, 2);
+                map->ToolCreat(use_position, 2);
                 return;
             }
             else {
                 printf("you dont have enough tool\n");
             }
         }
-
     }
-
 }
 
 

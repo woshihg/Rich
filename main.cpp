@@ -35,15 +35,15 @@ int main(int argc, char *argv[])
     char now_user[2] = "Q";
     system("");
 
-
-    int flag_ifwalk = 0;
-    int flag_ifover = 0;
     read_json(use_players, jsonmap, users, now_user, "../user.json");
     Map map(users,use_players,cell);
     map.SetCell(cell);
-    while(1) {
-        flag_ifwalk = 1;
-        flag_ifover = 0;
+    map.PrintMap();
+    int flag_ifquit = 0;
+    while(!flag_ifquit) {
+        int flag_ifwalk = 1;
+        int flag_ifover = 0;
+        int flag_ifshop = 1;
         int route_num = Find_Player_Num(use_players, now_user);
         int if_continue = 0;
         if_continue = Player_Route_Start(use_players, now_user, &map, cell);
@@ -53,35 +53,45 @@ int main(int argc, char *argv[])
             Route_Num_Change(use_players, now_user);
             continue;
         } else {
-          while (!flag_ifover) {
+          while (!flag_ifover && !flag_ifquit) {
               //输入命令
-              if (use_players[route_num].position == 28) {
-                  PlayerTool(&(use_players[route_num]));
-                  flag_ifover = 1;
-              }else{
-                  terminal(use_players[route_num],filename);
-                  if (strcmp(RichStructure.instruction, "Quit") == 0) {
-                      flag_ifover = 1;
-                  }
-
-
-                  if (strcmp(RichStructure.instruction, "Step") == 0) {
-                      map.PlayerGoto((owner_enum)use_players[route_num].number, use_players[route_num].position,
-                                     use_players[route_num].position + RichStructure.parameter );
-                      map.SetCell(cell);
-                  }
-                  // init初始化地图和用户
-                  if (strcmp(RichStructure.instruction, "Roll") == 0 && flag_ifwalk) {
-                      //投掷骰子
-                      walk_roll(use_players, now_user, &map);
-                      map.SetCell(cell);
-                      flag_ifwalk = 0;
-                  }
+              if (use_players[route_num].position == 28 && flag_ifshop == 1) {
+                  PlayerTool(&(use_players[route_num]),&map);
+                  flag_ifshop = 0;
               }
+              if(use_players[route_num].position == 49 && use_players[route_num].prison == 0){
+                  use_players[route_num].prison = true;
+                  use_players[route_num].de_continue = 2;
+                  printf("You are in prison\n");
+                  flag_ifover = 1;
+              }
+              if (!flag_ifover){terminal(use_players[route_num],filename);}
+
+
+              if (flag_ifover){ break;}
+              else
+              if (strcmp(RichStructure.instruction, "Quit") == 0) {
+                  flag_ifquit = 1;
+              }else
+              if (strcmp(RichStructure.instruction, "Step") == 0) {
+                  map.PlayerGoto((owner_enum)use_players[route_num].number, use_players[route_num].position,
+                                 use_players[route_num].position + RichStructure.parameter );
+                  use_players[route_num].position += RichStructure.parameter;
+                  map.SetCell(cell);
+                  map.PrintMap();
+              }else
+              if (strcmp(RichStructure.instruction, "Roll") == 0 && flag_ifwalk) { // init初始化地图和用户
+                  //投掷骰子
+                  walk_roll(use_players, now_user, &map);
+                  map.SetCell(cell);
+                  map.PrintMap();
+                  use_players[route_num].prison = false;
+                  flag_ifwalk = 0;
+              }else{}
               write_json(use_players, jsonmap, users, now_user, filename);
           }
-          Route_Num_Change(use_players, now_user);
-      }
+        }
+      Route_Num_Change(use_players, now_user);
     }
     return 0;
 }

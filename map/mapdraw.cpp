@@ -233,13 +233,13 @@ void Map::PlayerGoto(owner_enum player,int from,int to){
         error = data[to].Add_Passer(player);
     }else{
         if (error == 1) {
-            cout << "Error: Too few Passers" << error << endl;
+            cout << "Error: Too few Passers from " << from << endl;
         } else{
-            cout << "Error: Player not in Cell" << error << endl;
+            cout << "Error: Player not in Cell from " << from << endl;
         }
     }
     if (error){
-        cout << "Error: Too many Passers" << error << endl;
+        cout << "Error: Too many Passers to " << to << endl;
     }
     else {
 
@@ -280,7 +280,7 @@ void Map::SetCell(Cell* cell){
                 break;
         }
     }
-    PrintMap();//test
+//    PrintMap();//test
 }
 
 void Map::PrintMap() {
