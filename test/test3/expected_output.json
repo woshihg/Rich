@@ -21,7 +21,7 @@
     "properties":	[[6, 0]]
   }, {
     "alive":	1,
-    "money":	0,
+    "money":	1000,
     "point":	0,
     "number":	2,
     "tool1":	0,
@@ -36,7 +36,7 @@
     "properties":	[]
   }, {
     "alive":	1,
-    "money":	0,
+    "money":	1000,
     "point":	0,
     "number":	3,
     "tool1":	0,
@@ -51,7 +51,7 @@
     "properties":	[]
   }, {
     "alive":	1,
-    "money":	0,
+    "money":	1000,
     "point":	0,
     "number":	4,
     "tool1":	0,
