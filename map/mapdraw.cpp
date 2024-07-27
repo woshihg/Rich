@@ -194,9 +194,6 @@ Map::Map( char* users,Player* players_data,Cell* cell) {
     for(int i = 0;i<70;i++) {
         if(cell[i].has_tool)     //地图上显示道具
             ToolCreat(i, cell[i].has_tool);
-        // else if(cell[i].owner != 'N' && cell[i].owner != 0){
-        //     BoughtSpace(i,players_data[i].properties,(kind_enum)cell[i].kind);
-        // }
     }
     for (int i =0; i<4; ++i) {
         for(int j =0; j<70; j++) {
@@ -204,10 +201,8 @@ Map::Map( char* users,Player* players_data,Cell* cell) {
                 BoughtSpace((owner_enum) players_data[i].number,players_data[i].properties,j);
             }
         }
-
     }
     for (int i =0; i<4; ++i) {
-
         if (players_data[i].alive) {
             PlayerCreate((owner_enum) players_data[i].number, players_data[i].position);
         }

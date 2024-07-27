@@ -13,33 +13,20 @@ int main(int argc, char *argv[])
     char users[10];
 
     Player use_players[4] = {0};
-    use_players[0].alive = true;
-    use_players[0].number = 1;
-    use_players[0].position = 2;
-    use_players[1].alive = true;
-    use_players[1].number = 2;
-    use_players[1].position = 4;
-    use_players[2].alive = true;
-    use_players[2].number = 3;
-    use_players[2].position = 6;
-    use_players[3].alive = true;
-    use_players[3].number = 4;
-    use_players[3].position = 8;
     Cell cell[70] = {0};
-    cell[1].has_tool = 1;//炸弹
-    cell[2].has_tool = 2;//路障
-    use_players[0].properties[13] = 1;
-    use_players[0].properties[15] = 3;
 
     char filename[256] = {};    // jsonWrite
     char now_user[2] = "Q";
     system("");
+
+
 
     read_json(use_players, jsonmap, users, now_user, "../user.json");
     Map map(users,use_players,cell);
     map.SetCell(cell);
     map.PrintMap();
     int flag_ifquit = 0;
+
     while(!flag_ifquit) {
         int flag_ifwalk = 1;
         int flag_ifover = 0;
@@ -70,6 +57,12 @@ int main(int argc, char *argv[])
 
               if (flag_ifover){ break;}
               else
+              if (strcmp(RichStructure.instruction, "Sell") == 0) {
+                  sell_house(&(use_players[route_num]),cell,RichStructure.parameter);
+              }else
+              if (strcmp(RichStructure.instruction, "Tool") == 0) {
+                  tool_use(&(use_players[route_num]),&map);
+              }else
               if (strcmp(RichStructure.instruction, "Quit") == 0) {
                   flag_ifquit = 1;
               }else
@@ -83,10 +76,13 @@ int main(int argc, char *argv[])
               if (strcmp(RichStructure.instruction, "Roll") == 0 && flag_ifwalk) { // init初始化地图和用户
                   //投掷骰子
                   walk_roll(use_players, now_user, &map);
-                  map.SetCell(cell);
-                  map.PrintMap();
                   use_players[route_num].prison = false;
                   flag_ifwalk = 0;
+
+                  step_cell_logit(use_players,&use_players[route_num],&cell[use_players[route_num].position]);
+                  map.SetCell(cell);
+                  map.PrintMap();
+                  flag_ifover = 1;
               }else{}
               write_json(use_players, jsonmap, users, now_user, filename);
           }
