@@ -122,7 +122,7 @@ int MapData::Remove_Passer(owner_enum passer){
     }
     return error;
 }
-Map::Map( Player* players_data,Cell* cell) {
+Map::Map( char* users,Player* players_data,Cell* cell) {
     for (int i = 0; i<=63 ;i++){
         switch (i) {
             case 0:
