@@ -8,15 +8,13 @@
 int main(int argc, char *argv[])
 {
     // init初始化地图和用户
-     game_init();
-
+//     game_init();
 
     //
     // jsonWrite
     char filename[256] = {};
     //strcpy(filename, argc > 1 ? argv[1] : "");
     Terminal_Test(filename);
-    printf("%s\n",filename);
 
     jsonMap jsonmap;
     char users[10];

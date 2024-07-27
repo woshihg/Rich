@@ -81,7 +81,7 @@ public:
     void PlayerGoto(owner_enum player,int from,int to);
     void PlayerCreate(owner_enum player,int to);
     void TollCreat(int poistion,int tollkind);
-    void Map::TollRemove(int position);
+    void TollRemove(int position);
 };
 
 #endif //RICH_MAN_MAPDRAW_H

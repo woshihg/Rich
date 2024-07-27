@@ -1,1 +1,1 @@
-load "Test\test\test0\user.json"
+load ./user.json
