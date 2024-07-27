@@ -1,7 +1,6 @@
 #include "terminal.h"
 
-char inst_table[INSTRUCTION_NUM][10] = {"Roll", "Sell", "Block", "Bomb",
-                                        "Robot", "Query", "Help", "Quit",
+char inst_table[INSTRUCTION_NUM][10] = {"Roll", "Sell", "Tool", "Query", "Help", "Quit",
                                             "Step"};
 char test_table[1][10]={"load"};
 

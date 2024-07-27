@@ -71,8 +71,6 @@ public:
 };
 
 class Map {
-private:
-    MapData data[70];
 public:
     explicit Map(char* users,Player* players_data, Cell* cell);
 //    ~Map();
@@ -84,7 +82,8 @@ public:
     void ToolCreat(int poistion, int tollkind);
     void ToolRemove(int position);
     void BoughtSpace(owner_enum player, int properties[],int position);
-    void RemoveSpace(int position);
+
+    MapData data[70];
 };
 
 #endif //RICH_MAN_MAPDRAW_H

@@ -96,7 +96,7 @@ void PlayerGetBomb(Player* player) {
     player->bomb++;
 }
 
-void tool_use(Player* player,Map* map) {
+void tool_use(Player *player, Map *map) {
     char *token;
     char input[100];
     printf("now you can choose to use a tool or not\n");
@@ -177,6 +177,16 @@ void tool_map(Player* player,Map* map) {
                 printf("you dont have enough tool\n");
             }
         }
+    }
+}
+
+//机器娃娃
+void robot_use(Player* player,Map* map) {
+    //清理路障
+    int cur_position;
+    for(int i=0;i<10;i++) {
+        cur_position = player->position;
+        (&(map-> data[cur_position+i]))->has_tool = 0;
     }
 }
 

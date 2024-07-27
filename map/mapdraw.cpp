@@ -201,10 +201,8 @@ Map::Map( char* users,Player* players_data,Cell* cell) {
                 BoughtSpace((owner_enum) players_data[i].number,players_data[i].properties,j);
             }
         }
-
     }
     for (int i =0; i<4; ++i) {
-
         if (players_data[i].alive) {
             PlayerCreate((owner_enum) players_data[i].number, players_data[i].position);
         }
