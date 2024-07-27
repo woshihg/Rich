@@ -359,15 +359,15 @@ void Map::TollRemove(int position) {
 void Map::BoughtSpace(owner_enum player, int properties[],int position) {
     data[position].owner = player;
     switch (properties[position]) {
-        case '1':
+        case 1:
             data[position].base = COTTAGE;
             data[position].kind = COTTAGE;
         break;
-        case '2':
+        case 2:
             data[position].base = HOUSE;
             data[position].kind = HOUSE;
         break;
-        case '3':
+        case 3:
             data[position].base = SKYSCRAPER;
             data[position].kind = SKYSCRAPER;
         break;

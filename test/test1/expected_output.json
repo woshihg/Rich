@@ -23,10 +23,10 @@
 
     },
     {
-      "alive": 0,
+      "alive": 1,
       "money": 0,
       "point": 0,
-      "number": 2,
+      "number": 3,
       "tool1": 0,
       "tool2": 0,
       "tool3": 0,
