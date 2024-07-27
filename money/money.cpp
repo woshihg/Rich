@@ -23,13 +23,31 @@ void step_cell_logit(Player* players ,Player* now_player,Cell* cell) {
     int pos = now_player->position;
     char cell_owner = cell[pos].owner;
     char player_name = get_player_name(now_player->number);
+    int cell_cost = get_cost(pos);
+    char choose;
+    // char now_player_char;
+    // now_player_char = get_player_name();
 
     if(player_name == cell_owner)
     {
         invest_house_execute(now_player, cell);
     }
     else {
-        pay_rentment(players,cell,now_player, cell_owner, pos);
+        if(cell_owner == 'N' && (now_player->money >= cell_cost)) {
+                printf("走到空地，资金足够，您是否选择购买\n");
+            scanf("%d", &choose);
+            if(choose == 'Y') {
+                now_player->property_count++;
+                cell[pos].owner = player_name;
+                now_player->money -= cell_cost;
+            }
+            else if(choose == 'N'){
+                printf("放弃购买");
+            }
+        }
+        else {
+            pay_rentment(players,cell,now_player, cell_owner, pos);
+        }
     }
 }
 
@@ -119,3 +137,7 @@ Player search_by_char(Player* players, char name_to_search) {
     printf("Failed to search");
     return players[0];
 }
+
+// void out_of_money() {
+//
+// }
