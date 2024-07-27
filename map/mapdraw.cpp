@@ -339,11 +339,9 @@ void Map::TXTMap(char* filename) {
 //地图道具显示与修改
 void Map::ToolCreat(int poistion, int tollkind){
     if(tollkind==1) {
-        // data[poistion].show = '@';
         data[poistion].has_tool = 1;
     }
     else if(tollkind==2){
-        // data[poistion].show = '#';
         data[poistion].has_tool = 2;
     }
 }
@@ -371,4 +369,8 @@ void Map::BoughtSpace(owner_enum player, int properties[],int position) {
     }
 
 }
-
+void Map::RemoveSpace(int position) {
+    data[position].base = SPACE;
+    data[position].kind = SPACE;
+    data[position].owner = OWNER_NULL;
+}
