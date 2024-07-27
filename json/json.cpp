@@ -94,7 +94,7 @@ void read_json(Player use_players[], jsonMap &jsonmap, char users[], char *now_u
 //                use_players[i].properties[j][1] = cJSON_GetArrayItem(property, 1)->valueint;
                 int a = cJSON_GetArrayItem(property, 0)->valueint;
                 int b = cJSON_GetArrayItem(property, 1)->valueint;
-                use_players[i].properties[a] = b;
+                use_players[i].properties[a] = b + 1;
             }
         }
     }
@@ -190,7 +190,7 @@ void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_
                 if(use_players[index].properties[i]!=0){
                     cJSON* temp = cJSON_CreateArray();
                     cJSON_AddItemToArray(temp, cJSON_CreateNumber(i));
-                    cJSON_AddItemToArray(temp, cJSON_CreateNumber(use_players[index].properties[i]));
+                    cJSON_AddItemToArray(temp, cJSON_CreateNumber(use_players[index].properties[i]-1));
                     cJSON_AddItemToArray(properties, temp);
                 }
             }
