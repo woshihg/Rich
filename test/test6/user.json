@@ -1,6 +1,6 @@
 {
   "MAP": {
-    "tool":[]
+    "tool":[[1,2],[2,1]]
   },
   "users": "QASJ",
   "now_user": "S",
@@ -23,7 +23,7 @@
 
     },
     {
-      "alive": 1,
+      "alive": 0,
       "money": 0,
       "point": 0,
       "number": 2,
