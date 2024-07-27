@@ -1,10 +1,11 @@
 #include "terminal.h"
 
 char inst_table[INSTRUCTION_NUM][10] = {"Roll", "Sell", "Block", "Bomb", "Robot", "Query", "Help", "Quit", "Step"};
+char test_table[1][10]={"load"};
 
 Rich RichStructure;
 
-void terminal()
+void terminal(Player player)
 {
     char str[INSTRUCTION_MAX_LEN] = {0};
     char flag = 0;
@@ -15,6 +16,8 @@ void terminal()
     while (!flag)
     {
         flag = 1;
+
+        Show_Terminal(player);
 
         fgets(str, INSTRUCTION_MAX_LEN, stdin);
         result=sscanf(str, "%s %d", RichStructure.instruction, &parameter_temp);
@@ -75,6 +78,55 @@ void terminal()
                 INIT_TERMINAL;
                 printf("Quit参数错误，不应有参数\n");
             }
+        }
+
+    }
+}
+
+void Show_Terminal(Player player)
+{
+    switch(player.number)
+    {
+        case 1:
+            printf("钱夫人>");
+            break;
+        case 2:
+            printf("阿土伯>");
+            break;
+        case 3:
+            printf("孙小美>");
+            break;
+        case 4:
+            printf("金贝贝>");
+            break;
+        default:break;
+    }
+}
+
+void Terminal_Test(char *filename)
+{
+    char str[256] = {0};
+    char flag = 0;
+    char result = 0;
+    char ins[256] = {0};
+    int i = 0;
+
+    while (!flag)
+    {
+        flag = 1;
+
+        fgets(str, 256, stdin);
+        result = sscanf(str, "%s %s", ins, filename);
+
+        if (result != 2 || strcmp(ins, test_table[0]) != 0)
+        {
+            flag = 0;
+            for (i = 0; i < 256; i++)
+            {
+                ins[i] = 0;
+                filename[i] = 0;
+            }
+            printf("输入指令错误\n");
         }
     }
 }

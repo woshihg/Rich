@@ -5,13 +5,12 @@
 // mapWrite(filename);
 // //test0 --> map0
 #include "mapdraw.h"
-#include "../json/json.h"
+//#include "../json/json.h"
 #include <iostream>
 #include <fstream>
 #include <cstring>
 
 using namespace std;
-
 MapData::MapData(){
     base = '0';
     color = (char*)COLOR_NULL;
@@ -24,8 +23,18 @@ MapData::MapData(){
         passer = OWNER_NULL;
 }
 
-void MapData::Show_Char() const {
-    printf(color);
+void MapData::Show_Char()  {
+    if(!passer_num) {
+        if(has_tool == 1) {
+            show = '@';
+            color = (char*)COLOR_NULL;
+        }
+        else if (has_tool == 2){
+            show = '#';
+            color = (char*)COLOR_NULL;
+    }
+    }
+    printf("%s", color);
     cout <<  show ;
     printf(COLOR_NULL);
 }
@@ -50,28 +59,28 @@ void MapData::Update_Char(){
         switch (passers[passer_num-1]) {
             case OWNER_Q:
                 show = 'Q';
-                color = (char*)COLOR_RED;
-                break;
+            color = (char*)COLOR_RED;
+            break;
             case OWNER_A:
                 show = 'A';
-                color = (char*)COLOR_GREEN;
-                break;
+            color = (char*)COLOR_GREEN;
+            break;
             case OWNER_S:
                 show = 'S';
-                color = (char*)COLOR_BLUE;
-                break;
+            color = (char*)COLOR_BLUE;
+            break;
             case OWNER_J:
                 show = 'J';
-                color = (char*)COLOR_YELLOW;
-                break;
+            color = (char*)COLOR_YELLOW;
+            break;
             default:
                 show = base;
-                color = (char*)COLOR_NULL;
-                break;
+            color = (char*)COLOR_NULL;
+            break;
         }
     }
 }
-//什么意思？
+
 void MapData::Update_Passer_Num(){
     int count = 0;
     for (auto & passer : passers) {
@@ -113,53 +122,56 @@ int MapData::Remove_Passer(owner_enum passer){
     }
     return error;
 }
-Map::Map(char* players, Player* players_data,Cell* cell){
+Map::Map( char* users,Player* players_data,Cell* cell) {
     for (int i = 0; i<=63 ;i++){
         switch (i) {
             case 0:
                 data[i].base = 'S';
-                data[i].show = 'S';
-                break;
+            data[i].show = 'S';
+            break;
             case 14:
                 data[i].base = 'H';
-                data[i].show = 'H';
-                break;
+            data[i].show = 'H';
+            break;
             case 28:
                 data[i].base = 'T';
-                data[i].show = 'T';
-                break;
+            data[i].show = 'T';
+            break;
             case 35:
                 data[i].base = 'G';
-                data[i].show = 'G';
-                break;
+            data[i].show = 'G';
+            break;
             case 49:
                 data[i].base = 'P';
-                data[i].show = 'P';
-                break;
+            data[i].show = 'P';
+            break;
             case 63:
                 data[i].base = 'M';
-                data[i].show = 'M';
-                break;
+            data[i].show = 'M';
+            break;
             default:
                 data[i].base = '0';
-                data[i].show = '0';
-                break;
+            data[i].show = '0';
+            break;
         }
-        if(cell[i].has_tool)     //地图上显示道具
-            Toll_Creat(i,cell);
-
     }
     for (int i = 64; i<=69 ;i++){
         data[i].base = '$';
         data[i].show = '$';
     }
-//    int count = (int)strlen(players);
+    //    int count = (int)strlen(players);
+    for(int i = 0;i<70;i++) {
+        if(cell[i].has_tool)     //地图上显示道具
+            TollCreat(i,cell[i].has_tool);
+        if(cell[i].owner != 'N'){
+            BoughtSpace(i,cell[i].owner,(kind_enum)cell[i].kind);
+        }
+    }
     for (int i =0; i<4; ++i) {
         if (players_data[i].alive) {
             PlayerCreate((owner_enum) players_data[i].number, players_data[i].position);
         }
     }
-
 }
 
 void Map::PlayerCreate(owner_enum player,int to){
@@ -171,6 +183,9 @@ void Map::PlayerCreate(owner_enum player,int to){
 }
 
 void Map::PlayerGoto(owner_enum player,int from,int to){
+    while(to > 69){ //如果to超出地图范围
+        to -= 70;
+    }
     int error = 0;
     error = data[from].Remove_Passer(player);
     if (!error){
@@ -188,6 +203,43 @@ void Map::PlayerGoto(owner_enum player,int from,int to){
     else {
 
     }
+}
+
+void Map::SetCell(Cell* cell){
+//    typedef struct Cell{
+//        char show_char;
+//        int kind;
+//        int rank;
+//        int has_tool;
+//        char owner;     // owner = 'N' , means owner is None
+//    } Cell;
+    for (int i = 0; i < 70; ++i) {
+        cell[i].show_char = data[i].show;
+        cell[i].kind = data[i].kind;
+        cell[i].rank = data[i].rank;
+        cell[i].has_tool = data[i].has_tool;
+        switch (data[i].has_tool) {
+            case OWNER_NULL:
+                cell[i].owner = 'N';
+                break;
+            case OWNER_Q:
+                cell[i].owner = 'Q';
+                break;
+            case OWNER_A:
+                cell[i].owner = 'A';
+                break;
+            case OWNER_S:
+                cell[i].owner = 'S';
+                break;
+            case OWNER_J:
+                cell[i].owner = 'J';
+                break;
+            default:
+                cell[i].owner = 'N';
+                break;
+        }
+    }
+    PrintMap();//test
 }
 
 void Map::PrintMap() {
@@ -249,14 +301,33 @@ void Map::TXTMap(char* filename) {
     outfile.close();
 }
 //地图道具显示与修改
-void Map::Toll_Creat(int poistion,Cell* cell) {
-    if(cell[poistion].has_tool==1) {
-        data[poistion].show = '@';
-        data->has_tool = 1;
+void Map::TollCreat(int poistion,int tollkind){
+    if(tollkind==1) {
+        // data[poistion].show = '@';
+        data[poistion].has_tool = 1;
     }
-    else {
-        data[poistion].show = '#';
-        data->has_tool = 2;
+    else if(tollkind==2){
+        // data[poistion].show = '#';
+        data[poistion].has_tool = 2;
     }
 }
-//
+void Map::TollRemove(int position) {
+    data[position].has_tool = 0;
+}
+//有主地块
+void Map::BoughtSpace(int poistion, char owner, kind_enum kind) {
+    switch (owner) {
+        case 'Q':
+            data[poistion].owner = OWNER_Q;
+        case 'A':
+            data[poistion].owner = OWNER_A;
+        case 'S':
+            data[poistion].owner = OWNER_S;
+        case 'J':
+            data[poistion].owner = OWNER_J;
+        default:
+            break;
+    }
+    data[poistion].kind =kind;   //地块种类
+}
+
