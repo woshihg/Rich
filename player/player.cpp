@@ -72,17 +72,7 @@ void Route_Num_Change(char* now_user){
 
 int Player_Route_Start(Player *players, char *now_user, Map *map, Cell pCell[70]) {//回合开始
     int route_num = 0;
-
-    if(now_user[0] == 'Q'){
-        route_num = OWNER_Q;
-    } else if(now_user[0] == 'A'){
-        route_num = OWNER_A;
-    } else if(now_user[0] == 'S'){
-        route_num = OWNER_S;
-    } else if(now_user[0] == 'J'){
-        route_num = OWNER_J;
-    }
-
+    route_num = Find_Player_Num(players, now_user);
     int if_continue = 0;
     if(players[route_num]. prison||players[route_num].hospital) {
         //用户轮空
@@ -98,17 +88,17 @@ int Player_Route_Start(Player *players, char *now_user, Map *map, Cell pCell[70]
         if (route_num == 4) {
             route_num = 0;
         }
+        if(players[route_num].number == OWNER_Q){
+            now_user[0] = 'Q';
+        } else if(players[route_num].number == OWNER_A){
+            now_user[0] = 'A';
+        } else if(players[route_num].number == OWNER_S){
+            now_user[0] = 'S';
+        } else if(players[route_num].number == OWNER_J){
+            now_user[0] = 'J';
+        }
     }else{
 
-    }
-    if(route_num == 0){
-        now_user[0] = 'Q';
-    } else if(route_num == 1){
-        now_user[0] = 'A';
-    } else if(route_num == 2){
-        now_user[0] = 'S';
-    } else if(route_num == 3){
-        now_user[0] = 'J';
     }
     return if_continue;
 }
