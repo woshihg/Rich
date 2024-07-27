@@ -4,7 +4,6 @@
 
 #include "money.h"
 
-
 void Set_Init_Money(Player *player)
 {
     char str[6]={0};
