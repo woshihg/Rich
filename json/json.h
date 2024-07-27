@@ -37,7 +37,7 @@ typedef struct Cell{
     int kind;
     int rank;
     int has_tool;
-    int house_scale; //The scale of house, 0 for empty ground, 1 for hut, 3 for skyscraper
+    //int house_scale; //The scale of house, 0 for empty ground, 1 for hut, 3 for skyscraper
     int sum_invested_money; //The sum of money invested to the cell, convinient for selling the property on the cell
     char owner;     // owner = 'N' , means owner is None
 } Cell;

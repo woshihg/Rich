@@ -95,6 +95,15 @@ void read_json(Player use_players[], jsonMap &jsonmap, char users[], char *now_u
                 int a = cJSON_GetArrayItem(property, 0)->valueint;
                 int b = cJSON_GetArrayItem(property, 1)->valueint;
                 use_players[i].properties[a] = b + 1;
+                if(use_players[i].number== 1) {
+                    jsonmap.cells[a].owner = 'Q';
+                }else if(use_players[i].number== 2) {
+                    jsonmap.cells[a].owner = 'A';
+                }else if(use_players[i].number== 3) {
+                    jsonmap.cells[a].owner = 'S';
+                }else if(use_players[i].number== 4) {
+                    jsonmap.cells[a].owner = 'J';
+                }
             }
         }
     }

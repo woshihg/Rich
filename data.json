@@ -1,82 +1,40 @@
 {
-	"MAP": {
-        "owner": {
-            "J": {
-                "properties": [
-                    {"name": "人物和拥有的地+等级", "value": []}
-                ]
-            }
-        }
-    },
-    "21:43": {
-        "user": "QASJ",
-        "now_user": "S",
-        "Q": {
-            "alive": 0,
-            "money": 0,
-            "point": 0,
-            "number": 1,
-            "tool1": 0,
-            "tool2": 0,
-            "tool3": 0,
-            "buff": 0,
-            "continue": 0,
-            "debuff": 0,
-            "decontinue": 0,
-            "position": 0
-        },
-        "A": {
-            "alive": 0,
-            "money": 0,
-            "point": 0,
-            "number": 1,
-            "tool1": 0,
-            "tool2": 0,
-            "tool3": 0,
-            "buff": 0,
-            "continue": 0,
-            "debuff": 0,
-            "decontinue": 0,
-            "position": 0
-        },
-        "S": {
-            "alive": 0,
-            "money": 0,
-            "point": 0,
-            "number": 1,
-            "tool1": 0,
-            "tool2": 0,
-            "tool3": 0,
-            "buff": 0,
-            "continue": 0,
-            "debuff": 0,
-            "decontinue": 0,
-            "position": 0
-        },
-        "J": {
-            "alive": 0,
-            "money": 0,
-            "point": 0,
-            "number": 1,
-            "tool1": 0,
-            "tool2": 0,
-            "tool3": 0,
-            "buff": 0,
-            "continue": 0,
-            "debuff": 0,
-            "decontinue": 0,
-            "position": 0
-        }
-    },
-    "owner_J_103:11": {
-        "MAP": {
-            "owner": {
-                "J": {
-                    "properties": [
-                        {"name": "人物和拥有的地+等级", "value": "103:11"}
-                    ]
-                }
-            }
-        }
-    }
+	"MAP":	{
+		"tool":	[]
+	},
+	"users":	"QA",
+	"now_user":	"Q",
+	"players":	[{
+			"alive":	1,
+			"money":	10000,
+			"point":	0,
+			"number":	1,
+			"tool1":	0,
+			"tool2":	0,
+			"tool3":	0,
+			"buff":	0,
+			"continue":	0,
+			"debuff0":	0,
+			"debuff1":	0,
+			"decontinue":	0,
+			"position":	2,
+			"properties":	[[8, 2]],
+			"property_count":	1
+		}, {
+			"alive":	1,
+			"money":	0,
+			"point":	0,
+			"number":	2,
+			"tool1":	0,
+			"tool2":	0,
+			"tool3":	0,
+			"buff":	0,
+			"continue":	0,
+			"debuff0":	0,
+			"debuff1":	0,
+			"decontinue":	0,
+			"position":	0,
+			"properties":	[],
+			"property_count":	0
+		}]
 }
