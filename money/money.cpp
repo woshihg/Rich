@@ -59,7 +59,6 @@ void step_cell_logit(Player *players, Player *now_player, Map *map)
             }
             else if (choose == 'N')
             {
-
                 printf("Declined to purchase\n");
             }
         }
@@ -177,6 +176,13 @@ Player search_by_char(Player *players, char name_to_search)
     return players[0];
 }
 
-// void out_of_money() {
+// void chech_out_of_money(Player *players, Map *map) {
+//     if(players->money < 0) {
+//         printf("you are out of game\n");
 //
+//     }
 // }
+
+
+
+// 破产  房产数  查询 Help
