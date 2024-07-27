@@ -183,6 +183,9 @@ void Map::PlayerCreate(owner_enum player,int to){
 }
 
 void Map::PlayerGoto(owner_enum player,int from,int to){
+    while(to > 69){ //如果to超出地图范围
+        to -= 70;
+    }
     int error = 0;
     error = data[from].Remove_Passer(player);
     if (!error){
