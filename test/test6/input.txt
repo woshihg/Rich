@@ -1,2 +1,1 @@
-load test/test6/user.json
-step 5
+Step 5

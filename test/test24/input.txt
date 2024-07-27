@@ -1,2 +1,1 @@
-load test/test24/user.json
 Robot

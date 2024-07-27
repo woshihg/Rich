@@ -1,2 +1,1 @@
-load test/test21/user.json
 Boom -3

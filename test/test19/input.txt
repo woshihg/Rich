@@ -1,2 +1,1 @@
-load test/test19/user.json
 Block 10

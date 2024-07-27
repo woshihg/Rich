@@ -34,7 +34,7 @@
       "continue": 0,
       "debuff0": 0,
       "debuff1": 1,
-      "decontinue": 1,
+      "decontinue": 2,
       "position": 49,
       "properties":[]
     },

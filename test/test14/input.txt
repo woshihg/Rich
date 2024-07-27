@@ -1,2 +1,1 @@
-load test/test14/user.json
 Block 0

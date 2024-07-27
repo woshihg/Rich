@@ -1,2 +1,1 @@
-load test/test25/user.json
 Sell 0
