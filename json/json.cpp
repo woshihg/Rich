@@ -193,7 +193,6 @@ void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_
                 goto end;
             }
             cJSON_AddItemToObject(temp_player, "properties", properties);
-            cJSON_AddItemToObject(temp_player, "property_count", cJSON_CreateNumber(use_players[index].property_count));
             //���������ʹ��forѭ�������޸�
             for(int i=0;i<70;i++){
                 if(use_players[index].properties[i]!=0){

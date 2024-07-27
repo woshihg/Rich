@@ -1,9 +1,9 @@
 {
   "MAP": {
-    "tool":[[2,1]]
+    "tool":[]
   },
   "users": "QASJ",
-  "now_user": "Q",
+  "now_user": "A",
   "players": [
     {
       "alive": 1,
@@ -17,8 +17,8 @@
       "continue": 0,
       "debuff0": 1,
       "debuff1": 0,
-      "decontinue": 3,
-      "position": 14,
+      "decontinue": 2,
+      "position": 49,
       "properties":[]
 
     },

@@ -1,9 +1,9 @@
 {
   "MAP": {
-    "tool":[[0,1],[28,2],[35,1],[49,2],[63,1]]
+    "tool":[]
   },
   "users": "QASJ",
-  "now_user": "S",
+  "now_user": "A",
   "players": [
     {
       "alive": 1,
@@ -18,7 +18,7 @@
       "debuff0": 0,
       "debuff1": 0,
       "decontinue": 0,
-      "position": 69,
+      "position": 3,
       "properties":[]
 
     },
@@ -48,10 +48,10 @@
       "tool3": 0,
       "buff": 0,
       "continue": 0,
-      "debuff0": 1,
+      "debuff0": 0,
       "debuff1": 0,
-      "decontinue": 3,
-      "position": 14,
+      "decontinue": 0,
+      "position": 0,
       "properties":[]
     },
     {
@@ -67,7 +67,7 @@
       "debuff0": 0,
       "debuff1": 0,
       "decontinue": 0,
-      "position": 28,
+      "position": 0,
       "properties":[]
     }
   ]

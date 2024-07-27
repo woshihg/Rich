@@ -1,11 +1,11 @@
 {
 	"MAP":	{
-		"tool":	[[1, 2], [2, 5], [32, 6], [43, 6]]
+		"tool":	[]
 	},
 	"users":	"QASJ",
-	"now_user":	"S",
+	"now_user":	"A",
 	"players":	[{
-			"alive":	0,
+			"alive":	1,
 			"money":	0,
 			"point":	0,
 			"number":	1,
@@ -17,14 +17,13 @@
 			"debuff0":	0,
 			"debuff1":	0,
 			"decontinue":	0,
-			"position":	0,
-			"properties":	[[10, 2]],
-			"property_count":	1
+			"position":	3,
+			"properties":	[]
 		}, {
-			"alive":	0,
+			"alive":	1,
 			"money":	0,
 			"point":	0,
-			"number":	1,
+			"number":	2,
 			"tool1":	0,
 			"tool2":	0,
 			"tool3":	0,
@@ -34,13 +33,12 @@
 			"debuff1":	0,
 			"decontinue":	0,
 			"position":	0,
-			"properties":	[[10, 2], [13, 3], [65, 2]],
-			"property_count":	3
+			"properties":	[]
 		}, {
-			"alive":	0,
+			"alive":	1,
 			"money":	0,
 			"point":	0,
-			"number":	1,
+			"number":	3,
 			"tool1":	0,
 			"tool2":	0,
 			"tool3":	0,
@@ -50,13 +48,12 @@
 			"debuff1":	0,
 			"decontinue":	0,
 			"position":	0,
-			"properties":	[[10, 2], [13, 3], [65, 2]],
-			"property_count":	3
+			"properties":	[]
 		}, {
-			"alive":	0,
+			"alive":	1,
 			"money":	0,
 			"point":	0,
-			"number":	1,
+			"number":	4,
 			"tool1":	0,
 			"tool2":	0,
 			"tool3":	0,
@@ -66,7 +63,6 @@
 			"debuff1":	0,
 			"decontinue":	0,
 			"position":	0,
-			"properties":	[[10, 2], [13, 3], [65, 2]],
-			"property_count":	3
+			"properties":	[]
 		}]
 }

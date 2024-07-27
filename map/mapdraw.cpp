@@ -369,8 +369,8 @@ void Map::BoughtSpace(owner_enum player, int properties[],int position) {
     }
 
 }
-void Map::RemoveSpace(int position) {
-    data[position].base = SPACE;
-    data[position].kind = SPACE;
-    data[position].owner = OWNER_NULL;
-}
+//void Map::RemoveSpace(int position) {
+//    data[position].base = SPACE;
+//    data[position].kind = SPACE;
+//    data[position].owner = OWNER_NULL;
+//}

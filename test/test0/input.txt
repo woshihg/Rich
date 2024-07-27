@@ -1,2 +1,0 @@
-load test/test0/user.json
-step 5

@@ -1,6 +1,6 @@
 {
   "MAP": {
-    "tool":[[1,1]]
+    "tool":[]
   },
   "users": "QASJ",
   "now_user": "Q",
@@ -18,7 +18,7 @@
       "debuff0": 0,
       "debuff1": 0,
       "decontinue": 0,
-      "position": 0,
+      "position": 49,
       "properties":[]
 
     },
