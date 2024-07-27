@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
         // init初始化地图和用户
         system("");
         Map map(users,use_players,cell);
-        map.PrintMap();
+        map.SetCell(cell);
 
 
         terminal(use_players[0]);
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
         if(use_players[0].position>69)
             use_players[0].position-=70;
 
-        map.PrintMap();
+        map.SetCell(cell);
     }
     return 0;
 }
