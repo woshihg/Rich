@@ -5,6 +5,8 @@
 #include "money/money.h"
 #include "terminal/terminal.h"
 
+//stack
+
 int main(int argc, char *argv[])
 {
     jsonMap jsonmap;
@@ -20,7 +22,7 @@ int main(int argc, char *argv[])
     char filename[256] = {};    // jsonWrite
 
     //设置初始资金
-    Set_Init_Money(use_players);
+//    Set_Init_Money(use_players);
 
 //    //测试命令
 //    Terminal_Test(filename);
