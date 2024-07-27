@@ -16,6 +16,9 @@
 #include "stdlib.h"
 #include "string.h"
 
+int get_cost(int rank);
+void invest_house_logit(Player* player ,Cell* cell);
+void invest_house_execute(Player* player, Cell* cell);
 void Set_Init_Money(Player *player);
 
 #endif //MONEY_H
