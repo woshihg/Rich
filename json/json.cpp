@@ -45,7 +45,7 @@ void read_json(Player use_players[], jsonMap &jsonmap, char users[], char *now_u
         jsonmap.cells[tool_cell[i]].has_tool = tool_kind[i];
     }
 
-    //MAP¶ÁÈ¡Íê±Ï/////////////////////////////////////////////////////////////
+    //MAPï¿½ï¿½È¡ï¿½ï¿½ï¿½/////////////////////////////////////////////////////////////
     strcpy(users, cJSON_GetObjectItem(root, "users")->valuestring);
     char test[10];
     strcpy(test, users);
@@ -98,7 +98,7 @@ void read_json(Player use_players[], jsonMap &jsonmap, char users[], char *now_u
             }
         }
     }
-    //players¶ÁÈ¡Íê±Ï/////////////////////////////////////////////////////////////////
+    //playersï¿½ï¿½È¡ï¿½ï¿½ï¿½/////////////////////////////////////////////////////////////////
     cJSON_Delete(root);
 }
 
@@ -123,13 +123,13 @@ char *read_file(const char *filename) {
     return data;
 }
 
-//ÕâÀïÊµ¼ÊÉÏ¶¼ÊÇ¾²Ì¬µÄ´æ´¢·½
+//ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½Ï¶ï¿½ï¿½Ç¾ï¿½Ì¬ï¿½Ä´æ´¢ï¿½ï¿½
 void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_user, const char name_string[256]) {
     char resultname[256] = {};
     strcpy(resultname, name_string);
 
     if(strcmp(name_string, "") == 0){
-        strcpy(resultname, "../Test/result.json");
+        strcpy(resultname, "result.json");
     }else{
         replaceString(resultname, "user", "result");
     }
@@ -149,7 +149,7 @@ void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_
         }
     }
 
-    //°¸Àý£¬×îºóÊ¹ÓÃforÑ­»·½øÐÐÐÞ¸Ä
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½forÑ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½
 
     cJSON_AddItemToObject(map, "tool", tool);
     cJSON_AddStringToObject(root, "users", users);
@@ -185,7 +185,7 @@ void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_
             }
             cJSON_AddItemToObject(temp_player, "properties", properties);
             cJSON_AddItemToObject(temp_player, "property_count", cJSON_CreateNumber(use_players[index].property_count));
-            //°¸Àý£¬×îºóÊ¹ÓÃforÑ­»·½øÐÐÐÞ¸Ä
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½forÑ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½
             for(int i=0;i<70;i++){
                 if(use_players[index].properties[i]!=0){
                     cJSON* temp = cJSON_CreateArray();
@@ -208,13 +208,13 @@ void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_
 
 int write_file(const char *filename, const char *data) {
     FILE *file = fopen(filename, "w");
-    if (!file) return 0; // ·µ»Ø0±íÊ¾´ò¿ªÎÄ¼þÊ§°Ü
+    if (!file) return 0; // ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ä¼ï¿½Ê§ï¿½ï¿½
 
     size_t length = strlen(data);
     size_t written = fwrite(data, 1, length, file);
     fclose(file);
 
-    // Èç¹ûÊµ¼ÊÐ´ÈëµÄ×Ö½ÚÊýÓëÊý¾Ý³¤¶ÈÏàµÈ£¬Ôò·µ»Ø1£¬·ñÔò·µ»Ø0±íÊ¾Ð´ÈëÊ§°Ü
+    // ï¿½ï¿½ï¿½Êµï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ò·µ»ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½0ï¿½ï¿½Ê¾Ð´ï¿½ï¿½Ê§ï¿½ï¿½
     return written == length;
 }
 
@@ -240,9 +240,9 @@ void replaceString(char* str, const char* from, const char* to) {
 //    strcpy(resultname, filename);
 //    replaceString(resultname, "test", "result");
 //    cJSON *root = NULL, *temp1 = NULL, *temp2 = NULL, *temp3 = NULL;
-//    // ´´½¨ÊÊµ±ÀàÐÍµÄcJSONÏî¡£
+//    // ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½Íµï¿½cJSONï¿½î¡£
 //    root = cJSON_CreateObject();
-//    // ½«Ïî¸½¼Óµ½Ö¸¶¨µÄ¶ÔÏó¡£
+//    // ï¿½ï¿½ï¿½î¸½ï¿½Óµï¿½Ö¸ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½
 //    cJSON_AddItemToObject(root, "map", temp1 = cJSON_CreateObject());
 //    cJSON_AddItemToObject(temp1, "username", cJSON_CreateString("admin"));
 //    cJSON_AddItemToObject(temp1, "password", cJSON_CreateString("123456"));
@@ -251,11 +251,11 @@ void replaceString(char* str, const char* from, const char* to) {
 //
 //    char str[3][10] = {"Ikaros", "Nymph", "Astleya"};
 //    int num[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-//    // ´´½¨ÊÊµ±ÀàÐÍµÄcJSONÏî¡£
+//    // ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½Íµï¿½cJSONï¿½î¡£
 //    temp2 = cJSON_CreateArray();
 //    for (i = 0; i < 3; i++)
 //    {
-//        // ½«Ïî¸½¼Óµ½Ö¸¶¨µÄ¶ÔÏó¡£
+//        // ï¿½ï¿½ï¿½î¸½ï¿½Óµï¿½Ö¸ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½
 //        cJSON_AddItemToArray(temp2, temp3 = cJSON_CreateObject());
 //        cJSON_AddStringToObject(temp3, "username", str[i]);
 //        cJSON_AddStringToObject(temp3, "password", "666");
@@ -269,7 +269,7 @@ void replaceString(char* str, const char* from, const char* to) {
 //
 //    int len = 0;
 //    len = strlen(out);
-//    // ´ò¿ªÎÄ¼þ
+//    // ï¿½ï¿½ï¿½Ä¼ï¿½
 //    fp = fopen(filename, "w");
 //    if(NULL == fp)
 //    {
@@ -280,7 +280,7 @@ void replaceString(char* str, const char* from, const char* to) {
 //    fclose(fp);
 //    out = NULL;
 //
-//    // É¾³ýÒ»¸öcJSONÊµÌåºÍËùÓÐ×ÓÊµÌå¡£
+//    // É¾ï¿½ï¿½Ò»ï¿½ï¿½cJSONÊµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½å¡£
 //    cJSON_Delete(root);
 //    return 1;
 //}
