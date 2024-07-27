@@ -11,9 +11,8 @@
 #include <cstring>
 
 using namespace std;
-
 MapData::MapData(){
-    show = '0';
+    base = '0';
     color = (char*)COLOR_NULL;
     kind = SPACE;
     rank = RANK_NULL;
@@ -24,7 +23,17 @@ MapData::MapData(){
         passer = OWNER_NULL;
 }
 
-void MapData::Show_Char() const {
+void MapData::Show_Char()  {
+    if(!passer_num) {
+        if(has_tool == 1) {
+            show = '@';
+            color = (char*)COLOR_NULL;
+        }
+        else if (has_tool == 2){
+            show = '#';
+            color = (char*)COLOR_NULL;
+    }
+    }
     printf(color);
     cout <<  show ;
     printf(COLOR_NULL);
@@ -39,6 +48,35 @@ void MapData::Sort_Passers(){
             if (startchange == 1){
                 passers[i] = passers[i+1];
             }
+        }
+    }
+}
+void MapData::Update_Char(){
+    if(passer_num == 0){
+        show = base;
+        color = (char*)COLOR_NULL;
+    }else{
+        switch (passers[passer_num-1]) {
+            case OWNER_Q:
+                show = 'Q';
+            color = (char*)COLOR_RED;
+            break;
+            case OWNER_A:
+                show = 'A';
+            color = (char*)COLOR_GREEN;
+            break;
+            case OWNER_S:
+                show = 'S';
+            color = (char*)COLOR_BLUE;
+            break;
+            case OWNER_J:
+                show = 'J';
+            color = (char*)COLOR_YELLOW;
+            break;
+            default:
+                show = base;
+            color = (char*)COLOR_NULL;
+            break;
         }
     }
 }
@@ -58,6 +96,7 @@ int MapData::Add_Passer(owner_enum passer){
     if (passer_num < CELL_MAX_PLAYER){
         passers[passer_num] = passer;
         ++passer_num;
+        Update_Char();
     } else{
         error = 1;
     }
@@ -72,6 +111,8 @@ int MapData::Remove_Passer(owner_enum passer){
             if (passers[i] == passer){
                 passers[i] = OWNER_NULL;
                 --passer_num;
+                Sort_Passers();
+                Update_Char();
                 break;
             }
             if (i == CELL_MAX_PLAYER-1){ //如果没有找到
@@ -81,35 +122,65 @@ int MapData::Remove_Passer(owner_enum passer){
     }
     return error;
 }
-Map::Map(){
+Map::Map(char* players, Player* players_data,Cell* cell) {
     for (int i = 0; i<=63 ;i++){
         switch (i) {
             case 0:
-                data[i].color = (char*)COLOR_RED;
-                data[i].show = 'Q';
-                break;
+                data[i].base = 'S';
+            data[i].show = 'S';
+            break;
             case 14:
-                data[i].show = 'H';
-                break;
+                data[i].base = 'H';
+            data[i].show = 'H';
+            break;
             case 28:
-                data[i].show = 'T';
-                break;
+                data[i].base = 'T';
+            data[i].show = 'T';
+            break;
             case 35:
-                data[i].show = 'G';
-                break;
+                data[i].base = 'G';
+            data[i].show = 'G';
+            break;
             case 49:
-                data[i].show = 'P';
-                break;
+                data[i].base = 'P';
+            data[i].show = 'P';
+            break;
             case 63:
-                data[i].show = 'M';
-                break;
+                data[i].base = 'M';
+            data[i].show = 'M';
+            break;
             default:
-                data[i].show = '0';
-                break;
+                data[i].base = '0';
+            data[i].show = '0';
+            break;
         }
+
+
     }
     for (int i = 64; i<=69 ;i++){
+        data[i].base = '$';
         data[i].show = '$';
+    }
+    //    int count = (int)strlen(players);
+    for(int i = 0;i<70;i++) {
+        if(cell[i].has_tool)     //地图上显示道具
+            TollCreat(i,cell[i].has_tool);
+        if(cell[i].owner != 'N'){
+            //   Bought_Space(i,cell[i].owner,cell[i].rank);
+        }
+    }
+    for (int i =0; i<4; ++i) {
+        if (players_data[i].alive) {
+            PlayerCreate((owner_enum) players_data[i].number, players_data[i].position);
+        }
+    }
+}
+
+void Map::PlayerCreate(owner_enum player,int to){
+    int error = 0;
+    error = data[to].Add_Passer(player);
+    if (error){
+        cout << "Error Create: Too many Passers" << error << endl;
     }
 }
 
@@ -127,6 +198,9 @@ void Map::PlayerGoto(owner_enum player,int from,int to){
     }
     if (error){
         cout << "Error: Too many Passers" << error << endl;
+    }
+    else {
+
     }
 }
 
@@ -153,8 +227,12 @@ void Map::PrintMap() {
 void Map::TXTMap(char* filename) {
     char mapname[256] = {};
     strcpy(mapname, filename);
-    replaceString(mapname, "test", "map");
-    replaceString(mapname, "json", "txt");
+    if(strcmp(mapname,"") == 0){
+        strcpy(mapname, "map.txt");
+    }else{
+        replaceString(mapname, "test", "map");
+        replaceString(mapname, "json", "txt");
+    }
     fopen(mapname, "w");
     ofstream outfile(mapname);
     if (!outfile.is_open()) {
@@ -184,5 +262,32 @@ void Map::TXTMap(char* filename) {
 
     outfile.close();
 }
-
+//地图道具显示与修改
+void Map::TollCreat(int poistion,int tollkind){
+    if(tollkind==1) {
+        // data[poistion].show = '@';
+        data[poistion].has_tool = 1;
+    }
+    else if(tollkind==2){
+        // data[poistion].show = '#';
+        data[poistion].has_tool = 2;
+    }
+}
+void Map::TollRemove(int position) {
+    data[position].has_tool = 0;
+}
+//有主地块
+// void Map::Bought_Space(int poistion,char owner,int rank) {
+//     data[poistion].base += rank;
+//     switch (owner) {
+//         case OWNER_Q:
+//             data[poistion].color = (char*)COLOR_RED;
+//         case OWNER_A:
+//             data[poistion].color = (char*)COLOR_RED;
+//         case OWNER_S:
+//             data[poistion].color = (char*)COLOR_RED;
+//         case OWNER_J:
+//             data[poistion].color = (char*)COLOR_RED;
+//     }
+// }
 //
