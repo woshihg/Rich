@@ -196,7 +196,7 @@ Map::Map(char* players, Player* players_data,Cell* cell) {
     for(int i = 0;i<70;i++) {
         if(cell[i].has_tool)     //地图上显示道具
             TollCreat(i,cell[i].has_tool);
-        if(cell[i].owner != 'N' && cell[i].owner != 0){
+        else if(cell[i].owner != 'N' && cell[i].owner != 0){
             BoughtSpace(i,cell[i].owner,(kind_enum)cell[i].kind);
         }
     }
