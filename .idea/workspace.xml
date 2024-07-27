@@ -22,12 +22,9 @@
   <component name="ChangeListManager">
     <list default="true" id="143539dc-07f4-47ff-b048-9f87988c71b9" name="更改" comment="框架">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/init/init.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/init/init.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json/json.h" beforeDir="false" afterPath="$PROJECT_DIR$/json/json.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/money/money.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/money/money.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/money/money.h" beforeDir="false" afterPath="$PROJECT_DIR$/money/money.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal/terminal.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/terminal/terminal.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal/terminal.h" beforeDir="false" afterPath="$PROJECT_DIR$/terminal/terminal.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +47,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/woshihg/Rich.git&quot;,
-    &quot;accountId&quot;: &quot;fc46dbef-b416-40b5-b199-01fe25b2b6ad&quot;
+    &quot;accountId&quot;: &quot;e86eb92c-09a5-4cfd-a945-418b3f969c4f&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -79,6 +76,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "CMake Application.The_Rich.executor": "Run",
     "CMake 应用程序.The_Rich.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
@@ -91,14 +89,13 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/CLion/Rich/map/mapdraw.h",
+    "last_opened_file_path": "E:/The Rich",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -108,12 +105,12 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="The_Rich" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="The_Rich" TARGET_NAME="The_Rich" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="The_Rich" RUN_TARGET_NAME="The_Rich">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="The_Rich" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="The_Rich" TARGET_NAME="The_Rich" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="The_Rich" RUN_TARGET_NAME="The_Rich">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -132,13 +129,6 @@
       <workItem from="1721963525374" duration="7612000" />
       <workItem from="1721973447151" duration="83000" />
       <workItem from="1721979175465" duration="577000" />
-      <workItem from="1721979922817" duration="225000" />
-      <workItem from="1721980161617" duration="634000" />
-      <workItem from="1721980832722" duration="2381000" />
-      <workItem from="1721990186360" duration="1105000" />
-      <workItem from="1721991306028" duration="1000" />
-      <workItem from="1721991628091" duration="12060000" />
-      <workItem from="1722044957658" duration="11453000" />
     </task>
     <task id="LOCAL-00001" summary="框架">
       <created>1721921635524</created>
@@ -196,47 +186,7 @@
       <option name="project" value="LOCAL" />
       <updated>1721973141158</updated>
     </task>
-    <task id="LOCAL-00009" summary="框架">
-      <option name="closed" value="true" />
-      <created>1722001202368</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1722001202368</updated>
-    </task>
-    <task id="LOCAL-00010" summary="框架">
-      <option name="closed" value="true" />
-      <created>1722003331007</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1722003331007</updated>
-    </task>
-    <task id="LOCAL-00011" summary="框架">
-      <option name="closed" value="true" />
-      <created>1722048130899</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1722048130899</updated>
-    </task>
-    <task id="LOCAL-00012" summary="框架">
-      <option name="closed" value="true" />
-      <created>1722050278041</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1722050278041</updated>
-    </task>
-    <task id="LOCAL-00013" summary="框架">
-      <option name="closed" value="true" />
-      <created>1722055619492</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1722055619492</updated>
-    </task>
-    <option name="localTasksCounter" value="14" />
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,20 +228,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="框架" />
     <option name="LAST_COMMIT_MESSAGE" value="框架" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/init/init.h</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/terminal/terminal.cpp</url>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
