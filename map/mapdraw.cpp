@@ -71,7 +71,7 @@ void MapData::Update_Char(){
         }
     }
 }
-//什么意思？
+
 void MapData::Update_Passer_Num(){
     int count = 0;
     for (auto & passer : passers) {
@@ -145,8 +145,7 @@ Map::Map(char* players, Player* players_data,Cell* cell){
                 data[i].show = '0';
                 break;
         }
-        if(cell[i].has_tool)     //地图上显示道具
-            Toll_Creat(i,cell);
+
 
     }
     for (int i = 64; i<=69 ;i++){
@@ -159,7 +158,10 @@ Map::Map(char* players, Player* players_data,Cell* cell){
             PlayerCreate((owner_enum) players_data[i].number, players_data[i].position);
         }
     }
-
+    for(int i = 0;i<70;i++) {
+        if(cell[i].has_tool)     //地图上显示道具
+            Toll_Creat(i,cell[i].has_tool);
+    }
 }
 
 void Map::PlayerCreate(owner_enum player,int to){
@@ -249,8 +251,8 @@ void Map::TXTMap(char* filename) {
     outfile.close();
 }
 //地图道具显示与修改
-void Map::Toll_Creat(int poistion,Cell* cell) {
-    if(cell[poistion].has_tool==1) {
+void Map::Toll_Creat(int poistion,int tollkind){
+    if(tollkind==1) {
         data[poistion].show = '@';
         data->has_tool = 1;
     }

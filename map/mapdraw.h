@@ -80,7 +80,7 @@ public:
     void TXTMap(char* filename);
     void PlayerGoto(owner_enum player,int from,int to);
     void PlayerCreate(owner_enum player,int to);
-    void Toll_Creat(int poistion,Cell* cell);
+    void Toll_Creat(int poistion,int tollkind);
 };
 
 #endif //RICH_MAN_MAPDRAW_H
