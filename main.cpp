@@ -29,13 +29,13 @@ int main(int argc, char *argv[])
     cell[1].has_tool = 1;//炸弹
     cell[2].has_tool = 2;//路障
     read_json(use_players, jsonmap, users, now_user, filename);
-
+    printf("%s\n",now_user);
     write_json(use_players, jsonmap, users, now_user, filename);
     // init初始化地图和用户
     system("");
     Map map(users,use_players,cell);
     map.PrintMap();
-    map.TXTMap(filename);
+//    map.TXTMap(filename);
     map.PlayerGoto(OWNER_A,2,3);
     map.PrintMap();
     return 0;

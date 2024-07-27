@@ -5,7 +5,7 @@ char test_table[1][10]={"load"};
 
 Rich RichStructure;
 
-void terminal(Player Player)
+void terminal(char* now_user)
 {
     char str[INSTRUCTION_MAX_LEN] = {0};
     char flag = 0;
@@ -17,7 +17,7 @@ void terminal(Player Player)
     {
         flag = 1;
 
-        Show_Terminal(Player);
+        Show_Terminal(now_user);
 
         fgets(str, INSTRUCTION_MAX_LEN, stdin);
         result=sscanf(str, "%s %d", RichStructure.instruction, &parameter_temp);
@@ -83,13 +83,23 @@ void terminal(Player Player)
     }
 }
 
-void Show_Terminal(Player Player)
+void Show_Terminal(char* now_user)
 {
-    switch(Player.number)
+    switch(now_user[0])
     {
-        case 0:
+        case 'Q':
             printf("钱夫人>");
             break;
+        case 'A':
+            printf("阿土伯>");
+            break;
+        case 'S':
+            printf("孙小美>");
+            break;
+        case 'J':
+            printf("金贝贝>");
+            break;
+        default:break;
     }
 }
 
