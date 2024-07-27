@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     char now_user[2];
     Player use_players[4] = {0};
     use_players[0].alive = true;
-    use_players[0].number = 1;
+    use_players[0].number = 0;
     use_players[0].position = 2;
     Cell cell[70] = {0};
     cell[1].has_tool = 1;//炸弹
@@ -23,12 +23,13 @@ int main(int argc, char *argv[])
 //    Set_Init_Money(use_players);
     while(1)
     {
-        //测试命令
-        Terminal_Test(filename);
+        //输入命令
+        terminal(use_players[0],filename);
         if(strcmp(RichStructure.instruction,"Quit")==0)
         {
             break;
         }
+
         //读写json
         read_json(use_players, jsonmap, users, now_user, filename);
         write_json(use_players, jsonmap, users, now_user, filename);
@@ -38,13 +39,6 @@ int main(int argc, char *argv[])
         Map map(users,use_players,cell);
         map.SetCell(cell);
 
-
-        terminal(use_players[0]);
-
-        if(strcmp(RichStructure.instruction,"Quit")==0)
-        {
-            break;
-        }
         map.PlayerGoto((owner_enum)use_players[0].number, use_players[0].position, use_players[0].position + RichStructure.parameter);
 
         map.SetCell(cell);

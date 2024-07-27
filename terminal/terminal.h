@@ -11,8 +11,8 @@
 #include "../json/json.h"
 
 #define INSTRUCTION_NUM         9
-#define INSTRUCTION_MAX_LEN     100
-#define INIT_TERMINAL           {flag = 0;parameter_temp = 0;}
+#define INSTRUCTION_MAX_LEN     256
+#define INIT_TERMINAL           {*flag = 0;parameter_temp = 0;}
 
 typedef struct{
     char instruction[INSTRUCTION_MAX_LEN];
@@ -21,8 +21,9 @@ typedef struct{
 
 extern Rich RichStructure;
 
-void terminal(Player player);
+void terminal(Player player,char *filename);
 void Show_Terminal(Player player);
-void Terminal_Test(char* filename);
+void Player_Instruction(int* parameter_temp,char* flag,char* str);
+void Test_Instruction(char *filename,char* flag,char* str);
 
 #endif //THE_RICH_TERMINAL_H
