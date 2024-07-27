@@ -18,7 +18,11 @@ int main(int argc, char *argv[])
     char users[10];
     char now_user[2];
     Player use_players[4];
+
     read_json(use_players, jsonmap, users, now_user, filename);
+
+
+
 
     write_json(use_players, jsonmap, users, now_user, filename);
     // init初始化地图和用户
