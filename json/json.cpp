@@ -2,16 +2,16 @@
 // Created by admin on 2024/7/26.
 //
 
+#include <filesystem>
 #include "json.h"
 
 void read_json(Player use_players[], jsonMap &jsonmap, char users[], char *now_user,const char string[]) {
     char readname[256] = {};
     strcpy(readname, string);
     if(strcmp(string, "") == 0){
-        strcpy(readname, "../Test/test.json");
+        strcpy(readname, "../Test/test0/user.json");
     }
-
-    char *json_data = read_file(string);
+    char *json_data = read_file(readname);
     if (json_data == NULL) {
         printf("Unable to read the JSON file.\n");
         return ;

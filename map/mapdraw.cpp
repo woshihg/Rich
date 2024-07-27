@@ -5,7 +5,7 @@
 // mapWrite(filename);
 // //test0 --> map0
 #include "mapdraw.h"
-#include "../json/json.h"
+//#include "../json/json.h"
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -65,7 +65,7 @@ void MapData::Show_Char()  {
             }
         }
     }
-    printf(color);
+    printf("%s", color);
     cout <<  show ;
     printf(COLOR_NULL);
 }
@@ -153,7 +153,7 @@ int MapData::Remove_Passer(owner_enum passer){
     }
     return error;
 }
-Map::Map(char* players, Player* players_data,Cell* cell) {
+Map::Map( char* users,Player* players_data,Cell* cell) {
     for (int i = 0; i<=63 ;i++){
         switch (i) {
             case 0:
@@ -185,8 +185,6 @@ Map::Map(char* players, Player* players_data,Cell* cell) {
             data[i].show = '0';
             break;
         }
-
-
     }
     for (int i = 64; i<=69 ;i++){
         data[i].base = '$';
@@ -216,6 +214,9 @@ void Map::PlayerCreate(owner_enum player,int to){
 }
 
 void Map::PlayerGoto(owner_enum player,int from,int to){
+    while(to > 69){ //如果to超出地图范围
+        to -= 70;
+    }
     int error = 0;
     error = data[from].Remove_Passer(player);
     if (!error){
@@ -233,6 +234,43 @@ void Map::PlayerGoto(owner_enum player,int from,int to){
     else {
 
     }
+}
+
+void Map::SetCell(Cell* cell){
+//    typedef struct Cell{
+//        char show_char;
+//        int kind;
+//        int rank;
+//        int has_tool;
+//        char owner;     // owner = 'N' , means owner is None
+//    } Cell;
+    for (int i = 0; i < 70; ++i) {
+        cell[i].show_char = data[i].show;
+        cell[i].kind = data[i].kind;
+        cell[i].rank = data[i].rank;
+        cell[i].has_tool = data[i].has_tool;
+        switch (data[i].has_tool) {
+            case OWNER_NULL:
+                cell[i].owner = 'N';
+                break;
+            case OWNER_Q:
+                cell[i].owner = 'Q';
+                break;
+            case OWNER_A:
+                cell[i].owner = 'A';
+                break;
+            case OWNER_S:
+                cell[i].owner = 'S';
+                break;
+            case OWNER_J:
+                cell[i].owner = 'J';
+                break;
+            default:
+                cell[i].owner = 'N';
+                break;
+        }
+    }
+    PrintMap();//test
 }
 
 void Map::PrintMap() {

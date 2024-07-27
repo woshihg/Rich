@@ -24,7 +24,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/init/init.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/init/init.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map/mapdraw.h" beforeDir="false" afterPath="$PROJECT_DIR$/map/mapdraw.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/money/money.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/money/money.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/money/money.h" beforeDir="false" afterPath="$PROJECT_DIR$/money/money.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/terminal/terminal.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/terminal/terminal.cpp" afterDir="false" />
@@ -99,7 +98,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -139,7 +138,7 @@
       <workItem from="1721990186360" duration="1105000" />
       <workItem from="1721991306028" duration="1000" />
       <workItem from="1721991628091" duration="12060000" />
-      <workItem from="1722044957658" duration="5044000" />
+      <workItem from="1722044957658" duration="11453000" />
     </task>
     <task id="LOCAL-00001" summary="框架">
       <created>1721921635524</created>
@@ -221,7 +220,23 @@
       <option name="project" value="LOCAL" />
       <updated>1722048130899</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="框架">
+      <option name="closed" value="true" />
+      <created>1722050278041</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1722050278041</updated>
+    </task>
+    <task id="LOCAL-00013" summary="框架">
+      <option name="closed" value="true" />
+      <created>1722055619492</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1722055619492</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,6 +285,10 @@
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/init/init.h</url>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/terminal/terminal.cpp</url>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
