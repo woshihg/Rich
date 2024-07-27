@@ -5,6 +5,7 @@
 #include "money/money.h"
 #include "terminal/terminal.h"
 #include "player/player.h"
+#include "tool/tool.h"
 
 int main(int argc, char *argv[])
 {
@@ -54,21 +55,28 @@ int main(int argc, char *argv[])
         } else {
           while (!flag_ifover) {
               //输入命令
-            terminal(use_players[route_num],filename);
-              if (strcmp(RichStructure.instruction, "Quit") == 0) {
+              if (use_players[route_num].position == 28) {
+                  PlayerTool(&(use_players[route_num]));
                   flag_ifover = 1;
-              }
-              if (strcmp(RichStructure.instruction, "Step") == 0) {
-                  map.PlayerGoto((owner_enum)use_players[route_num].number, use_players[route_num].position,
-                                 use_players[route_num].position + RichStructure.parameter );
-                  map.SetCell(cell);
-              }
-              // init初始化地图和用户
-              if (strcmp(RichStructure.instruction, "Roll") == 0 && flag_ifwalk) {
-                  //投掷骰子
-                  walk_roll(use_players, now_user, &map);
-                  map.SetCell(cell);
-                  flag_ifwalk = 0;
+              }else{
+                  terminal(use_players[route_num],filename);
+                  if (strcmp(RichStructure.instruction, "Quit") == 0) {
+                      flag_ifover = 1;
+                  }
+
+
+                  if (strcmp(RichStructure.instruction, "Step") == 0) {
+                      map.PlayerGoto((owner_enum)use_players[route_num].number, use_players[route_num].position,
+                                     use_players[route_num].position + RichStructure.parameter );
+                      map.SetCell(cell);
+                  }
+                  // init初始化地图和用户
+                  if (strcmp(RichStructure.instruction, "Roll") == 0 && flag_ifwalk) {
+                      //投掷骰子
+                      walk_roll(use_players, now_user, &map);
+                      map.SetCell(cell);
+                      flag_ifwalk = 0;
+                  }
               }
               write_json(use_players, jsonmap, users, now_user, filename);
           }
