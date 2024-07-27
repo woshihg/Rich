@@ -20,35 +20,38 @@ int main(int argc, char *argv[])
     char filename[256] = {};    // jsonWrite
 
     //设置初始资金
-    Set_Init_Money(use_players);
-
-    //测试命令
-    Terminal_Test(filename);
-    printf("%s\n",filename);
-
-    //读写json
-    read_json(use_players, jsonmap, users, now_user, filename);
-    write_json(use_players, jsonmap, users, now_user, filename);
-
-    // init初始化地图和用户
-    system("");
-    Map map(users,use_players,cell);
-    map.PrintMap();
-
-    while(1) {
-    terminal(use_players[0]);
-
-    if(strcmp(RichStructure.instruction,"Quit")==0)
+//    Set_Init_Money(use_players);
+    while(1)
     {
-        break;
-    }
-    map.PlayerGoto((owner_enum)use_players[0].number, use_players[0].position, use_players[0].position + RichStructure.parameter);
+        //测试命令
+        Terminal_Test(filename);
+        if(strcmp(RichStructure.instruction,"Quit")==0)
+        {
+            break;
+        }
+        //读写json
+        read_json(use_players, jsonmap, users, now_user, filename);
+        write_json(use_players, jsonmap, users, now_user, filename);
 
-    use_players[0].position+=RichStructure.parameter;
-    if(use_players[0].position>69)
-        use_players[0].position-=70;
+        // init初始化地图和用户
+        system("");
+        Map map(users,use_players,cell);
+        map.PrintMap();
 
-    map.PrintMap();
+
+        terminal(use_players[0]);
+
+        if(strcmp(RichStructure.instruction,"Quit")==0)
+        {
+            break;
+        }
+        map.PlayerGoto((owner_enum)use_players[0].number, use_players[0].position, use_players[0].position + RichStructure.parameter);
+
+        use_players[0].position+=RichStructure.parameter;
+        if(use_players[0].position>69)
+            use_players[0].position-=70;
+
+        map.PrintMap();
     }
     return 0;
 }
