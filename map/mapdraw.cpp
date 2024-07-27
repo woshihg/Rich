@@ -73,7 +73,7 @@ void MapData::Sort_Passers(){
     if(passer_num > 0){
         int startchange = 0;
         for (int i = 0; i < CELL_MAX_PLAYER-1; i++){
-            if (passers[i] == OWNER_Q && startchange == 0){
+            if (passers[i] == OWNER_NULL && startchange == 0){
                 startchange = 1;
             }
             if (startchange == 1){

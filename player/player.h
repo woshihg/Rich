@@ -8,6 +8,6 @@
 #include "../map/mapdraw.h"
 void walk_roll(Player *players, char* now_user, Map* map);
 int Player_Route_Start(Player *players, char *now_user, Map *map, Cell pCell[70]);
-void Route_Num_Change(char* now_user);
+void Route_Num_Change(Player * players,char* now_user);
 
 #endif //PLAYER_H

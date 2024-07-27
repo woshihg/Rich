@@ -6,7 +6,7 @@
     "now_user": "S",
     "players": [
          {
-            "alive": 0,
+            "alive": 1,
             "money": 0,
             "point": 0,
             "number": 1,
@@ -23,10 +23,10 @@
 
         },
          {
-            "alive": 0,
+            "alive": 1,
             "money": 0,
             "point": 0,
-            "number": 1,
+            "number": 2,
             "tool1": 0,
             "tool2": 0,
             "tool3": 0,
@@ -39,10 +39,10 @@
             "properties":[[10,2],[65,2],[13,3]]
         },
         {
-            "alive": 0,
+            "alive": 1,
             "money": 0,
             "point": 0,
-            "number": 1,
+            "number": 3,
             "tool1": 0,
             "tool2": 0,
             "tool3": 0,
@@ -55,10 +55,10 @@
             "properties":[[10,2],[65,2],[13,3]]
         },
          {
-            "alive": 0,
+            "alive": 1,
             "money": 0,
             "point": 0,
-            "number": 1,
+            "number": 4,
             "tool1": 0,
             "tool2": 0,
             "tool3": 0,

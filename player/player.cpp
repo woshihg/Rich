@@ -44,28 +44,20 @@ int Find_Player_Num(Player* players, char* now_user) {
 //    return route_num;
 //}
 
-void Route_Num_Change(char* now_user){
+void Route_Num_Change(Player * players,char* now_user){
     int route_num = 0;
-    if(now_user[0] == 'Q'){
-        route_num = OWNER_Q;
-    } else if(now_user[0] == 'A'){
-        route_num = OWNER_A;
-    } else if(now_user[0] == 'S'){
-        route_num = OWNER_S;
-    } else if(now_user[0] == 'J'){
-        route_num = OWNER_J;
-    }
-    route_num++;
+    route_num = Find_Player_Num(players, now_user);
+    ++route_num;
     if (route_num == 4) {
         route_num = 0;
     }
-    if(route_num == 0){
+    if(players[route_num].number == OWNER_Q){
         now_user[0] = 'Q';
-    } else if(route_num == 1){
+    } else if(players[route_num].number == OWNER_A){
         now_user[0] = 'A';
-    } else if(route_num == 2){
+    } else if(players[route_num].number == OWNER_S){
         now_user[0] = 'S';
-    } else if(route_num == 3){
+    } else if(players[route_num].number == OWNER_J){
         now_user[0] = 'J';
     }
 }
@@ -82,23 +74,6 @@ int Player_Route_Start(Player *players, char *now_user, Map *map, Cell pCell[70]
             players[route_num].hospital = false;
         }
         if_continue = 1;
-    }
-    if (if_continue){
-        route_num++;
-        if (route_num == 4) {
-            route_num = 0;
-        }
-        if(players[route_num].number == OWNER_Q){
-            now_user[0] = 'Q';
-        } else if(players[route_num].number == OWNER_A){
-            now_user[0] = 'A';
-        } else if(players[route_num].number == OWNER_S){
-            now_user[0] = 'S';
-        } else if(players[route_num].number == OWNER_J){
-            now_user[0] = 'J';
-        }
-    }else{
-
     }
     return if_continue;
 }
@@ -125,4 +100,5 @@ void walk_roll(Player *players, char* now_user, Map* map){//回合结束
     map->PlayerGoto((owner_enum)players[route_num].number,
                     players[route_num].position,
                     new_position);
+    players[route_num].position = new_position;
 }
