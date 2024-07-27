@@ -32,7 +32,38 @@ void MapData::Show_Char()  {
         else if (has_tool == 2){
             show = '#';
             color = (char*)COLOR_NULL;
-    }
+            }
+        else if(owner) {
+            switch (owner) {
+                case OWNER_Q:
+                    color = (char*)COLOR_RED;
+                break;
+                case OWNER_A:
+                    color = (char*)COLOR_GREEN;
+                break;
+                case OWNER_S:
+                    color = (char*)COLOR_BLUE;
+                break;
+                case OWNER_J:
+                    color = (char*)COLOR_YELLOW;
+                break;
+                default:
+                    break;
+            }
+            switch (kind) {
+                case COTTAGE:
+                    show = '1';
+                break;
+                case HOUSE:
+                    show = '2';
+                break;
+                case SKYSCRAPER:
+                    show = '3';
+                break;
+                default:
+                    break;
+            }
+        }
     }
     printf(color);
     cout <<  show ;
@@ -165,7 +196,7 @@ Map::Map(char* players, Player* players_data,Cell* cell) {
     for(int i = 0;i<70;i++) {
         if(cell[i].has_tool)     //地图上显示道具
             TollCreat(i,cell[i].has_tool);
-        if(cell[i].owner != 'N'){
+        if(cell[i].owner != 'N' && cell[i].owner != 0){
             BoughtSpace(i,cell[i].owner,(kind_enum)cell[i].kind);
         }
     }
@@ -281,15 +312,34 @@ void Map::BoughtSpace(int poistion, char owner, kind_enum kind) {
     switch (owner) {
         case 'Q':
             data[poistion].owner = OWNER_Q;
+            break;
         case 'A':
             data[poistion].owner = OWNER_A;
+            break;
         case 'S':
             data[poistion].owner = OWNER_S;
+            break;
         case 'J':
             data[poistion].owner = OWNER_J;
+            break;
         default:
+            data[poistion].owner = OWNER_NULL;
             break;
     }
-    data[poistion].kind =kind;   //地块种类
+    data[poistion].kind = kind;   //地块种类
+    switch (kind) {
+        case COTTAGE:
+            data[poistion].base = '1';
+        break;
+        case HOUSE:
+            data[poistion].base = '2';
+        break;
+        case SKYSCRAPER:
+            data[poistion].base = '3';
+        break;
+        default:
+            break;
+
+    }
 }
 
