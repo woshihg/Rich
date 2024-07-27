@@ -29,7 +29,7 @@ typedef struct Player{
     bool hospital;
     int de_continue;
     int position;
-    int **properties;
+    int properties[70]={0};
     int property_count;
 } Player;
 

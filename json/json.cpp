@@ -84,14 +84,17 @@ void read_json(Player use_players[], jsonMap &jsonmap, char users[], char *now_u
         use_players[i].position = cJSON_GetObjectItem(player, "position")->valueint;
 
         int prop_count = cJSON_GetArraySize(properties);
-        use_players[i].properties = (int**)malloc(prop_count * sizeof(int*));
+//        use_players[i].properties = (int**)malloc(prop_count * sizeof(int*));
         use_players[i].property_count = prop_count;
         for (int j = 0; j < prop_count; j++) {
             cJSON *property = cJSON_GetArrayItem(properties, j);
-            use_players[i].properties[j] = (int*)malloc(2 * sizeof(int));
+//            use_players[i].properties[j] = (int*)malloc(2 * sizeof(int));
             if (cJSON_GetArraySize(property) == 2) {
-                use_players[i].properties[j][0] = cJSON_GetArrayItem(property, 0)->valueint;
-                use_players[i].properties[j][1] = cJSON_GetArrayItem(property, 1)->valueint;
+//                use_players[i].properties[j][0] = cJSON_GetArrayItem(property, 0)->valueint;
+//                use_players[i].properties[j][1] = cJSON_GetArrayItem(property, 1)->valueint;
+                int a = cJSON_GetArrayItem(property, 0)->valueint;
+                int b = cJSON_GetArrayItem(property, 1)->valueint;
+                use_players[i].properties[a] = b;
             }
         }
     }
@@ -128,7 +131,7 @@ void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_
     if(strcmp(name_string, "") == 0){
         strcpy(resultname, "../Test/result.json");
     }else{
-        replaceString(resultname, "test", "result");
+        replaceString(resultname, "user", "result");
     }
 
     cJSON* root = cJSON_CreateObject();
@@ -183,11 +186,13 @@ void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_
             cJSON_AddItemToObject(temp_player, "properties", properties);
             cJSON_AddItemToObject(temp_player, "property_count", cJSON_CreateNumber(use_players[index].property_count));
             //案例，最后使用for循环进行修改
-            for (int i = 0; i < use_players[index].property_count; i++) {
-                cJSON *temp = cJSON_CreateArray();
-                cJSON_AddItemToArray(temp, cJSON_CreateNumber(use_players[index].properties[i][0]));
-                cJSON_AddItemToArray(temp, cJSON_CreateNumber(use_players[index].properties[i][1]));
-                cJSON_AddItemToArray(properties, temp);
+            for(int i=0;i<70;i++){
+                if(use_players[index].properties[i]!=0){
+                    cJSON* temp = cJSON_CreateArray();
+                    cJSON_AddItemToArray(temp, cJSON_CreateNumber(i));
+                    cJSON_AddItemToArray(temp, cJSON_CreateNumber(use_players[index].properties[i]));
+                    cJSON_AddItemToArray(properties, temp);
+                }
             }
         }
         string = cJSON_Print(root);
@@ -198,7 +203,7 @@ void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_
     end:
     cJSON_Delete(root);
     //return string;
-    write_file("data1.json", string);
+    write_file(resultname, string);
 }
 
 int write_file(const char *filename, const char *data) {

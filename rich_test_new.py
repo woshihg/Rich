@@ -7,8 +7,8 @@ import json
 def run_exe_with_input(exe_path, input_file):
     try:
         process = subprocess.Popen(exe_path, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-        output, error = process.communicate(input=open(input_file, 'rb').read())
-        print(output.decode())  # 打印程序输出
+        process.stdin.write(open(input_file, 'rb').read())
+        process.stdin.flush()  # 刷新输入缓冲区
     except Exception as e:
         print(f"An error occurred: {e}")
 
@@ -26,7 +26,8 @@ def compare_outputs(test_folder):
 
             # 执行程序，将input.txt作为输入
             run_exe_with_input(exe_path, input_file)
-
+            # 等待1S
+            time.sleep(1)
             # 比较output.txt和expectedoutput.txt以及result.json和expected_output.json
             if filecmp.cmp(output_file, expected_output_file) and filecmp.cmp(result_file, expected_result_file):
                 print(f"测试文件夹 {folder} 的输出与预期一致")
