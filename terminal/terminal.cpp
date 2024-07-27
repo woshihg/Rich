@@ -1,7 +1,7 @@
 #include "terminal.h"
 
 char inst_table[INSTRUCTION_NUM][10] = {"Roll", "Sell", "Block", "Bomb", "Robot", "Query", "Help", "Quit", "Step"};
-char test_table[1][10]={"load"};
+char test_table[2][10]={"load","Quit"};
 
 Rich RichStructure;
 
@@ -108,7 +108,6 @@ void Terminal_Test(char *filename)
     char str[256] = {0};
     char flag = 0;
     char result = 0;
-    char ins[256] = {0};
     int i = 0;
 
     while (!flag)
@@ -116,17 +115,17 @@ void Terminal_Test(char *filename)
         flag = 1;
 
         fgets(str, 256, stdin);
-        result = sscanf(str, "%s %s", ins, filename);
+        result = sscanf(str, "%s %s", RichStructure.instruction, filename);
 
-        if (result != 2 || strcmp(ins, test_table[0]) != 0)
+        if (result != 2 && strcmp(RichStructure.instruction, test_table[0]) == 0)
         {
             flag = 0;
             for (i = 0; i < 256; i++)
             {
-                ins[i] = 0;
                 filename[i] = 0;
             }
             printf("输入指令错误\n");
         }
+
     }
 }
