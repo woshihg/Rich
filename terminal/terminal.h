@@ -22,7 +22,7 @@ typedef struct{
 extern Rich RichStructure;
 
 void terminal();
-void Show_Terminal(Player Player);
+void Show_Terminal(char* now_user);
 void Terminal_Test(char* filename);
 
 #endif //THE_RICH_TERMINAL_H
