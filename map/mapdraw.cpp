@@ -194,9 +194,6 @@ Map::Map( char* users,Player* players_data,Cell* cell) {
     for(int i = 0;i<70;i++) {
         if(cell[i].has_tool)     //地图上显示道具
             ToolCreat(i, cell[i].has_tool);
-        // else if(cell[i].owner != 'N' && cell[i].owner != 0){
-        //     BoughtSpace(i,players_data[i].properties,(kind_enum)cell[i].kind);
-        // }
     }
     for (int i =0; i<4; ++i) {
         for(int j =0; j<70; j++) {
@@ -344,11 +341,9 @@ void Map::TXTMap(char* filename) {
 //地图道具显示与修改
 void Map::ToolCreat(int poistion, int tollkind){
     if(tollkind==1) {
-        // data[poistion].show = '@';
         data[poistion].has_tool = 1;
     }
     else if(tollkind==2){
-        // data[poistion].show = '#';
         data[poistion].has_tool = 2;
     }
 }
@@ -376,4 +371,8 @@ void Map::BoughtSpace(owner_enum player, int properties[],int position) {
     }
 
 }
-
+void Map::RemoveSpace(int position) {
+    data[position].base = SPACE;
+    data[position].kind = SPACE;
+    data[position].owner = OWNER_NULL;
+}

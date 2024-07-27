@@ -13,24 +13,7 @@ int main(int argc, char *argv[])
     char users[10];
 
     Player use_players[4] = {0};
-    use_players[0].alive = true;
-    use_players[0].number = 1;
-    use_players[0].position = 2;
-    use_players[1].alive = true;
-    use_players[1].number = 2;
-    use_players[1].position = 4;
-    use_players[2].alive = true;
-    use_players[2].number = 3;
-    use_players[2].position = 6;
-    use_players[3].alive = true;
-    use_players[3].number = 4;
-    use_players[3].position = 8;
     Cell cell[70] = {0};
-    cell[1].has_tool = 1;//炸弹
-    cell[2].has_tool = 2;//路障
-    use_players[0].properties[13] = 1;
-    use_players[0].properties[15] = 3;
-
     char filename[256] = {};    // jsonWrite
     char now_user[2] = "Q";
     system("");
