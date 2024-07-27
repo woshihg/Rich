@@ -11,10 +11,6 @@
 
 #include "../json/json.h"
 
-void invest_house_logit(Player* player ,Cell* cell);
-void invest_house_execute(Player* player, Cell* cell);
-int get_cost(int rank);
-
 #include "../map/mapdraw.h"
 #include "stdio.h"
 #include "stdlib.h"
