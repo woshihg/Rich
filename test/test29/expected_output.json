@@ -1,17 +1,17 @@
 {
   "MAP": {
-    "tool":[[63,1],[69,2]]
+    "tool":[[63,1]]
   },
   "users": "QASJ",
   "now_user": "Q",
   "players": [
     {
       "alive": 1,
-      "money": 0,
+      "money": 2000,
       "point": 0,
       "number": 1,
       "tool1": 1,
-      "tool2": 0,
+      "tool2": 1,
       "tool3": 0,
       "buff": 0,
       "continue": 0,

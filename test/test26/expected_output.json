@@ -7,7 +7,7 @@
   "players": [
     {
       "alive": 1,
-      "money": 0,
+      "money": 400,
       "point": 0,
       "number": 1,
       "tool1": 1,
