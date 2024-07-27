@@ -55,6 +55,29 @@ int main(int argc, char *argv[])
               if (strcmp(RichStructure.instruction, "Sell") == 0) {
                   sell_house(&(use_players[route_num]),cell,RichStructure.parameter);
               }else
+              if (strcmp(RichStructure.instruction, "Query") == 0) {
+                  printf("@ Player : ");
+                  printf("%c\n", now_user[0]);
+                  printf("\tMoney : ");
+                  printf("%d\n", use_players[route_num].money);
+                  printf("\tPoint : ");
+                  printf("%d\n", use_players[route_num].point);
+                  printf("\tProperties : ");
+                  for(int j =0; j<70; j++) {
+                      if (use_players[route_num].properties[j]) {
+                          printf(" [pos: %d level: %d]",j,use_players[route_num].properties[j]);
+                      }
+                  }
+                  printf("\n");
+                  printf("\tBlock : ");
+                  printf("%d\n", use_players[route_num].block);
+                  printf("\tBomb : ");
+                  printf("%d\n", use_players[route_num].bomb);
+                  printf("\tRobot : ");
+                  printf("%d\n", use_players[route_num].robot);
+                  printf("\tRich Man Power : ");
+                  printf("%d %d\n", use_players[route_num].buff, use_players[route_num]._continue);
+              }else
               if (strcmp(RichStructure.instruction, "Quit") == 0) {
                   flag_ifquit = 1;
               }else
