@@ -7,10 +7,10 @@
 
 #include "../json/json.h"
 #define COLOR_NULL "\033[0m"
-#define COLOR_RED "\033[31m"
-#define COLOR_GREEN "\033[32m"
-#define COLOR_YELLOW "\033[33m"
-#define COLOR_BLUE "\033[34m"
+#define COLOR_RED "\033[31m"    //钱夫人
+#define COLOR_GREEN "\033[32m"  //阿土伯
+#define COLOR_YELLOW "\033[33m" //金贝贝
+#define COLOR_BLUE "\033[34m"   //孙小美
 #define COLOR_PURPLE "\033[35m"
 
 #define CELL_MAX_PLAYER 4
