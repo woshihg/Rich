@@ -65,7 +65,7 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
         {
             if(now_player->money >= cell_cost) {
                 printf("You have arrived at your property with sufficient fund.Do you want to upgrade it?\n");
-                printf("Enter y or Y for \[yes\].Others to give up.\n");
+                printf("Enter y or Y for [yes].Others to give up.\n");
                 scanf("%c",choose);
                 tmp=getchar();
                 fflush(stdin);
@@ -81,7 +81,7 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
             {
                 //printf("Arrived at an empty space, sufficient funds, do you want to buy?\n");
                 printf("You have arrived at an property available with sufficient fund.Do you want to purchase it?\n");
-                printf("Enter y or Y for \[yes\].Others to give up.\n");
+                printf("Enter y or Y for [yes].Others to give up.\n");
                 scanf("%c", &choose);
                 scanf("%c",choose);
                 tmp=getchar();
@@ -102,7 +102,7 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
             }
             else if(cell_owner == 'N' && (now_player->money < cell_cost)) {
                 //printf("Arrived at an empty space,out of money,unable to purchase\n");
-                printf("You have arrived at an empty property with insufficient fund, unable to purchase it.\n")
+                printf("You have arrived at an empty property with insufficient fund, unable to purchase it.\n");
             }
             else
             {
