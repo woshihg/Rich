@@ -42,10 +42,10 @@ void Show_Terminal(Player player)
             printf("\033[3;30;42mAtubo\033[m>");
             break;
         case 3:
-            printf("\033[3;30;43mSun\033[m>");
+            printf("\033[3;30;44mSun\033[m>");
             break;
         case 4:
-            printf("\033[3;30;44mJing\033[m>");
+            printf("\033[3;30;43mJing\033[m>");
             break;
         default:break;
     }
