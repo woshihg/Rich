@@ -2,14 +2,14 @@
   "MAP": {
     "tool":[]
   },
-  "users": "123",
-  "now_user": "1",
+  "users": "43",
+  "now_user": "3",
   "players": [
     {
       "alive": 1,
-      "money": 0,
+      "money": 6000,
       "point": 0,
-      "number": 1,
+      "number": 4,
       "tool1": 0,
       "tool2": 0,
       "tool3": 0,
@@ -18,29 +18,13 @@
       "debuff0": 0,
       "debuff1": 0,
       "decontinue": 0,
-      "position": 0,
-      "properties":[]
+      "position": 2,
+      "properties":[[33,3]]
 
     },
     {
       "alive": 1,
-      "money": 0,
-      "point": 0,
-      "number": 2,
-      "tool1": 0,
-      "tool2": 0,
-      "tool3": 0,
-      "buff": 0,
-      "continue": 0,
-      "debuff0": 0,
-      "debuff1": 0,
-      "decontinue": 0,
-      "position": 0,
-      "properties":[]
-    },
-    {
-      "alive": 1,
-      "money": 0,
+      "money": 4000,
       "point": 0,
       "number": 3,
       "tool1": 0,
@@ -51,14 +35,30 @@
       "debuff0": 0,
       "debuff1": 0,
       "decontinue": 0,
+      "position": 33,
+      "properties":[]
+    },
+    {
+      "alive": 0,
+      "money": 5000,
+      "point": 0,
+      "number": 0,
+      "tool1": 0,
+      "tool2": 0,
+      "tool3": 0,
+      "buff": 0,
+      "continue": 0,
+      "debuff0": 0,
+      "debuff1": 0,
+      "decontinue": 0,
       "position": 0,
       "properties":[]
     },
     {
-      "alive": 1,
-      "money": 0,
+      "alive": 0,
+      "money": 5000,
       "point": 0,
-      "number": 4,
+      "number": 0,
       "tool1": 0,
       "tool2": 0,
       "tool3": 0,

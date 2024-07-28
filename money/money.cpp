@@ -35,6 +35,7 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
     int route_num = 0;
     char cell_owner = 'N';
     char choose;
+    char tmp;
     if(map->data[pos].owner == OWNER_Q){
         cell_owner = 'Q';
     } else if(map->data[pos].owner == OWNER_A){
@@ -46,13 +47,13 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
     }
     char player_name = 'N';
     if(now_player->number == OWNER_Q){
-        cell_owner = 'Q';
+        player_name = 'Q';
     } else if(now_player->number == OWNER_A){
-        cell_owner = 'A';
+        player_name = 'A';
     } else if(now_player->number == OWNER_S){
-        cell_owner = 'S';
+        player_name = 'S';
     } else if(now_player->number == OWNER_J){
-        cell_owner = 'J';
+        player_name = 'J';
     }
     int cell_cost = get_cost(pos);
     // char now_player_char;
@@ -65,9 +66,10 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
             if(now_player->money >= cell_cost) {
                 printf("Arrived at your space, sufficient funds, do you want to upgrade?\n");
                 scanf("%c",choose);
-                getchar();
-                if(choose == 'Y'||choose == 'y'){getchar();   invest_house_execute(now_player, map,cell);}
-                else   printf("forgive to upgrade?\n");
+                tmp=getchar();
+                fflush(stdin);
+                if((choose == 'Y'||choose == 'y') && (tmp == '\n')) invest_house_execute(now_player, map,cell);
+                else   printf("forgive to upgrade\n");
 
             }
             else printf("lack of money,unable to upgrade!\n");
@@ -78,8 +80,10 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
             {
                 printf("Arrived at an empty space, sufficient funds, do you want to buy?\n");
                 scanf("%c", &choose);
-                getchar();
-                if (choose == 'Y'||choose == 'y')
+                scanf("%c",choose);
+                tmp=getchar();
+                fflush(stdin);
+                if((choose == 'Y'||choose == 'y') && (tmp == '\n'))
                 {
                     printf("Successfully purchased!The cost is %d\n",cell_cost);
                     printf("you have %d money left\n",now_player->money - cell_cost);
