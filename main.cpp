@@ -45,6 +45,30 @@ int main(int argc, char *argv[])
         int flag_ifover = 0;
         int flag_ifshop = 1;
         int flag_ifusetoll =1;
+        int count = 0;
+        int winner = 0;
+
+        for (int i = 0; i < 4; ++i) {
+            if (use_players[i].alive){
+                ++count;
+                winner = use_players[i].number;
+            }
+        }
+        if (count == 1){
+            char win = 0;
+            if(winner == OWNER_Q){
+                win = 'Q';
+            } else if(winner == OWNER_A){
+                win = 'A';
+            } else if(winner == OWNER_S){
+                win = 'S';
+            } else if(winner == OWNER_J) {
+                win = 'J';
+            }
+            printf("Player %c win!\n",win);
+            break;
+        }
+
         int route_num = Find_Player_Num(use_players, now_user, playerNum);
         int if_continue = 0;
         if_continue = Player_Route_Start(use_players, now_user, &map, cell, playerNum);
