@@ -36,16 +36,16 @@ void Show_Terminal(Player player)
     switch(player.number)
     {
         case 1:
-            printf("Q>");
+            printf("\033[3;30;41mQian\033[m>");
             break;
         case 2:
-            printf("A>");
+            printf("\033[3;30;42mAtubo\033[m>");
             break;
         case 3:
-            printf("S>");
+            printf("\033[3;30;43mSun\033[m>");
             break;
         case 4:
-            printf("J>");
+            printf("\033[3;30;44mJing\033[m>");
             break;
         default:break;
     }

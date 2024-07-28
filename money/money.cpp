@@ -86,7 +86,7 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
                 scanf("%c",choose);
                 tmp=getchar();
                 fflush(stdin);
-                if((choose == 'Y'||choose == 'y') && (tmp == '\n'))
+                if(choose == 'Y'||choose == 'y')
                 {
                     printf("Property purchased successfully!The cost is %d\n",cell_cost);
                     printf("Now you have %d money left\n",now_player->money - cell_cost);
