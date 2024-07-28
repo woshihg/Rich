@@ -118,10 +118,6 @@ int main(int argc, char *argv[])
               }else{
                   Tool_Use(use_players, &map, route_num,RichStructure.parameter);
               }
-              if(Is_Arrive_GiftRoom(&use_players[route_num]))
-              {
-                  Choose_Gift(&use_players[route_num]);
-              }
               write_json(use_players, jsonmap, users, now_user, filename);
           }
         }
@@ -155,11 +151,16 @@ void After_Walk(Player *use_players, Map *map, Cell *cell, int route_num,int rel
                        use_players[route_num].position + tool_flag);
         use_players[route_num].position += tool_flag;
     }
+
     use_players[route_num].position %= 70;
     if (!skip)
     {
         in_mountain(&use_players[route_num]);
         step_cell_logit(use_players, &use_players[route_num], map, cell);
+        if(Is_Arrive_GiftRoom(&use_players[route_num]))
+        {
+            Choose_Gift(&use_players[route_num]);
+        }
     }
     map->SetCell(cell);
 //  map.PrintMap();
