@@ -16,7 +16,7 @@
 #define WHITE        "\033[1;37m"
 #define LIGHT_CYAN   "\033[1;36m"
 #define BROWN        "\033[0;33m"
-
+#define Red_background_black_word      "\033[1;30;41m"
 #define CELL_MAX_PLAYER 4
 
 

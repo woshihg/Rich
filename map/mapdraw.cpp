@@ -28,13 +28,13 @@ void MapData::Show_Char()  {
         show = base;
         if(has_tool == 2) {
             show = '@';
-            color = (char*)COLOR_NULL;
+            color = (char*)Red_background_black_word;
         }
         else if (has_tool == 1){
             show = '#';
             color = (char*)COLOR_NULL;
             }
-        else if(owner) {
+        else{
             switch (owner) {
                 case OWNER_Q:
                     color = (char*)COLOR_RED;
@@ -49,6 +49,7 @@ void MapData::Show_Char()  {
                     color = (char*)COLOR_YELLOW;
                 break;
                 default:
+                    color = (char*)COLOR_NULL;
                     break;
             }
             switch (kind) {
