@@ -51,6 +51,9 @@ void MapData::Show_Char()  {
                     break;
             }
             switch (kind) {
+                case SPACE:
+                    show = '0';
+                break;
                 case COTTAGE:
                     show = '1';
                 break;
@@ -61,6 +64,7 @@ void MapData::Show_Char()  {
                     show = '3';
                 break;
                 default:
+                    show = '?';
                     break;
             }
         }
@@ -353,17 +357,17 @@ void Map::BoughtSpace(owner_enum player, int properties[],int position) {
     data[position].owner = player;
     switch (properties[position]) {
         case 1:
-            data[position].base = COTTAGE;
-            data[position].kind = COTTAGE;
-        break;
+            data[position].kind = SPACE;
+            break;
         case 2:
-            data[position].base = HOUSE;
-            data[position].kind = HOUSE;
-        break;
+            data[position].kind = COTTAGE;
+            break;
         case 3:
-            data[position].base = SKYSCRAPER;
+            data[position].kind = HOUSE;
+            break;
+        case 4:
             data[position].kind = SKYSCRAPER;
-        break;
+            break;
         default:
             break;
     }

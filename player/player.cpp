@@ -11,7 +11,7 @@
 
 //players[4] 玩家结构体数组
 
-int Find_Player_Num(Player* players, char* now_user) {
+int Find_Player_Num(Player* players, char* now_user,int max_player_num) {
     int route_num = 0;
     if(now_user[0] == 'Q'){
         route_num = OWNER_Q;
@@ -22,7 +22,7 @@ int Find_Player_Num(Player* players, char* now_user) {
     } else if(now_user[0] == 'J'){
         route_num = OWNER_J;
     }
-    for (int i = 0; i < 4; ++i) {
+    for (int i = 0; i < max_player_num; ++i) {
         if (players[i].number == route_num) {
             return i;
         }
@@ -31,11 +31,11 @@ int Find_Player_Num(Player* players, char* now_user) {
     return 0;
 }
 
-void Route_Num_Change(Player * players,char* now_user){
+void Route_Num_Change(Player * players,char* now_user ,int max_player_num) {
     int route_num = 0;
-    route_num = Find_Player_Num(players, now_user);
+    route_num = Find_Player_Num(players, now_user, max_player_num);
     ++route_num;
-    if (route_num == 4) {
+    if (route_num == max_player_num) {
         route_num = 0;
     }
     if(players[route_num].number == OWNER_Q){
@@ -49,9 +49,9 @@ void Route_Num_Change(Player * players,char* now_user){
     }
 }
 
-int Player_Route_Start(Player *players, char *now_user, Map *map, Cell pCell[70]) {//回合开始
+int Player_Route_Start(Player *players, char *now_user, Map *map, Cell pCell[70],int max_player_num) {//回合开始
     int route_num = 0;
-    route_num = Find_Player_Num(players, now_user);
+    route_num = Find_Player_Num(players, now_user,max_player_num);
     int if_continue = 0;
     if (players[route_num].prison || players[route_num].hospital || !players[route_num].alive) {
         //用户轮空
@@ -64,11 +64,11 @@ int Player_Route_Start(Player *players, char *now_user, Map *map, Cell pCell[70]
     }
     return if_continue;
 }
-void walk_roll(Player *players, char* now_user, Map* map)
+void walk_roll(Player *players, char* now_user, Map* map,int max_player_num)
 {//回合结束
     //判断当前玩家状态
     int route_num = 0;
-    route_num = Find_Player_Num(players, now_user);
+    route_num = Find_Player_Num(players, now_user,max_player_num);
     int dice_num;
     char temp[10];
     int new_position;

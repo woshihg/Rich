@@ -18,14 +18,19 @@ int main(int argc, char *argv[])
     char filename[256] = {};    // jsonWrite
     char now_user[2] = "Q";
     system("");
-
+    int playerNum = 0;
     if (argc == 1) {
         strcpy(filename, "../user.json");
+        read_json(use_players, jsonmap, users, now_user, "../user.json");
+        playerNum = (int)strlen(users);
+
+        Set_Init_Money(use_players);
     } else {
         strcpy(filename, argv[1]);
+        read_json(use_players, jsonmap, users, now_user, filename);
+        playerNum = (int)strlen(users);
     }
 
-    read_json(use_players, jsonmap, users, now_user, filename);
     Map map(users,use_players,cell);
     map.SetCell(cell);
     map.PrintMap();
@@ -35,13 +40,17 @@ int main(int argc, char *argv[])
         int flag_ifwalk = 1;
         int flag_ifover = 0;
         int flag_ifshop = 1;
-        int route_num = Find_Player_Num(use_players, now_user);
+        int route_num = Find_Player_Num(use_players, now_user, playerNum);
         int if_continue = 0;
-        if_continue = Player_Route_Start(use_players, now_user, &map, cell);
+        if_continue = Player_Route_Start(use_players, now_user, &map, cell, playerNum);
+        map.data[use_players[route_num].position].Remove_Passer((owner_enum)use_players[route_num].number);//轮次开始的时候让人显示到上层
+        map.data[use_players[route_num].position].Add_Passer((owner_enum)use_players[route_num].number);
+        map.SetCell(cell);
+        map.PrintMap();
         if (if_continue == 1) {
             printf("%s", now_user);
             printf(" skip\n");
-            Route_Num_Change(use_players, now_user);
+            Route_Num_Change(use_players, now_user, playerNum);
             continue;
         } else {
           while (!flag_ifover && !flag_ifquit) {
@@ -89,7 +98,7 @@ int main(int argc, char *argv[])
 
                   step_cell_logit(use_players,&use_players[route_num],&map);
                   map.SetCell(cell);
-                  map.PrintMap();
+//                  map.PrintMap();
 
                   if(use_players[route_num].position == 49){
                       use_players[route_num].prison = true;
@@ -103,13 +112,13 @@ int main(int argc, char *argv[])
               }else
               if (strcmp(RichStructure.instruction, "Roll") == 0 && flag_ifwalk) { // init初始化地图和用户
                   //投掷骰子
-                  walk_roll(use_players, now_user, &map);
+                  walk_roll(use_players, now_user, &map, playerNum);
                   use_players[route_num].prison = false;
                   flag_ifwalk = 0;
 
                   step_cell_logit(use_players,&use_players[route_num],&map);
                   map.SetCell(cell);
-                  map.PrintMap();
+//                  map.PrintMap();
 
                   if(use_players[route_num].position == 49){
                       use_players[route_num].prison = true;
@@ -124,7 +133,7 @@ int main(int argc, char *argv[])
               write_json(use_players, jsonmap, users, now_user, filename);
           }
         }
-      Route_Num_Change(use_players, now_user);
+      Route_Num_Change(use_players, now_user, playerNum);
     }
     return 0;
 }

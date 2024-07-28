@@ -15,21 +15,21 @@
 # define CELL_NUMS 70
 
 typedef struct Player{
-    int number{};
-    bool alive{};
-    int money{};
-    int point{};
-    int block{};
-    int bomb{};
-    int robot{};
-    bool buff{};
-    int _continue{};
-    bool prison{};
-    bool hospital{};
-    int de_continue{};
-    int position{};
-    int properties[70]={0};
-    int property_count{};
+    int number{};            // Player's unique identifier
+    bool alive{};            // Indicates if the player is alive
+    int money{};             // Player's current amount of money
+    int point{};             // Player's current points
+    int block{};             // Number of roadblocks the player has
+    int bomb{};              // Number of bombs the player has
+    int robot{};             // Number of robots the player has
+    bool buff{};             // Indicates if the player has an active buff
+    int _continue{};         // Number of turns the player have Rich-Man-Power
+    bool prison{};           // Indicates if the player is in prison
+    bool hospital{};         // Indicates if the player is in the hospital
+    int de_continue{};       // the number of turns the player have to stay in prison or hospital
+    int position{};          // Player's current position on the game board
+    int properties[70]={0};  // Array representing properties owned by the player
+    int property_count{};    // Total number of properties the player owns
 } Player;
 
 typedef struct Cell{
