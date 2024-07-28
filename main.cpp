@@ -129,7 +129,17 @@ int main(int argc, char *argv[])
                       PlayerTool(&(use_players[route_num]),&map);
                   }
                   flag_ifover = 1;
-              }else{}
+              }else if(strcmp(RichStructure.instruction, "Help") == 0) {
+                  printf("You can use the following commands.\n");
+                  printf("Roll:Dice roll command. Walk randomly for 1~6 steps.\n");
+                  printf("Sell n:You can sell your property in location n for twice the total cost of the investment\n");
+                  printf("Block n:Place a barricade in relative position n to block the player.\n");
+                  printf("Bomb n:Place a bomb in relative position n to damage the player\n");
+                  printf("Robot:Clear the tools for a certain path ahead\n");
+                  printf("Query:Display your assets\n");
+                  printf("Quit:Exit the game\n");
+              }
+              else{}
               write_json(use_players, jsonmap, users, now_user, filename);
           }
         }
