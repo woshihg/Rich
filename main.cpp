@@ -6,6 +6,7 @@
 #include "terminal/terminal.h"
 #include "player/player.h"
 #include "tool/tool.h"
+#include "giftroom/gift.h"
 
 int main(int argc, char *argv[])
 {
@@ -148,6 +149,11 @@ int main(int argc, char *argv[])
                   printf(COLOR_NULL);
               }
               else{}
+
+              if(Is_Arrive_GiftRoom(&use_players[route_num]))
+              {
+                  Choose_Gift(&use_players[route_num]);
+              }
               write_json(use_players, jsonmap, users, now_user, filename);
           }
         }
