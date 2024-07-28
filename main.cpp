@@ -158,6 +158,7 @@ void After_Walk(Player *use_players, Map *map, Cell *cell, int route_num,int rel
     use_players[route_num].position %= 70;
     if (!skip)
     {
+        in_mountain(&use_players[route_num]);
         step_cell_logit(use_players, &use_players[route_num], map, cell);
     }
     map->SetCell(cell);

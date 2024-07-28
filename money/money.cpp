@@ -50,7 +50,7 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
     int cell_cost = get_cost(pos);
     // char now_player_char;
     // now_player_char = get_player_name();
-    if(pos == 28||pos == 35||pos == 49||pos == 63||pos == 64||pos == 14||pos == 65||pos == 66||pos == 67||pos == 68||pos == 69)
+    if(pos == 0||pos == 28||pos == 35||pos == 49||pos == 63||pos == 64||pos == 14||pos == 65||pos == 66||pos == 67||pos == 68||pos == 69)
         printf("This is a special plot and cannot be purchased\n");
     else{
         if (player_name == cell_owner)
@@ -74,7 +74,7 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
                 fflush(stdin);
                 if(choose == 'Y'||choose == 'y')
                 {
-                    printf("Successfully purchased!The cost is %d\n",cell_cost);
+                    printf("Successfully purchased!\nThe cost is %d\n",cell_cost);
                     printf("you have %d money left\n",now_player->money - cell_cost);
                     (now_player->properties)[pos]++;
                     map->data[pos].owner = (owner_enum)now_player->number;

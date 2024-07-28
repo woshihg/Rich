@@ -155,26 +155,35 @@ void in_mountain(Player* player) {
         case 69:
             printf("you get 20 points\n");
             player->point += 20;
+            break;
         case 68:
             printf("you get 80 points\n");
             player->point += 80;
+            break;
         case 67:
             printf("you get 100 points\n");
             player->point += 100;
+            break;
         case 66:
             printf("you get 40 points\n");
             player->point += 40;
+            break;
         case 65:
             printf("you get 80 points\n");
             player->point += 80;
+            break;
         case 64:
             printf("you get 60 points\n");
             player->point += 60;
+            break;
+        default:
+            break;
     }
 }
 
 void Tool_Use(Player* use_players,Map* map,int route_num,int pos) {
-    int real_pos = (pos+use_players[route_num].position )%70;
+    int real_pos = (pos+use_players[route_num].position + 70)%70;
+
     if (strcmp(RichStructure.instruction, "Block") == 0) {
         if(map->data[real_pos].has_tool != 0 ||
            map->data[real_pos].passer_num != 0 ||
@@ -191,7 +200,7 @@ void Tool_Use(Player* use_players,Map* map,int route_num,int pos) {
         if (use_players[route_num].block >= 1) {
             printf("successful use block\n");
             use_players[route_num].block--;
-            map->ToolCreat(RichStructure.parameter, 1);
+            map->ToolCreat(real_pos, 1);
         }
         else
         {
