@@ -157,6 +157,7 @@ void tool_map(Player* player,Map* map) {
                 printf("successful use robot\n");
                 player->robot--;
                 //todo
+
                 return;
             }
             else {

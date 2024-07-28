@@ -2,14 +2,14 @@
   "MAP": {
     "tool":[]
   },
-  "users": "QASJ",
-  "now_user": "Q",
+  "users": "1234",
+  "now_user": "1",
   "players": [
     {
       "alive": 1,
       "money": 0,
       "point": 0,
-      "number": 1,
+      "number": 4,
       "tool1": 0,
       "tool2": 0,
       "tool3": 0,
@@ -21,22 +21,6 @@
       "position": 0,
       "properties":[]
 
-    },
-    {
-      "alive": 1,
-      "money": 0,
-      "point": 0,
-      "number": 2,
-      "tool1": 0,
-      "tool2": 0,
-      "tool3": 0,
-      "buff": 0,
-      "continue": 0,
-      "debuff0": 0,
-      "debuff1": 0,
-      "decontinue": 0,
-      "position": 0,
-      "properties":[]
     },
     {
       "alive": 1,
@@ -58,7 +42,23 @@
       "alive": 1,
       "money": 0,
       "point": 0,
-      "number": 4,
+      "number": 2,
+      "tool1": 0,
+      "tool2": 0,
+      "tool3": 0,
+      "buff": 0,
+      "continue": 0,
+      "debuff0": 0,
+      "debuff1": 0,
+      "decontinue": 0,
+      "position": 0,
+      "properties":[]
+    },
+    {
+      "alive": 1,
+      "money": 0,
+      "point": 0,
+      "number": 1,
       "tool1": 0,
       "tool2": 0,
       "tool3": 0,

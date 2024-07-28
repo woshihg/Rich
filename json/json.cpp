@@ -50,6 +50,15 @@ void read_json(Player use_players[], jsonMap &jsonmap, char users[], char *now_u
     char test[10];
     strcpy(test, users);
     strcpy(now_user, cJSON_GetObjectItem(root, "now_user")->valuestring);
+    if(strcmp(now_user, "1") == 0) {
+        strcpy(now_user, "Q");
+    }else if(strcmp(now_user, "2") == 0) {
+        strcpy(now_user, "A");
+    }else if(strcmp(now_user, "3") == 0) {
+        strcpy(now_user, "S");
+    }else if(strcmp(now_user, "4") == 0) {
+        strcpy(now_user, "J");
+    }
     //users = cJSON_GetObjectItem(root, "users")->valuestring;
     //now_user = cJSON_GetObjectItem(root, "now_user")->valuestring;
 
@@ -162,16 +171,25 @@ void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_
 
     cJSON_AddItemToObject(map, "tool", tool);
     cJSON_AddStringToObject(root, "users", users);
-    cJSON_AddStringToObject(root, "now_user", now_user);
+
+    if(strcmp(now_user, "Q") == 0) {
+        cJSON_AddStringToObject(root, "now_user", "1");
+    }else if(strcmp(now_user, "A") == 0) {
+        cJSON_AddStringToObject(root, "now_user", "2");
+    }else if(strcmp(now_user, "S") == 0) {
+        cJSON_AddStringToObject(root, "now_user", "3");
+    }else if(strcmp(now_user, "J") == 0) {
+        cJSON_AddStringToObject(root, "now_user", "4");
+    }
     cJSON* players = cJSON_CreateArray();
-    cJSON *temp_player = NULL;
-    char *string = NULL;
-    if (players != NULL) {
+    cJSON *temp_player = nullptr;
+    char *string = nullptr;
+    if (players != nullptr) {
         cJSON_AddItemToObject(root, "players", players);
 
         for (int index = 0; index < strlen(users); ++index) {
             temp_player = cJSON_CreateObject();
-            if (temp_player == NULL) {
+            if (temp_player == nullptr) {
                 goto end;
             }
             cJSON_AddItemToArray(players, temp_player);
@@ -189,7 +207,7 @@ void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_
             cJSON_AddItemToObject(temp_player, "decontinue", cJSON_CreateNumber(use_players[index].de_continue));
             cJSON_AddItemToObject(temp_player, "position", cJSON_CreateNumber(use_players[index].position));
             cJSON *properties = cJSON_CreateArray();
-            if (properties == NULL) {
+            if (properties == nullptr) {
                 goto end;
             }
             cJSON_AddItemToObject(temp_player, "properties", properties);
@@ -204,7 +222,7 @@ void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_
             }
         }
         string = cJSON_Print(root);
-        if (string == NULL) {
+        if (string == nullptr) {
             fprintf(stderr, "Failed to print monitor.\n");
         }
     }

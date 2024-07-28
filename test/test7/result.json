@@ -2,8 +2,8 @@
 	"MAP":	{
 		"tool":	[]
 	},
-	"users":	"QASJ",
-	"now_user":	"A",
+	"users":	"1234",
+	"now_user":	"2",
 	"players":	[{
 			"alive":	1,
 			"money":	0,

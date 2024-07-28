@@ -35,7 +35,7 @@ def compare_outputs(test_folder):
 
             # 执行程序，将input.txt作为输入
             run_exe_with_input(exe_path, input_file, json_file)
-            # 等待1S
+            # 等待0.1S
             time.sleep(0.1)
             # 判断是否存在并比较result.json和expected_output.json
             # 使用json内容比较两个文件
