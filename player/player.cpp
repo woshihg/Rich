@@ -35,7 +35,7 @@ int Player_Init(Player* players, char* now_user){
         int if_continue = 1;
         int i = 0;
         char input_user[5] = {0};
-        printf("Please enter players\n");
+        printf("Please enter the ID of players,e.g. 1234\n");
         scanf("%s", input_user);
         int c;
         while ((c = getchar()) != '\n' && c != EOF) {}// 清空输入缓冲区
@@ -64,7 +64,7 @@ int Player_Init(Player* players, char* now_user){
                     players[i].alive = true;
                     break;
                 default:
-                    printf("error:player input wrong :");
+                    printf("Error:player input wrong :");
                     printf(" %c",input_user[i]);
                     printf("\n");
                     if_continue = 0;

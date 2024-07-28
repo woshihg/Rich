@@ -12,7 +12,7 @@ void Set_Init_Money(Player *player)
 
         fgets(str, 7, stdin);
         sscanf(str, "%d", &first_money);
-        printf("Initial funds: %d\n", first_money);
+        printf("Initial fund: %d\n", first_money);
 
         for (char i = 0; i < CELL_MAX_PLAYER; i++) {
             player[i].money = first_money;
@@ -59,31 +59,37 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
     // char now_player_char;
     // now_player_char = get_player_name();
     if(pos == 28||pos == 35||pos == 49||pos == 63||pos == 64||pos == 14||pos == 65||pos == 66||pos == 67||pos == 68||pos == 69)
-        printf("This is a special plot and cannot be purchased\n");
+        printf("This is a special plot and cannot be purchased!\n");
     else{
         if (player_name == cell_owner)
         {
             if(now_player->money >= cell_cost) {
-                printf("Arrived at your space, sufficient funds, do you want to upgrade?\n");
-                scanf("%c",&choose);
+                printf("You have arrived at your property with sufficient fund.Do you want to upgrade it?\n");
+                printf("Enter y or Y for \[yes\].Others to give up.\n");
+                scanf("%c",choose);
+                tmp=getchar();
                 fflush(stdin);
-                if(choose == 'Y'||choose == 'y') invest_house_execute(now_player, map,cell);
-                else   printf("forgive to upgrade\n");
+                if((choose == 'Y'||choose == 'y') && (tmp == '\n')) invest_house_execute(now_player, map,cell);
+                else   printf("Upgrading action declined.\n");
 
             }
-            else printf("lack of money,unable to upgrade!\n");
+            else printf("In lack of money,unable to upgrade!\n");
         }
         else
         {
             if (cell_owner == 'N' && (now_player->money >= cell_cost))
             {
-                printf("Arrived at an empty space, sufficient funds, do you want to buy?\n");
+                //printf("Arrived at an empty space, sufficient funds, do you want to buy?\n");
+                printf("You have arrived at an property available with sufficient fund.Do you want to purchase it?\n");
+                printf("Enter y or Y for \[yes\].Others to give up.\n");
                 scanf("%c", &choose);
+                scanf("%c",choose);
+                tmp=getchar();
                 fflush(stdin);
                 if(choose == 'Y'||choose == 'y')
                 {
-                    printf("Successfully purchased!The cost is %d\n",cell_cost);
-                    printf("you have %d money left\n",now_player->money - cell_cost);
+                    printf("Property purchased successfully!The cost is %d\n",cell_cost);
+                    printf("Now you have %d money left\n",now_player->money - cell_cost);
                     (now_player->properties)[pos]++;
                     map->data[pos].owner = (owner_enum)now_player->number;
                     now_player->money -= cell_cost;
@@ -91,17 +97,18 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
                 }
                 else
                 {
-                    printf("Declined to purchase\n");
+                    printf("Purchasing action declined.\n");
                 }
             }
             else if(cell_owner == 'N' && (now_player->money < cell_cost)) {
-                printf("Arrived at an empty space,out of money,unable to purchase\n");
+                //printf("Arrived at an empty space,out of money,unable to purchase\n");
+                printf("You have arrived at an empty property with insufficient fund, unable to purchase it.\n")
             }
             else
             {
-                printf("You step on someone else's house, pay the rent\n");
+                printf("You have steped into  someone else's property.Please pay the rent cost.\n");
                 pay_rentment(players, map,now_player,cell, pos);
-                printf("You have %d money left\n",now_player->money);
+                printf("Now You have %d money left\n",now_player->money);
             }
         }
     }
@@ -114,7 +121,7 @@ void invest_house_execute(Player *player, Map *map,Cell *cell)
     int house;
     if (player->properties[pos] >= 4)
     {
-        printf("Highest Scale yet, unable to upgrade anymore.\n");
+        printf("Highest Level yet, unable to upgrade anymore.\n");
     }
     else
     {
@@ -129,6 +136,7 @@ void invest_house_execute(Player *player, Map *map,Cell *cell)
             house=map->data[pos].kind;
             house ++;
             map->data[pos].kind = (kind_enum)house;
+            printf("Now you have %d money left\n",player->money);
         }
         else
         {
@@ -169,11 +177,12 @@ void sell_house(Player *player, Map *map, int pos)
         // cell[pos].house_scale = 0;
         player->properties[pos] = 0;
         map->RemoveSpace(pos);
-        printf("Successfully sold!\n");
+        printf("Property sold successfully!\n");
+        printf("Now you have %d money left\n",player->money);
     }
     else
     {
-        printf("This is not your property, you have no authority to sell!\n");
+        printf("This is not your property so you have no authority to sell it!\n");
     }
 }
 
