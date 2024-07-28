@@ -132,14 +132,20 @@ int main(int argc, char *argv[])
                   }
                   flag_ifover = 1;
               }else if(strcmp(RichStructure.instruction, "Help") == 0) {
-                  printf("You can use the following commands.\n");
-                  printf("Roll:Dice roll command. Walk randomly for 1~6 steps.\n");
-                  printf("Sell n:You can sell your property in location n for twice the total cost of the investment\n");
-                  printf("Block n:Place a barricade in relative position n to block the player.\n");
-                  printf("Bomb n:Place a bomb in relative position n to damage the player\n");
-                  printf("Robot:Clear the tools for a certain path ahead\n");
-                  printf("Query:Display your assets\n");
-                  printf("Quit:Exit the game\n");
+                  printf("\033[3;30;47mYou can use the following commands.\033[m\n");
+                  printf(COLOR_PURPLE);
+                  printf("Roll: Dice roll command. Walk randomly for 1~6 steps.\n");
+                  printf(COLOR_RED);
+                  printf("\033[3;30;45mSell n: You can sell your property in location n for twice the total cost of the investment\033[m\n");
+                  printf(BROWN);
+                  printf("Block n: Place a barricade in relative position n to block the player.\n");
+                  printf(LIGHT_CYAN);
+                  printf("Bomb n: Place a bomb in relative position n to damage the player\n");
+                  printf("Robot: Clear the tools for a certain path ahead\n");
+                  printf(LIGHT_GRAY);
+                  printf("Query: Display your assets\n");
+                  printf("Quit: Exit the game\n");
+                  printf(COLOR_NULL);
               }
               else{}
               write_json(use_players, jsonmap, users, now_user, filename);
