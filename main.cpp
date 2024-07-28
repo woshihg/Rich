@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
         int flag_ifwalk = 1;
         int flag_ifover = 0;
         int flag_ifshop = 1;
+        int flag_ifusetoll =1;
         int route_num = Find_Player_Num(use_players, now_user, playerNum);
         int if_continue = 0;
         if_continue = Player_Route_Start(use_players, now_user, &map, cell, playerNum);
@@ -55,12 +56,11 @@ int main(int argc, char *argv[])
         } else {
           while (!flag_ifover && !flag_ifquit) {
               //输入命令
-
-              if (!flag_ifover){terminal(use_players[route_num],filename);}
-
-
-              if (flag_ifover){ break;}
-              else
+              if(flag_ifusetoll){
+                  tool_use( &use_players[route_num], &map, filename);
+                  flag_ifusetoll = 0;
+              }
+              terminal(use_players[route_num],filename);
               if (strcmp(RichStructure.instruction, "Sell") == 0) {
                   sell_house(&(use_players[route_num]),cell,RichStructure.parameter);
               }else
@@ -90,6 +90,7 @@ int main(int argc, char *argv[])
               if (strcmp(RichStructure.instruction, "Quit") == 0) {
                   flag_ifquit = 1;
               }else
+
               if (strcmp(RichStructure.instruction, "Step") == 0) {
                   map.PlayerGoto((owner_enum)use_players[route_num].number, use_players[route_num].position,
                                  use_players[route_num].position + RichStructure.parameter );
@@ -106,7 +107,7 @@ int main(int argc, char *argv[])
                       printf("You are in prison\n");
                   }else
                   if (use_players[route_num].position == 28) {
-                      PlayerTool(&(use_players[route_num]),&map);
+                      PlayerTool(&(use_players[route_num]));
                   }
                   flag_ifover = 1;
               }else
@@ -126,7 +127,7 @@ int main(int argc, char *argv[])
                       printf("You are in prison\n");
                   }else
                   if (use_players[route_num].position == 28) {
-                      PlayerTool(&(use_players[route_num]),&map);
+                      PlayerTool(&(use_players[route_num]));
                   }
                   flag_ifover = 1;
               }else if(strcmp(RichStructure.instruction, "Help") == 0) {
