@@ -84,6 +84,7 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
                     (now_player->properties)[pos]++;
                     map->data[pos].owner = (owner_enum)now_player->number;
                     now_player->money -= cell_cost;
+                    now_player->property_count++;
                     chech_out_of_money(now_player, map , cell);
                 }
                 else
