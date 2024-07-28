@@ -34,7 +34,7 @@ void MapData::Show_Char()  {
             show = '#';
             color = (char*)COLOR_NULL;
             }
-        else{
+        else if(owner != OWNER_NULL){
             switch (owner) {
                 case OWNER_Q:
                     color = (char*)COLOR_RED;

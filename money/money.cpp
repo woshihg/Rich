@@ -163,30 +163,28 @@ void sell_house(Player *player, Map *map, int pos)
 
 void pay_rentment(Player *players, Map *map, Player *now_player,Cell *cell , int pos)
 {
-    int rentment = map->data[pos].kind * get_cost(pos) / 2;
-    int owner = 0;
-    for (int i = 0; i < 4; ++i) {
-        if (map->data[pos].owner == players[i].number) {
-            owner = i;
-            break;
+    if (now_player->buff == 0)
+    {
+        int rentment = map->data[pos].kind * get_cost(pos) / 2;
+        int owner = 0;
+        for (int i = 0; i < 4; ++i) {
+            if (map->data[pos].owner == players[i].number) {
+                owner = i;
+                break;
+            }
         }
+        players[owner].money += rentment;
+        now_player->money -= rentment;
+        chech_out_of_money(now_player, map, cell);
+    }  else {
+        now_player->_continue --;
+        if(now_player->_continue == 0) {
+            now_player->buff = false;
+        }
+        printf("Have the God of Money buff, free rent!\n");
     }
-    players[owner].money += rentment;
-    now_player->money -= rentment;
-    chech_out_of_money(now_player, map, cell);
 }
 
-//Player search_by_char(Player *players, char name_to_search)
-//{
-//    for (int i = 0; i < 4; i++)
-//    {
-//        char name = get_player_name(players[i].number);
-//        if (name == name_to_search)
-//            return players[i];
-//    }
-//    printf("Failed to search\n");
-//    return players[0];
-//}
 
 void chech_out_of_money(Player *players, Map *map,Cell* cell) {
     if(players->money < 0) {
