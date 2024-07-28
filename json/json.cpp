@@ -120,6 +120,28 @@ void read_json(Player use_players[], jsonMap &jsonmap, char users[], char *now_u
     cJSON_Delete(root);
 }
 
+int findNthSmallestNumPos(const std::string& str, int n) {
+    std::vector<std::pair<int, int>> nums; // pair of number and its position
+
+    // Extract numbers and their positions
+    for (int i = 0; i < str.size(); ++i) {
+        if (isdigit(str[i])) {
+            nums.push_back({str[i] - '0', i});
+        }
+    }
+
+    // Sort in ascending order
+    std::sort(nums.begin(), nums.end(), [](const std::pair<int, int>& a, const std::pair<int, int>& b) {
+        return a.first < b.first;
+    });
+
+    // Check if n is valid
+    if (n > 0 && n <= nums.size()) {
+        return nums[n - 1].second;
+    } else {
+        return -1; // Invalid n
+    }
+}
 
 
 char *read_file(const char *filename) {
@@ -187,11 +209,12 @@ void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_
     if (players != nullptr) {
         cJSON_AddItemToObject(root, "players", players);
 
-        for (int index = 0; index < strlen(users); ++index) {
+        for (int j = 0; j < strlen(users); ++j) {
             temp_player = cJSON_CreateObject();
             if (temp_player == nullptr) {
                 goto end;
             }
+            int index = findNthSmallestNumPos(users, j + 1);
             cJSON_AddItemToArray(players, temp_player);
             cJSON_AddItemToObject(temp_player, "alive", cJSON_CreateNumber(use_players[index].alive));
             cJSON_AddItemToObject(temp_player, "money", cJSON_CreateNumber(use_players[index].money));
@@ -221,6 +244,7 @@ void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_
                 }
             }
         }
+
         string = cJSON_Print(root);
         if (string == nullptr) {
             fprintf(stderr, "Failed to print monitor.\n");

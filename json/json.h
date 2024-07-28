@@ -9,6 +9,10 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstdio>
+#include <string>
+#include <vector>
+#include <algorithm>
+
 
 
 // jsonMap's size
@@ -48,7 +52,7 @@ typedef struct jsonMap{
 
 
 
-
+int findNthSmallestNumPos(const std::string& str, int n);
 int jsonWrite(const char *filename);
 void read_json(Player use_players[], jsonMap &jsonmap, char users[], char *now_user, const char string[]);
 void replaceString(char* str, const char* from, const char* to);

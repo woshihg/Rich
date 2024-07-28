@@ -2,14 +2,14 @@
   "MAP": {
     "tool":[]
   },
-  "users": "43",
+  "users": "21",
   "now_user": "3",
   "players": [
     {
       "alive": 1,
       "money": 5000,
       "point": 0,
-      "number": 4,
+      "number": 2,
       "tool1": 0,
       "tool2": 0,
       "tool3": 0,
