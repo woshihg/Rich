@@ -12,6 +12,10 @@
 #define COLOR_YELLOW "\033[33m" //金贝贝
 #define COLOR_BLUE "\033[34m"   //孙小美
 #define COLOR_PURPLE "\033[35m"
+#define LIGHT_GRAY   "\033[0;37m"
+#define WHITE        "\033[1;37m"
+#define LIGHT_CYAN   "\033[1;36m"
+#define BROWN        "\033[0;33m"
 
 #define CELL_MAX_PLAYER 4
 
