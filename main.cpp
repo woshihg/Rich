@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
               }
               terminal(use_players[route_num],filename);
               if (strcmp(RichStructure.instruction, "Sell") == 0) {
-                  sell_house(&(use_players[route_num]),cell,RichStructure.parameter);
+                  sell_house(&(use_players[route_num]),&map,RichStructure.parameter);
               }else
               if (strcmp(RichStructure.instruction, "Query") == 0) {
                   printf("@ Player : ");

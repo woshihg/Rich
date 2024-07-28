@@ -18,11 +18,12 @@
 
 int get_cost(int rank);
 char get_player_name(int number);
-void step_cell_logit(Player* players ,Player* now_player,Map* map);
-void invest_house_execute(Player* player, Map* map);
+void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell);
+void invest_house_execute(Player *player, Map *map,Cell *cell);
 void Set_Init_Money(Player *player);
-void sell_house(Player* player, Cell* cell, int pos);
-void pay_rentment(Player* players, Map *cell, Player* now_player, char owner, int pos);
+void sell_house(Player* player, Map* map, int pos);
+void pay_rentment(Player *players, Map *map, Player *now_player,Cell *cell, char owner, int pos);
 Player search_by_char(Player* players, char name_to_search);
+void chech_out_of_money(Player *players, Map *map,Cell* cell);
 #endif //MONEY_H
 ///
