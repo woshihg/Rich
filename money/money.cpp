@@ -2,6 +2,8 @@
 // Created by Chenxi on 2024/7/27.
 //
 #include "money.h"
+#include "../terminal/terminal.h"
+
 void Set_Init_Money(Player *player)
 {
     char str[7] = {0};
@@ -25,8 +27,8 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
     // In case of that the cell involved belongs to HOUSE.
     int pos = now_player->position;
     int route_num = 0;
+    char str[INSTRUCTION_MAX_LEN] = {0};
     char cell_owner = 'N';
-    char choose;
     char tmp;
     if(map->data[pos].owner == OWNER_Q){
         cell_owner = 'Q';
@@ -57,9 +59,10 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
         {
             if(now_player->money >= cell_cost) {
                 printf("Arrived at your space, sufficient funds, do you want to upgrade?\n");
-                scanf("%c",&choose);
+
+                fgets(str, INSTRUCTION_MAX_LEN, stdin);
                 fflush(stdin);
-                if(choose == 'Y'||choose == 'y') invest_house_execute(now_player, map,cell);
+                if(str[0] == 'Y'||str[0] == 'y') invest_house_execute(now_player, map,cell);
                 else   printf("forgive to upgrade\n");
 
             }
@@ -70,9 +73,9 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
             if (cell_owner == 'N' && (now_player->money >= cell_cost))
             {
                 printf("Arrived at an empty space, sufficient funds, do you want to buy?\n");
-                scanf("%c", &choose);
+                fgets(str, INSTRUCTION_MAX_LEN, stdin);
                 fflush(stdin);
-                if(choose == 'Y'||choose == 'y')
+                if(str[0] == 'Y'||str[0] == 'y')
                 {
                     printf("Successfully purchased!\nThe cost is %d\n",cell_cost);
                     printf("you have %d money left\n",now_player->money - cell_cost);
