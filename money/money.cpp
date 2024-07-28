@@ -65,10 +65,9 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
         {
             if(now_player->money >= cell_cost) {
                 printf("Arrived at your space, sufficient funds, do you want to upgrade?\n");
-                scanf("%c",choose);
-                tmp=getchar();
+                scanf("%c",&choose);
                 fflush(stdin);
-                if((choose == 'Y'||choose == 'y') && (tmp == '\n')) invest_house_execute(now_player, map,cell);
+                if(choose == 'Y'||choose == 'y') invest_house_execute(now_player, map,cell);
                 else   printf("forgive to upgrade\n");
 
             }
@@ -80,10 +79,8 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
             {
                 printf("Arrived at an empty space, sufficient funds, do you want to buy?\n");
                 scanf("%c", &choose);
-                scanf("%c",choose);
-                tmp=getchar();
                 fflush(stdin);
-                if((choose == 'Y'||choose == 'y') && (tmp == '\n'))
+                if(choose == 'Y'||choose == 'y')
                 {
                     printf("Successfully purchased!The cost is %d\n",cell_cost);
                     printf("you have %d money left\n",now_player->money - cell_cost);
