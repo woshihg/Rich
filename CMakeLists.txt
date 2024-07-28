@@ -14,4 +14,6 @@ add_executable(The_Rich main.cpp json/cJSON.cpp json/cJSON.h json/json.cpp json/
         player/player.cpp
         tool/tool.cpp
         magic/magic.cpp
-        magic/magic.h)
+        magic/magic.h
+        giftroom/gift.cpp
+        giftroom/gift.h)
