@@ -4,26 +4,37 @@
 #include "money.h"
 void Set_Init_Money(Player *player)
 {
-    char str[6] = {0};
-    int first_money = 0;
-    printf("Please enter initial funds\n");
+    while (true){
+        int if_continue = 1;
+        char str[7] = {0};
+        int first_money = 0;
+        printf("Please enter initial funds\n");
 
-    fgets(str, 6, stdin);
-    sscanf(str, "%d", &first_money);
-    printf("Initial funds: %d\n", first_money);
+        fgets(str, 7, stdin);
+        sscanf(str, "%d", &first_money);
+        printf("Initial funds: %d\n", first_money);
 
-    for (char i = 0; i < CELL_MAX_PLAYER; i++)
-    {
-        player[i].money = first_money;
+        for (char i = 0; i < CELL_MAX_PLAYER; i++) {
+            player[i].money = first_money;
+        }
+        if (first_money<2000||first_money>50000){
+            printf("The initial funds are out of range, please re-enter\n");
+            if_continue = 0;
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF) {}// 清空输入缓冲区
+        }
+        if (if_continue){
+            break;
+        }
     }
 }
 
-void step_cell_logit(Player *players, Player *now_player, Map *map)
-{
+void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) {
     // In case of that the cell involved belongs to HOUSE.
     int pos = now_player->position;
     int route_num = 0;
     char cell_owner = 'N';
+    char choose;
     if(map->data[pos].owner == OWNER_Q){
         cell_owner = 'Q';
     } else if(map->data[pos].owner == OWNER_A){
@@ -35,44 +46,62 @@ void step_cell_logit(Player *players, Player *now_player, Map *map)
     }
     char player_name = get_player_name(now_player->number);
     int cell_cost = get_cost(pos);
-    char choose;
     // char now_player_char;
     // now_player_char = get_player_name();
-
-    if (player_name == cell_owner)
-    {
-        invest_house_execute(now_player, map);
-    }
-    else
-    {
-        if (cell_owner == 'N' && (now_player->money >= cell_cost))
+    if(pos == 28||pos == 35||pos == 49||pos == 63||pos == 64||pos == 14||pos == 65||pos == 66||pos == 67||pos == 68||pos == 69)
+        printf("This is a special plot and cannot be purchased\n");
+    else{
+        if (player_name == cell_owner)
         {
-            printf("Arrived at an empty space, sufficient funds, do you want to buy?\n");
-            scanf("%c", &choose);
-            getchar();
-            if (choose == 'Y')
-            {
-                printf("Successfully purchased!\n");
-                (now_player->properties)[pos]++;
-                map->data[pos].owner = (owner_enum)now_player->number;
-                now_player->money -= cell_cost;
+            if(now_player->money >= cell_cost) {
+                printf("Arrived at your space, sufficient funds, do you want to upgrade?\n");
+                scanf("%c",choose);
+                getchar();
+                if(choose == 'Y'||choose == 'y'){getchar();   invest_house_execute(now_player, map);}
+                else   printf("forgive to upgrade?\n");
+
             }
-            else if (choose == 'N')
-            {
-                printf("Declined to purchase\n");
-            }
+            else printf("lack of money,unable to upgrade!\n");
         }
         else
         {
-            pay_rentment(players, map, now_player, cell_owner, pos);
+            if (cell_owner == 'N' && (now_player->money >= cell_cost))
+            {
+                printf("Arrived at an empty space, sufficient funds, do you want to buy?\n");
+                scanf("%c", &choose);
+                getchar();
+                if (choose == 'Y'||choose == 'y')
+                {
+                    printf("Successfully purchased!The cost is %d\n",cell_cost);
+                    printf("you have %d money left\n",now_player->money - cell_cost);
+                    (now_player->properties)[pos]++;
+                    map->data[pos].owner = (owner_enum)now_player->number;
+                    now_player->money -= cell_cost;
+                    chech_out_of_money(now_player, map , cell);
+                }
+                else
+                {
+                    printf("Declined to purchase\n");
+                }
+            }
+            else if(cell_owner == 'N' && (now_player->money < cell_cost)) {
+                printf("Arrived at an empty space,out of money,unable to purchase\n");
+            }
+            else
+            {
+                printf("You step on someone else's house, pay the rent\n");
+                pay_rentment(players, map, now_player, cell_owner, pos);
+                printf("You have %d money left\n",now_player->money);
+            }
         }
     }
 }
 
-void invest_house_execute(Player *player, Map *map)
+void invest_house_execute(Player *player, Map *map,Cell *cell)
 {
     int pos = player->position;
     int cost = get_cost(pos);
+    int house;
     if (player->properties[pos] >= 4)
     {
         printf("Highest Scale yet, unable to upgrade anymore.\n");
@@ -86,7 +115,10 @@ void invest_house_execute(Player *player, Map *map)
                 player->property_count++;
             player->properties[pos]++;
             player->money -= cost;
-            map->data[pos].base ++;
+            chech_out_of_money(player, map , cell);
+            house=map->data[pos].kind;
+            house ++;
+            map->data[pos].kind = (kind_enum)house;
         }
         else
         {
@@ -129,37 +161,36 @@ char get_player_name(int number)
     }
 }
 
-void sell_house(Player *player, Cell *cell, int pos)
+void sell_house(Player *player, Map *map, int pos)
 {
     char owner = get_player_name(player->number);
-    if (owner == cell[pos].owner)
+    if (owner == map->data[pos].owner)
     {
-        int income = cell[pos].sum_invested_money * 2;
+        int income = map->data[pos].kind * get_cost(pos) * 2;
         player->money += income;
         player->property_count--;
         // cell[pos].house_scale = 0;
         player->properties[pos] = 0;
-        cell[pos].sum_invested_money = 0;
-        cell[pos].owner = 'N';
-        player->properties[pos] = 0;
-        printf("Property sold successfully!\n");
+        map->RemoveSpace(pos);
+        printf("Successfully sold!\n");
     }
     else
     {
-        printf("You are not permitted to sell the property since it's not yours!\n");
+        printf("This is not your property, you have no authority to sell!\n");
     }
 }
 
-void pay_rentment(Player *players, Map *cell, Player *now_player, char owner, int pos)
+void pay_rentment(Player *players, Map *map, Player *now_player,Cell *cell ,char owner, int pos)
 {
     for (int i = 0; i <= 3; i++)
     {
         char name = get_player_name(players[i].number);
         if (name == owner)
         {
-            int rentment = cell->data[pos].base * get_cost(pos) / 2;
+            int rentment = map->data[pos].kind * get_cost(pos) / 2;
             players[i].money += rentment;
             now_player->money -= rentment;
+            chech_out_of_money(now_player, map, cell);
         }
     }
 }
@@ -176,12 +207,20 @@ Player search_by_char(Player *players, char name_to_search)
     return players[0];
 }
 
-// void chech_out_of_money(Player *players, Map *map) {
-//     if(players->money < 0) {
-//         printf("you are out of game\n");
-//
-//     }
-// }
+void chech_out_of_money(Player *players, Map *map,Cell* cell) {
+    if(players->money < 0) {
+        printf("you are out of game\n");
+        players->alive = false;
+        map->data[players->position].Remove_Passer((owner_enum)players->number);
+        for (int i = 0;i<70;i++) {
+            if (players->properties[i] != 0) {
+                map->RemoveSpace(i);
+            }
+        }
+        map->SetCell(cell);
+        map->PrintMap();
+    }
+}
 
 
 

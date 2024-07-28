@@ -29,7 +29,8 @@ int Player_Init(Player* players, char* now_user){
         char input_user[5] = {0};
         printf("Please enter players\n");
         scanf("%s", input_user);
-        getchar();
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF) {}// 清空输入缓冲区
         input_user[4] = '\0';
         printf("Players : %s\n", input_user);
         for (i = 0; i < CELL_MAX_PLAYER; ++i) {

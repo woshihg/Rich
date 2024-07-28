@@ -1,18 +1,23 @@
 //
 // Created by Zhang Junling on 24-7-27.
 //
+//
+// Created by Zhang Junling on 24-7-27.
+//
 #include "tool.h"
 #include <cstdio>
 #include <cstdlib>
+#include "../terminal/terminal.h"
+#include"../map/mapdraw.h"
 //todo 触发道具屋
-void PlayerTool(Player* player ,Map* map) {
+void PlayerTool(Player* player ) {
+
     char input[100];
     char* token;
     int tool_id;
     printf("Welcome to the tool shop, please select the tool you need:\n");
     printf("1. Roadblock 50 points\n");
     printf("2. Robot 30 points\n");
-
     printf("3. Bomb 50 points\n");
     printf("You currently have points: %d points\n",player->point);
     printf("Each player can have up to 10 tools, you currently have:\n");
@@ -26,8 +31,6 @@ void PlayerTool(Player* player ,Map* map) {
         return;
     }
     printf("Please enter the tool ID you want to buy, press 'F' to manually exit the tool shop:");
-
-
     while(fgets(input, 100, stdin)) {
         // Split the input string
         token = strtok(input, " ");
@@ -95,20 +98,18 @@ void PlayerGetRobot(Player* player) {
 void PlayerGetBomb(Player* player) {
     player->bomb++;
 }
-
-void tool_use(Player *player, Map *map) {
+void tool_use(Player *player, Map *map,char *filename) {
     char *token;
     char input[100];
     printf("now you can choose to use a tool or not\n");
     printf("input yes to use or no to give up\n");
     while(fgets(input, 100, stdin)) {
-        token = strtok(input, " ");
+        token = strtok(input, "\n");
         if(strcmp(token,"yes")==0) {
             if(player->robot ==0&&player->bomb==0&&player->block==0) {
                 printf("you dont have any tool\n");
                 return;
             }
-
             else {
                 printf("you have these tools\n");
                 printf("1 block num ");
@@ -122,26 +123,28 @@ void tool_use(Player *player, Map *map) {
                 printf("2 robot\n");
                 printf("3 bomb\n");
                 //use tools in map
-                tool_map(player,map);
+                tool_map(player,map,filename);
                 return;
             }
         }
     }
-
 }
-
-void tool_map(Player* player,Map* map) {
-    int use_position = 0;
+void tool_map(Player* player,Map* map,char *filename) {
+    int use_position;
+    char command[50];
     int tool_id;
     char input[100];
     char *token;
     while(fgets(input, 100, stdin)) {
-        token = strtok(input, " ");
-        tool_id = atoi(token);
-        if(tool_id == 1) {
+        token = strtok(input, "\n");
+        //分割字符串 block n ;bomb n;robot
+        terminal(*player,filename);
+        printf("%s\n",RichStructure.instruction);
+        printf("%d\n", RichStructure.parameter);
+        if(strcmp(RichStructure.instruction,"Block")==0) {
             if(player->block >= 1) {
+                use_position = RichStructure.parameter;
                 printf("choose where to use\n");
-                scanf("%d",use_position);
                 printf("successful use block\n");
                 player->block--;
                 //todo
@@ -152,21 +155,21 @@ void tool_map(Player* player,Map* map) {
                 printf("you dont have enough tool\n");
             }
         }
-        else if(tool_id == 2) {
+        else if(strcmp(RichStructure.instruction,"Robot")==0) {
             if(player->robot >= 1) {
                 printf("successful use robot\n");
                 player->robot--;
                 //todo
-
+                robot_use(player,map);
                 return;
             }
             else {
                 printf("you dont have enough tool\n");
             }
         }
-        if(tool_id == 3) {
+        if(strcmp(RichStructure.instruction,"Bomb")==0) {
             if(player->bomb >= 1) {
-                scanf("%d",use_position);
+                use_position = RichStructure.parameter;
                 printf("successful use block\n");
                 printf("successful use\n");
                 player->bomb--;
@@ -180,7 +183,6 @@ void tool_map(Player* player,Map* map) {
         }
     }
 }
-
 //机器娃娃
 void robot_use(Player* player,Map* map) {
     //清理路障
@@ -190,21 +192,3 @@ void robot_use(Player* player,Map* map) {
         (&(map-> data[cur_position+i]))->has_tool = 0;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
