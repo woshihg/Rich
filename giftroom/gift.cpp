@@ -24,7 +24,6 @@ void Choose_Gift(Player* player)
     printf("Enter 1, 2, 3 to choose gift or enter F to quit!\n");
     scanf("%c",&gift_num);
     tmp=getchar();
-    fflush(stdin);              //清空缓冲区
     if(gift_num=='1' && tmp=='\n')
         Choose_Money(player);
     else if(gift_num=='2' && tmp=='\n')

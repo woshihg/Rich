@@ -50,18 +50,20 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
         player_name = 'J';
     }
     int cell_cost = get_cost(pos);
+
     // char now_player_char;
     // now_player_char = get_player_name();
-    if(pos == 0||pos == 28||pos == 35||pos == 49||pos == 63||pos == 64||pos == 14||pos == 65||pos == 66||pos == 67||pos == 68||pos == 69)
+    if(pos == 0||pos == 28||pos == 35||pos == 49||pos == 63||pos == 64||pos == 14||pos == 65||pos == 66||pos == 67||pos == 68||pos == 69) {
         printf("This is a special plot and cannot be purchased\n");
+    }
     else{
         if (player_name == cell_owner)
         {
             if(now_player->money >= cell_cost) {
+
                 printf("Arrived at your space, sufficient funds, do you want to upgrade?\n");
 
                 fgets(str, INSTRUCTION_MAX_LEN, stdin);
-                fflush(stdin);
                 if(str[0] == 'Y'||str[0] == 'y') invest_house_execute(now_player, map,cell);
                 else   printf("forgive to upgrade\n");
 
@@ -73,8 +75,8 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
             if (cell_owner == 'N' && (now_player->money >= cell_cost))
             {
                 printf("Arrived at an empty space, sufficient funds, do you want to buy?\n");
+
                 fgets(str, INSTRUCTION_MAX_LEN, stdin);
-                fflush(stdin);
                 if(str[0] == 'Y'||str[0] == 'y')
                 {
                     printf("Successfully purchased!\nThe cost is %d\n",cell_cost);

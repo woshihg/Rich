@@ -28,9 +28,6 @@ int main(int argc, char *argv[])
         playerNum = (int)strlen(users);
         playerNum = Player_Init(use_players, now_user);
         Set_Init_Money(use_players);
-        use_players[0].bomb = 5;
-        use_players[0].block = 5;
-        use_players[0].robot = 5;
     } else {
         strcpy(filename, argv[1]);
         read_json(use_players, jsonmap, users, now_user, filename);

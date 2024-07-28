@@ -5,22 +5,21 @@ import subprocess
 import json
 
 process = None
-
-
+# b'step5\r\nN\r\nquit\r\n'
+# b'Step 5\r\nN\r\nquit\r\n'
 def run_exe_with_input(exe_path, input_file, json_file):
     try:
+        print(f"Running {exe_path} with arguments {json_file} and {input_file}")
         with subprocess.Popen([exe_path, json_file], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True) as process:
-            input_data = open(input_file, 'rb').read()
-            input_data += b"\r\nQuit"
-            process.stdin.write(input_data)
-            process.stdin.flush()
-            process.stdin.close()
-
-            output, _ = process.communicate(timeout=10)  # 读取输出并等待进程完成，设置超时时间为10秒
+            print(f"Running {exe_path} with input file {input_file}")
+            input_data = open(input_file, 'rb').read() + b"\r\nQuit"
+            output, _ = process.communicate(input=input_data, timeout=10)   # 读取输出并等待进程完成，设置超时时间为10秒
             print(output.decode('utf-8'))
     except Exception as e:
         print(f"An error occurred: {e}")
-
+    finally:
+        if process:
+            process.terminate()
 
 def compare_outputs(test_folder):
     total_files = 0
@@ -37,7 +36,7 @@ def compare_outputs(test_folder):
             # 执行程序，将input.txt作为输入
             run_exe_with_input(exe_path, input_file, json_file)
             # 等待0.1S
-            time.sleep(0.1)
+            time.sleep(0.5)
             # 判断是否存在并比较result.json和expected_output.json
             # 使用json内容比较两个文件
             with open(result_file, 'r') as f:
