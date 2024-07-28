@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
                   use_players[route_num].position += RichStructure.parameter;
                   use_players[route_num].position %= 70;
 
-                  step_cell_logit(use_players,&use_players[route_num],&map);
+                  step_cell_logit(use_players,&use_players[route_num],&map,cell);
                   map.SetCell(cell);
 //                  map.PrintMap();
 
@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
                   use_players[route_num].prison = false;
                   flag_ifwalk = 0;
 
-                  step_cell_logit(use_players,&use_players[route_num],&map);
+                  step_cell_logit(use_players,&use_players[route_num],&map,cell);
                   map.SetCell(cell);
 //                  map.PrintMap();
 

@@ -44,7 +44,16 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
     } else if(map->data[pos].owner == OWNER_J){
         cell_owner = 'J';
     }
-    char player_name = get_player_name(now_player->number);
+    char player_name = 'N';
+    if(now_player->number == OWNER_Q){
+        cell_owner = 'Q';
+    } else if(now_player->number == OWNER_A){
+        cell_owner = 'A';
+    } else if(now_player->number == OWNER_S){
+        cell_owner = 'S';
+    } else if(now_player->number == OWNER_J){
+        cell_owner = 'J';
+    }
     int cell_cost = get_cost(pos);
     // char now_player_char;
     // now_player_char = get_player_name();
@@ -57,7 +66,7 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
                 printf("Arrived at your space, sufficient funds, do you want to upgrade?\n");
                 scanf("%c",choose);
                 getchar();
-                if(choose == 'Y'||choose == 'y'){getchar();   invest_house_execute(now_player, map);}
+                if(choose == 'Y'||choose == 'y'){getchar();   invest_house_execute(now_player, map,cell);}
                 else   printf("forgive to upgrade?\n");
 
             }
@@ -90,7 +99,7 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
             else
             {
                 printf("You step on someone else's house, pay the rent\n");
-                pay_rentment(players, map, now_player, cell_owner, pos);
+                pay_rentment(players, map,now_player,cell, pos);
                 printf("You have %d money left\n",now_player->money);
             }
         }
@@ -139,31 +148,18 @@ int get_cost(int pos)
         return 0;
 }
 
-char get_player_name(int number)
-{
-    switch (number)
-    {
-        case 1:
-            return 'Q';
-            break;
-        case 2:
-            return 'A';
-            break;
-        case 3:
-            return 'S';
-            break;
-        case 4:
-            return 'J';
-            break;
-        default:
-            return '0';
-            break;
-    }
-}
-
 void sell_house(Player *player, Map *map, int pos)
 {
-    char owner = get_player_name(player->number);
+    char owner = 'N';
+    if(player->number == OWNER_Q){
+        owner = 'Q';
+    } else if(player->number == OWNER_A){
+        owner = 'A';
+    } else if(player->number == OWNER_S){
+        owner = 'S';
+    } else if(player->number == OWNER_J){
+        owner = 'J';
+    }
     if (owner == map->data[pos].owner)
     {
         int income = map->data[pos].kind * get_cost(pos) * 2;
@@ -180,32 +176,25 @@ void sell_house(Player *player, Map *map, int pos)
     }
 }
 
-void pay_rentment(Player *players, Map *map, Player *now_player,Cell *cell ,char owner, int pos)
+void pay_rentment(Player *players, Map *map, Player *now_player,Cell *cell , int pos)
 {
-    for (int i = 0; i <= 3; i++)
-    {
-        char name = get_player_name(players[i].number);
-        if (name == owner)
-        {
-            int rentment = map->data[pos].kind * get_cost(pos) / 2;
-            players[i].money += rentment;
-            now_player->money -= rentment;
-            chech_out_of_money(now_player, map, cell);
-        }
-    }
+    int rentment = map->data[pos].kind * get_cost(pos) / 2;
+    players[map->data[pos].owner].money += rentment;
+    now_player->money -= rentment;
+    chech_out_of_money(now_player, map, cell);
 }
 
-Player search_by_char(Player *players, char name_to_search)
-{
-    for (int i = 0; i < 4; i++)
-    {
-        char name = get_player_name(players[i].number);
-        if (name == name_to_search)
-            return players[i];
-    }
-    printf("Failed to search\n");
-    return players[0];
-}
+//Player search_by_char(Player *players, char name_to_search)
+//{
+//    for (int i = 0; i < 4; i++)
+//    {
+//        char name = get_player_name(players[i].number);
+//        if (name == name_to_search)
+//            return players[i];
+//    }
+//    printf("Failed to search\n");
+//    return players[0];
+//}
 
 void chech_out_of_money(Player *players, Map *map,Cell* cell) {
     if(players->money < 0) {
