@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
     char now_user[2] = "Q";
     system("");
     int playerNum = 0;
+    int routeNum = 0;
     if (argc == 1) {
         strcpy(filename, "../user.json");
         read_json(use_players, jsonmap, users, now_user, "../user.json");
@@ -66,59 +67,77 @@ int main(int argc, char *argv[])
             break;
         }
 
-        int route_num = Find_Player_Num(use_players, now_user, playerNum);
+//        int route_num = Find_Player_Num(use_players, now_user, playerNum);
         int if_continue = 0;
-        if_continue = Player_Route_Start(use_players, now_user, &map, cell, playerNum);
-        map.data[use_players[route_num].position].Remove_Passer((owner_enum)use_players[route_num].number);//轮次开始的时候让人显示到上层
-        map.data[use_players[route_num].position].Add_Passer((owner_enum)use_players[route_num].number);
+        if_continue = Player_Route_Start(use_players, routeNum, &map, cell, playerNum);
         map.SetCell(cell);
         if (if_continue == 1) {
             printf("%s", now_user);
             printf(" skip\n");
-            Route_Num_Change(use_players, now_user, playerNum);
-            continue;
         } else {
-          while (!flag_ifover && !flag_ifquit) {
+            map.data[use_players[routeNum].position].Remove_Passer((owner_enum)use_players[routeNum].number);//轮次开始的时候让人显示到上层
+            map.data[use_players[routeNum].position].Add_Passer((owner_enum)use_players[routeNum].number);
+            while (!flag_ifover && !flag_ifquit) {
               //输入命令
+                switch(use_players[routeNum].number)
+                {
+                    case 1:
+                        printf("\033[3;30;41m");
+                        break;
+                    case 2:
+                        printf("\033[3;30;42m");
+                        break;
+                    case 3:
+                        printf("\033[3;30;44m");
+                        break;
+                    case 4:
+                        printf("\033[3;30;43m");
+                        break;
+                    default:break;
+                }
+              printf("@ Now is %s turn", now_user);
+              printf(COLOR_NULL);
+              printf("\n");
+              map.SetCell(cell);
               map.PrintMap();
-              terminal(use_players[route_num],filename);
+              terminal(use_players[routeNum],filename);
               if (strcmp(RichStructure.instruction, "Sell") == 0) {
-                  sell_house(&(use_players[route_num]),&map,RichStructure.parameter);
+                  sell_house(&(use_players[routeNum]),&map,RichStructure.parameter);
               }else
               if (strcmp(RichStructure.instruction, "Query") == 0) {
                   printf("@ Player : ");
                   printf("%c\n", now_user[0]);
                   printf("\tMoney : ");
-                  printf("%d\n", use_players[route_num].money);
+                  printf("%d\n", use_players[routeNum].money);
                   printf("\tPoint : ");
-                  printf("%d\n", use_players[route_num].point);
-                  printf("You have %d set(s) of property altogether.Details as follows",use_players[route_num].property_count);
+                  printf("%d\n", use_players[routeNum].point);
+                  printf("You have %d set(s) of property altogether.Details as follows",use_players[routeNum].property_count);
                   //printf("\tProperties details: ");
                   for(int j =0; j<70; j++) {
-                      if (use_players[route_num].properties[j]) {
-                          printf(" [Position: %d Level: %d]",j,use_players[route_num].properties[j] - 1);
+                      if (use_players[routeNum].properties[j]) {
+                          printf(" [Position: %d Level: %d]",j,use_players[routeNum].properties[j] - 1);
                       }
                   }
                   printf("\n");
                   printf("\tBlock : ");
-                  printf("%d\n", use_players[route_num].block);
+                  printf("%d\n", use_players[routeNum].block);
                   printf("\tBomb : ");
-                  printf("%d\n", use_players[route_num].bomb);
+                  printf("%d\n", use_players[routeNum].bomb);
                   printf("\tRobot : ");
-                  printf("%d\n", use_players[route_num].robot);
+                  printf("%d\n", use_players[routeNum].robot);
                   printf("\tRich Man Power : ");
-                  printf("%d %d\n", use_players[route_num].buff, use_players[route_num]._continue);
+                  printf("%d %d\n", use_players[routeNum].buff, use_players[routeNum]._continue);
               }else
               if (strcmp(RichStructure.instruction, "Quit") == 0) {
                   flag_ifquit = 1;
               }else
 
               if (strcmp(RichStructure.instruction, "Step") == 0) {
-                  After_Walk(use_players, &map, cell, route_num,RichStructure.parameter);
+                  After_Walk(use_players, &map, cell, routeNum,RichStructure.parameter);
                   flag_ifover = 1;
               }else
               if (strcmp(RichStructure.instruction, "Roll") == 0) { // init初始化地图和用户
-                  After_Walk(use_players, &map, cell, route_num,roll_dice());
+                  After_Walk(use_players, &map, cell, routeNum,roll_dice());
                   flag_ifover = 1;
               }else
               if(strcmp(RichStructure.instruction, "Help") == 0) {
@@ -137,32 +156,38 @@ int main(int argc, char *argv[])
                   printf("Quit: Exit the game\n");
                   printf(COLOR_NULL);
               }else{
-                  Tool_Use(use_players, &map, route_num,RichStructure.parameter);
+                  Tool_Use(use_players, &map, routeNum,RichStructure.parameter);
               }
               map.SetCell(jsonmap.cells);
               write_json(use_players, jsonmap, users, now_user, filename);
-          }
+            }
         }
-      Route_Num_Change(use_players, now_user, playerNum);
+        map.SetCell(jsonmap.cells);
+        write_json(use_players, jsonmap, users, now_user, filename);
+        routeNum++;
+        if (routeNum == playerNum) {
+            routeNum = 0;
+        }
+        if(use_players[routeNum].number == OWNER_Q){
+            now_user[0] = 'Q';
+        } else if(use_players[routeNum].number == OWNER_A){
+            now_user[0] = 'A';
+        } else if(use_players[routeNum].number == OWNER_S){
+            now_user[0] = 'S';
+        } else if(use_players[routeNum].number == OWNER_J){
+            now_user[0] = 'J';
+        }
+//        Route_Num_Change(use_players, now_user, playerNum);
     }
     return 0;
 }
 
 void After_Walk(Player *use_players, Map *map, Cell *cell, int route_num,int relative_move) {
     int skip = 0;
-    int real_pos = (use_players[route_num].position + relative_move) % 70;
-    if (map->data[real_pos].owner != use_players[route_num].number && map->data[real_pos].owner != OWNER_NULL) {
-        printf("You have steped into  someone else's property.Please pay the rent cost.\n");
-        pay_rentment(use_players, map,&use_players[route_num],cell, real_pos);
-        printf("Now You have %d money left\n",use_players[route_num].money);
-        if (use_players[route_num].alive == 0){
-            skip = 1;
-        }
-    }
     int tool_flag =tool_to_hospital(&use_players[route_num], map,
                                     use_players[route_num].position,
                                     use_players[route_num].position + relative_move);
-    if(tool_flag == -1 || skip)
+    if(tool_flag ==-1)
     {
         skip =1;
     }
@@ -171,12 +196,25 @@ void After_Walk(Player *use_players, Map *map, Cell *cell, int route_num,int rel
         map->PlayerGoto((owner_enum) use_players[route_num].number,
                         use_players[route_num].position,
                        use_players[route_num].position + tool_flag);
-        use_players[route_num].position += tool_flag;
+        use_players[route_num].position += tool_flag + 70;
+        use_players[route_num].position %= 70;
+        map->SetCell(cell);
+        map->PrintMap();
     }
 
-    use_players[route_num].position %= 70;
     if (!skip)
     {
+        if (map->data[use_players[route_num].position].owner != use_players[route_num].number
+        && map->data[use_players[route_num].position].owner != OWNER_NULL) {
+            printf("You have steped into  someone else's property.Please pay the rent cost.\n");
+            pay_rentment(use_players, map,&(use_players[route_num]),cell, use_players[route_num].position);
+            if (use_players[route_num].alive == 0){
+                skip = 1;
+            }else
+            {
+                printf("Now You have %d money left\n",use_players[route_num].money);
+            }
+        }
         in_mountain(&use_players[route_num]);
         step_cell_logit(use_players, &use_players[route_num], map, cell);
         if(Is_Arrive_GiftRoom(&use_players[route_num]))
@@ -184,8 +222,7 @@ void After_Walk(Player *use_players, Map *map, Cell *cell, int route_num,int rel
             Choose_Gift(&use_players[route_num]);
         }
     }
-    map->SetCell(cell);
-//  map.PrintMap();
+
     if(use_players[route_num].position == 49){
         use_players[route_num].prison = true;
         use_players[route_num].de_continue = 2;

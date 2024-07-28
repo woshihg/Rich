@@ -196,8 +196,6 @@ void chech_out_of_money(Player *players, Map *map,Cell* cell) {
                 map->RemoveSpace(i);
             }
         }
-        map->SetCell(cell);
-        map->PrintMap();
     }
 }
 

@@ -66,7 +66,6 @@ public:
     MapData();
 //    ~MapData();
 
-    void Update_Passer_Num();
     void Update_Char();
     void Show_Char() ;
     void Sort_Passers();

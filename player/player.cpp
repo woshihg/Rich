@@ -40,7 +40,7 @@ int Player_Init(Player* players, char* now_user){
         int c;
         while ((c = getchar()) != '\n' && c != EOF) {}// 清空输入缓冲区
         input_user[4] = '\0';
-        sort_string(input_user);
+//        sort_string(input_user);
         printf("Players : %s\n", input_user);
         for (i = 0; i < CELL_MAX_PLAYER; ++i) {
             if (input_user[i] == '\0') {
@@ -100,27 +100,27 @@ int Find_Player_Num(Player* players, const char* now_user,int max_player_num) {
     return 0;
 }
 
-void Route_Num_Change(Player * players,char* now_user ,int max_player_num) {
-    int route_num = 0;
-    route_num = Find_Player_Num(players, now_user, max_player_num);
-    ++route_num;
-    if (route_num == max_player_num) {
-        route_num = 0;
-    }
-    if(players[route_num].number == OWNER_Q){
-        now_user[0] = 'Q';
-    } else if(players[route_num].number == OWNER_A){
-        now_user[0] = 'A';
-    } else if(players[route_num].number == OWNER_S){
-        now_user[0] = 'S';
-    } else if(players[route_num].number == OWNER_J){
-        now_user[0] = 'J';
-    }
-}
+//void Route_Num_Change(Player * players,char* now_user ,int max_player_num) {
+//    static int route_num = 0;
+////    route_num = Find_Player_Num(players, now_user, max_player_num);
+//    ++route_num;
+//    if (route_num == max_player_num) {
+//        route_num = 0;
+//    }
+//    if(players[route_num].number == OWNER_Q){
+//        now_user[0] = 'Q';
+//    } else if(players[route_num].number == OWNER_A){
+//        now_user[0] = 'A';
+//    } else if(players[route_num].number == OWNER_S){
+//        now_user[0] = 'S';
+//    } else if(players[route_num].number == OWNER_J){
+//        now_user[0] = 'J';
+//    }
+//}
 
-int Player_Route_Start(Player *players, char *now_user, Map *map, Cell pCell[70],int max_player_num) {//回合开始
-    int route_num = 0;
-    route_num = Find_Player_Num(players, now_user,max_player_num);
+int Player_Route_Start(Player *players, int route_num, Map *map, Cell pCell[70],int max_player_num) {//回合开始
+//    static int route_num = 0;
+////    route_num = Find_Player_Num(players, now_user,max_player_num);
     int if_continue = 0;
     if (players[route_num].prison || players[route_num].hospital || !players[route_num].alive) {
         //用户轮空

@@ -118,16 +118,6 @@ void MapData::Update_Char(){
     }
 }
 
-void MapData::Update_Passer_Num(){
-    int count = 0;
-    for (auto & passer : passers) {
-        if (passer != OWNER_Q){
-            ++count;
-        }
-    }
-    passer_num = count;
-}
-
 int MapData::Add_Passer(owner_enum passer){
     int error = 0;
     if (passer_num < CELL_MAX_PLAYER){
@@ -380,4 +370,6 @@ void Map::BoughtSpace(owner_enum player, int properties[],int position) {
 void Map::RemoveSpace(int position) {
     data[position].kind = SPACE;
     data[position].owner = OWNER_NULL;
+    data[position].show = data[position].base;
+    data[position].color = (char*)COLOR_NULL;
 }
