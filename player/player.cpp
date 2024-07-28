@@ -11,7 +11,66 @@
 
 //players[4] 玩家结构体数组
 
-int Find_Player_Num(Player* players, char* now_user,int max_player_num) {
+int Player_Init(Player* players, char* now_user){
+    int max_player_num = 0;
+    for (int i = 0; i < CELL_MAX_PLAYER; ++i) {
+        players[i].number = i;
+        players[i].position = 0;
+        players[i].money = 0;
+        players[i].point = 0;
+        players[i].prison = false;
+        players[i].hospital = false;
+        players[i].alive = false;
+        players[i].de_continue = 0;
+    }
+    while(true) {
+        int if_continue = 1;
+        int i = 0;
+        char input_user[5] = {0};
+        printf("Please enter players\n");
+        scanf("%s", input_user);
+        getchar();
+        input_user[4] = '\0';
+        printf("Players : %s\n", input_user);
+        for (i = 0; i < CELL_MAX_PLAYER; ++i) {
+            if (input_user[i] == '\0') {
+                break;
+            }
+            switch (input_user[i]) {
+                case '1':
+                    players[i].number = 1;
+                    players[i].alive = true;
+                    break;
+                case '2':
+                    players[i].number = 2;
+                    players[i].alive = true;
+                    break;
+                case '3':
+                    players[i].number = 3;
+                    players[i].alive = true;
+                    break;
+                case '4':
+                    players[i].number = 4;
+                    players[i].alive = true;
+                    break;
+                default:
+                    printf("error:player input wrong :");
+                    printf(" %c",input_user[i]);
+                    printf("\n");
+                    if_continue = 0;
+                    break;
+            }
+        }
+        if (if_continue){
+            max_player_num = i;
+            printf("Player init success : %s\n", input_user);
+            printf("Max Player Num : %d\n",max_player_num);
+            break;
+        }
+    }
+    return max_player_num;
+}
+int Find_Player_Num(Player* players, const char* now_user,int max_player_num) {
     int route_num = 0;
     if(now_user[0] == 'Q'){
         route_num = OWNER_Q;
