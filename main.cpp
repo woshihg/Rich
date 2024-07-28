@@ -118,6 +118,7 @@ int main(int argc, char *argv[])
               }else{
                   Tool_Use(use_players, &map, route_num,RichStructure.parameter);
               }
+              map.SetCell(jsonmap.cells);
               write_json(use_players, jsonmap, users, now_user, filename);
           }
         }

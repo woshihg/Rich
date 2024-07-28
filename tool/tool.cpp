@@ -230,7 +230,7 @@ void Tool_Use(Player* use_players,Map* map,int route_num,int pos) {
         if (use_players[route_num].bomb >= 1) {
             printf("successful use bomb\n");
             use_players[route_num].bomb--;
-            map->ToolCreat(RichStructure.parameter, 2);
+            map->ToolCreat(real_pos, 2);
         } else {
             printf("you dont have enough bomb\n");
         }
