@@ -11,6 +11,7 @@
 #include"../map/mapdraw.h"
 //todo 触发道具屋
 void PlayerTool(Player* player ) {
+
     char input[100];
     char* token;
     int tool_id;
