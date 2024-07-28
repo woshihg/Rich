@@ -8,8 +8,16 @@
 #include<cstring>
 #include"../map/mapdraw.h"
 #include "../terminal/terminal.h"
+#include <ctime>
 
 //players[4] 玩家结构体数组
+
+int compare_chars(const void* a, const void* b) {
+    return *(const char*)a - *(const char*)b;
+}
+void sort_string(char* str) {
+    qsort(str, strlen(str), sizeof(char), compare_chars);
+}
 
 int Player_Init(Player* players, char* now_user){
     int max_player_num = 0;
@@ -32,6 +40,7 @@ int Player_Init(Player* players, char* now_user){
         int c;
         while ((c = getchar()) != '\n' && c != EOF) {}// 清空输入缓冲区
         input_user[4] = '\0';
+        sort_string(input_user);
         printf("Players : %s\n", input_user);
         for (i = 0; i < CELL_MAX_PLAYER; ++i) {
             if (input_user[i] == '\0') {
@@ -124,21 +133,10 @@ int Player_Route_Start(Player *players, char *now_user, Map *map, Cell pCell[70]
     }
     return if_continue;
 }
-void walk_roll(Player *players, char* now_user, Map* map,int max_player_num)
-{//回合结束
-    //判断当前玩家状态
-    int route_num = 0;
-    route_num = Find_Player_Num(players, now_user,max_player_num);
-    int dice_num;
-    char temp[10];
-    int new_position;
-    srand((unsigned) time(NULL));
-    dice_num = rand() % 6 + 1;
-    printf("your dice point: %d\n", dice_num);
-    new_position = players[route_num].position + dice_num;
 
-    map->PlayerGoto((owner_enum)players[route_num].number,
-                    players[route_num].position,
-                    new_position);
-    players[route_num].position = new_position;
+
+// Function to return a random number between 1 and 6
+int roll_dice() {
+    std::srand(static_cast<unsigned>(std::time(nullptr))); // Seed the random number generator
+    return std::rand() % 6 + 1; // Generate a random number between 1 and 6
 }

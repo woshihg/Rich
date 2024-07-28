@@ -7,8 +7,8 @@ void Set_Init_Money(Player *player)
     while (true){
         int if_continue = 1;
         char str[7] = {0};
-        int first_money = 0;
-        printf("Please enter initial fund:\n");
+        int first_money = 10000;
+        printf("Please enter initial funds\n");
 
         fgets(str, 7, stdin);
         sscanf(str, "%d", &first_money);
@@ -17,9 +17,9 @@ void Set_Init_Money(Player *player)
         for (char i = 0; i < CELL_MAX_PLAYER; i++) {
             player[i].money = first_money;
         }
-        if (first_money<2000||first_money>50000){
-            printf("The initial fund is out of range, please re-enter\n");
-            if_continue = 0;
+        if (first_money<1000||first_money>50000){
+            printf("The initial funds are out of range, please re-enter\n");
+//            if_continue = 0;
             int c;
             while ((c = getchar()) != '\n' && c != EOF) {}// 清空输入缓冲区
         }

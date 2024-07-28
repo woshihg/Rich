@@ -11,7 +11,6 @@
 #include"../map/mapdraw.h"
 //todo 触发道具屋
 void PlayerTool(Player* player ) {
-
     char input[100];
     char* token;
     int tool_id;
@@ -98,38 +97,7 @@ void PlayerGetRobot(Player* player) {
 void PlayerGetBomb(Player* player) {
     player->bomb++;
 }
-void tool_use(Player *player, Map *map,char *filename) {
-    char *token;
-    char input[100];
-    printf("now you can choose to use a tool or not\n");
-    printf("input yes to use or no to give up\n");
-    while(fgets(input, 100, stdin)) {
-        token = strtok(input, "\n");
-        if(strcmp(token,"yes")==0) {
-            if(player->robot ==0&&player->bomb==0&&player->block==0) {
-                printf("you dont have any tool\n");
-                return;
-            }
-            else {
-                printf("you have these tools\n");
-                printf("1 block num ");
-                printf("%d\n",player->block);
-                printf("2 robot num ");
-                printf("%d\n",player->robot);
-                printf("3 bomb num ");
-                printf("%d\n",player->bomb);
-                printf("choose to use which tool\n");
-                printf("1 block\n");
-                printf("2 robot\n");
-                printf("3 bomb\n");
-                //use tools in map
-                tool_map(player,map,filename);
-                return;
-            }
-        }
-    }
-}
-void tool_map(Player* player,Map* map,char *filename) {
+void tool_use(Player* player,Map* map,char *filename) {
     int use_position;
     char command[50];
     int tool_id;
@@ -144,41 +112,42 @@ void tool_map(Player* player,Map* map,char *filename) {
         if(strcmp(RichStructure.instruction,"Block")==0) {
             if(player->block >= 1) {
                 use_position = RichStructure.parameter;
-                printf("choose where to use\n");
                 printf("successful use block\n");
                 player->block--;
-                //todo
+                //todo 将路障放到地图上
                 map->ToolCreat(use_position, 1);
                 return;
             }
             else {
                 printf("you dont have enough tool\n");
+                return;
             }
         }
         else if(strcmp(RichStructure.instruction,"Robot")==0) {
             if(player->robot >= 1) {
                 printf("successful use robot\n");
                 player->robot--;
-                //todo
+                //todo 将机器娃娃放到地图上
                 robot_use(player,map);
                 return;
             }
             else {
                 printf("you dont have enough tool\n");
+                return;
             }
         }
-        if(strcmp(RichStructure.instruction,"Bomb")==0) {
+        else if(strcmp(RichStructure.instruction,"Bomb")==0) {
             if(player->bomb >= 1) {
                 use_position = RichStructure.parameter;
-                printf("successful use block\n");
-                printf("successful use\n");
+                printf("successful use bomb\n");
                 player->bomb--;
-                //todo
+                //todo 将炸弹放到地图上 调用接口 Toolcraet
                 map->ToolCreat(use_position, 2);
                 return;
             }
             else {
                 printf("you dont have enough tool\n");
+                return;
             }
         }
     }
@@ -190,5 +159,53 @@ void robot_use(Player* player,Map* map) {
     for(int i=0;i<10;i++) {
         cur_position = player->position;
         (&(map-> data[cur_position+i]))->has_tool = 0;
+    }
+}
+/*
+ parameter:
+    map 地图指针
+    player 用户结构体指针
+ */
+//todo 路障拦人 炸弹炸人
+int tool_to_hospital(Player* player,Map* map,int origin_pos,int final_pos){
+    //遍历原位置和最终位置上的地块的道具
+    int i;
+    for(i=0;i<final_pos-origin_pos;i++) {
+        //路障启动
+        if(map->data[origin_pos+i].has_tool == 1) {
+            printf("you are in block and stop!\n");
+            return i;
+        }
+            //炸弹启动
+        else if(map->data[origin_pos+i].has_tool == 2){
+            printf("you are in hospital!\n");
+            player->position = 14;
+            player->hospital = true;
+            player->de_continue = 3;
+            return 0;
+        }
+    }
+    return final_pos-origin_pos;
+}
+void in_mountain(Player* player) {
+    switch(player->position) {
+        case 69:
+            printf("you get 20 points\n");
+            player->point += 20;
+        case 68:
+            printf("you get 80 points\n");
+            player->point += 80;
+        case 67:
+            printf("you get 100 points\n");
+            player->point += 100;
+        case 66:
+            printf("you get 40 points\n");
+            player->point += 40;
+        case 65:
+            printf("you get 80 points\n");
+            player->point += 80;
+        case 64:
+            printf("you get 60 points\n");
+            player->point += 60;
     }
 }

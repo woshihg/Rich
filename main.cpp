@@ -8,6 +8,8 @@
 #include "tool/tool.h"
 #include "giftroom/gift.h"
 
+void After_Walk(Player *use_players, Map *map, Cell *cell, int route_num,int relative_move = 0);
+
 int main(int argc, char *argv[])
 {
     jsonMap jsonmap;
@@ -94,45 +96,14 @@ int main(int argc, char *argv[])
               }else
 
               if (strcmp(RichStructure.instruction, "Step") == 0) {
-                  map.PlayerGoto((owner_enum)use_players[route_num].number, use_players[route_num].position,
-                                 use_players[route_num].position + RichStructure.parameter );
-                  use_players[route_num].position += RichStructure.parameter;
-                  use_players[route_num].position %= 70;
-
-                  step_cell_logit(use_players,&use_players[route_num],&map,cell);
-                  map.SetCell(cell);
-//                  map.PrintMap();
-
-                  if(use_players[route_num].position == 49){
-                      use_players[route_num].prison = true;
-                      use_players[route_num].de_continue = 2;
-                      printf("You are in prison!\n");
-                  }else
-                  if (use_players[route_num].position == 28) {
-                      PlayerTool(&(use_players[route_num]));
-                  }
+                  After_Walk(use_players, &map, cell, route_num,RichStructure.parameter);
                   flag_ifover = 1;
               }else
-              if (strcmp(RichStructure.instruction, "Roll") == 0 && flag_ifwalk) { // init初始化地图和用户
-                  //投掷骰子
-                  walk_roll(use_players, now_user, &map, playerNum);
-                  use_players[route_num].prison = false;
-                  flag_ifwalk = 0;
-
-                  step_cell_logit(use_players,&use_players[route_num],&map,cell);
-                  map.SetCell(cell);
-//                  map.PrintMap();
-
-                  if(use_players[route_num].position == 49){
-                      use_players[route_num].prison = true;
-                      use_players[route_num].de_continue = 2;
-                      printf("You are in prison!\n");
-                  }else
-                  if (use_players[route_num].position == 28) {
-                      PlayerTool(&(use_players[route_num]));
-                  }
+              if (strcmp(RichStructure.instruction, "Roll") == 0) { // init初始化地图和用户
+                  After_Walk(use_players, &map, cell, route_num,roll_dice());
                   flag_ifover = 1;
-              }else if(strcmp(RichStructure.instruction, "Help") == 0) {
+              }else
+              if(strcmp(RichStructure.instruction, "Help") == 0) {
                   printf("\033[3;30;47mYou can use the following commands.\033[m\n");
                   printf(COLOR_PURPLE);
                   printf("Roll: Dice roll command. Walk randomly for 1~6 steps.\n");
@@ -160,4 +131,28 @@ int main(int argc, char *argv[])
       Route_Num_Change(use_players, now_user, playerNum);
     }
     return 0;
+}
+
+void After_Walk(Player *use_players, Map *map, Cell *cell, int route_num,int relative_move) {
+    int tool_flag =tool_to_hospital(&use_players[route_num], map,
+                                    use_players[route_num].position,
+                                    use_players[route_num].position + relative_move);
+    if(tool_flag == 0) {
+    } else {
+        map->PlayerGoto((owner_enum) use_players[route_num].number, use_players[route_num].position,
+                       use_players[route_num].position + tool_flag);
+        use_players[route_num].position += tool_flag;
+    }
+    use_players[route_num].position %= 70;
+    step_cell_logit(use_players,&use_players[route_num],map,cell);
+    map->SetCell(cell);
+//  map.PrintMap();
+    if(use_players[route_num].position == 49){
+        use_players[route_num].prison = true;
+        use_players[route_num].de_continue = 2;
+        printf("You are in prison!\n");
+    }else
+    if (use_players[route_num].position == 28) {
+        PlayerTool(&(use_players[route_num]));
+    }
 }
