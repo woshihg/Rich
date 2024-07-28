@@ -71,10 +71,11 @@ int main(int argc, char *argv[])
                   printf("%d\n", use_players[route_num].money);
                   printf("\tPoint : ");
                   printf("%d\n", use_players[route_num].point);
-                  printf("\tProperties : ");
+                  printf("You have %d set(s) of property altogether.Details as follows",use_players[route_num].property_count);
+                  //printf("\tProperties details: ");
                   for(int j =0; j<70; j++) {
                       if (use_players[route_num].properties[j]) {
-                          printf(" [pos: %d level: %d]",j,use_players[route_num].properties[j]);
+                          printf(" [Position: %d Level: %d]",j,use_players[route_num].properties[j] - 1);
                       }
                   }
                   printf("\n");
@@ -103,7 +104,7 @@ int main(int argc, char *argv[])
                   if(use_players[route_num].position == 49){
                       use_players[route_num].prison = true;
                       use_players[route_num].de_continue = 2;
-                      printf("You are in prison\n");
+                      printf("You are in prison!\n");
                   }else
                   if (use_players[route_num].position == 28) {
                       PlayerTool(&(use_players[route_num]),&map);
@@ -123,7 +124,7 @@ int main(int argc, char *argv[])
                   if(use_players[route_num].position == 49){
                       use_players[route_num].prison = true;
                       use_players[route_num].de_continue = 2;
-                      printf("You are in prison\n");
+                      printf("You are in prison!\n");
                   }else
                   if (use_players[route_num].position == 28) {
                       PlayerTool(&(use_players[route_num]),&map);

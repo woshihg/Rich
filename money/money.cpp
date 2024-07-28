@@ -142,11 +142,11 @@ void sell_house(Player *player, Cell *cell, int pos)
         cell[pos].sum_invested_money = 0;
         cell[pos].owner = 'N';
         player->properties[pos] = 0;
-        printf("Successfully sold!\n");
+        printf("Property sold successfully!\n");
     }
     else
     {
-        printf("This is not your property, you have no authority to sell!\n");
+        printf("You are not permitted to sell the property since it's not yours!\n");
     }
 }
 
