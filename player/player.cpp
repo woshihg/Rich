@@ -137,6 +137,8 @@ int Player_Route_Start(Player *players, char *now_user, Map *map, Cell pCell[70]
 
 // Function to return a random number between 1 and 6
 int roll_dice() {
-    std::srand(static_cast<unsigned>(std::time(nullptr))); // Seed the random number generator
-    return std::rand() % 6 + 1; // Generate a random number between 1 and 6
+    srand(static_cast<unsigned>(std::time(nullptr))); // Seed the random number generator
+    int dice = rand() % 6 + 1;
+    printf("the dice is %d\n",dice);
+    return dice; // Generate a random number between 1 and 6
 }

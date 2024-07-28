@@ -25,11 +25,12 @@ MapData::MapData(){
 
 void MapData::Show_Char()  {
     if(!passer_num) {
-        if(has_tool == 1) {
+        show = base;
+        if(has_tool == 2) {
             show = '@';
             color = (char*)COLOR_NULL;
         }
-        else if (has_tool == 2){
+        else if (has_tool == 1){
             show = '#';
             color = (char*)COLOR_NULL;
             }

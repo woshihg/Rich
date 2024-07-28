@@ -97,68 +97,26 @@ void PlayerGetRobot(Player* player) {
 void PlayerGetBomb(Player* player) {
     player->bomb++;
 }
-void tool_use(Player* player,Map* map,char *filename) {
-    int use_position;
-    char command[50];
-    int tool_id;
-    char input[100];
-    char *token;
-    while(fgets(input, 100, stdin)) {
-        token = strtok(input, "\n");
-        //分割字符串 block n ;bomb n;robot
-        terminal(*player,filename);
-        printf("%s\n",RichStructure.instruction);
-        printf("%d\n", RichStructure.parameter);
-        if(strcmp(RichStructure.instruction,"Block")==0) {
-            if(player->block >= 1) {
-                use_position = RichStructure.parameter;
-                printf("successful use block\n");
-                player->block--;
-                //todo 将路障放到地图上
-                map->ToolCreat(use_position, 1);
-                return;
-            }
-            else {
-                printf("you dont have enough tool\n");
-                return;
-            }
-        }
-        else if(strcmp(RichStructure.instruction,"Robot")==0) {
-            if(player->robot >= 1) {
-                printf("successful use robot\n");
-                player->robot--;
-                //todo 将机器娃娃放到地图上
-                robot_use(player,map);
-                return;
-            }
-            else {
-                printf("you dont have enough tool\n");
-                return;
-            }
-        }
-        else if(strcmp(RichStructure.instruction,"Bomb")==0) {
-            if(player->bomb >= 1) {
-                use_position = RichStructure.parameter;
-                printf("successful use bomb\n");
-                player->bomb--;
-                //todo 将炸弹放到地图上 调用接口 Toolcraet
-                map->ToolCreat(use_position, 2);
-                return;
-            }
-            else {
-                printf("you dont have enough tool\n");
-                return;
-            }
-        }
-    }
-}
+//void tool_use(Player* player,Map* map,char *filename) {
+//    int use_position;
+//    char command[50];
+//    int tool_id;
+//    char input[100];
+//    char *token;
+//    while(fgets(input, 100, stdin)) {
+//        token = strtok(input, "\n");
+//        //分割字符串 block n ;bomb n;robot
+//        terminal(*player,filename);
+//        printf("%s\n",RichStructure.instruction);
+//        printf("%d\n", RichStructure.parameter);
+//
+//    }
+//}
 //机器娃娃
-void robot_use(Player* player,Map* map) {
+void robot_use(int pos,Map* map) {
     //清理路障
-    int cur_position;
     for(int i=0;i<10;i++) {
-        cur_position = player->position;
-        (&(map-> data[cur_position+i]))->has_tool = 0;
+        (&(map-> data[(pos+i)%70]))->has_tool = 0;
     }
 }
 /*
@@ -172,18 +130,23 @@ int tool_to_hospital(Player* player,Map* map,int origin_pos,int final_pos){
     int i;
     for(i=0;i<final_pos-origin_pos;i++) {
         //路障启动
-        if(map->data[origin_pos+i].has_tool == 1) {
+        int real_pos = (origin_pos+i)%70;
+        if(map->data[real_pos].has_tool == 1) {
+            map->ToolRemove(real_pos);
             printf("you are in block and stop!\n");
             return i;
         }
-            //炸弹启动
-        else if(map->data[origin_pos+i].has_tool == 2){
-            printf("you are in hospital!\n");
-            player->position = 14;
-            player->hospital = true;
-            player->de_continue = 3;
-            return 0;
-        }
+    }
+    if(map->data[final_pos%70].has_tool == 2){
+        printf(COLOR_RED);
+        printf("B O M B!\n");
+        printf(COLOR_NULL);
+        printf("you are in hospital!\n");
+        map->ToolRemove(final_pos%70);
+        map->PlayerGoto((owner_enum) player->number, origin_pos, 14);
+        player->hospital = true;
+        player->de_continue = 3;
+        return 0;
     }
     return final_pos-origin_pos;
 }
@@ -207,5 +170,60 @@ void in_mountain(Player* player) {
         case 64:
             printf("you get 60 points\n");
             player->point += 60;
+    }
+}
+
+void Tool_Use(Player* use_players,Map* map,int route_num,int pos) {
+    int real_pos = (pos+use_players[route_num].position )%70;
+    if (strcmp(RichStructure.instruction, "Block") == 0) {
+        if(map->data[real_pos].has_tool != 0 ||
+           map->data[real_pos].passer_num != 0 ||
+           real_pos == 14 ||
+           real_pos == 28 ||
+           real_pos == 35 ||
+           real_pos == 49 ||
+           real_pos == 63
+           )
+        {
+            printf("you can't use block here\n");
+        }
+        else
+        if (use_players[route_num].block >= 1) {
+            printf("successful use block\n");
+            use_players[route_num].block--;
+            map->ToolCreat(RichStructure.parameter, 1);
+        }
+        else
+        {
+            printf("you dont have enough block\n");
+        }
+    } else if (strcmp(RichStructure.instruction, "Robot") == 0) {
+        if (use_players[route_num].robot >= 1) {
+            printf("successful use robot\n");
+            use_players[route_num].robot--;
+            robot_use(use_players[route_num].position, map);
+        } else {
+            printf("you dont have enough Robot\n");
+        }
+    } else if (strcmp(RichStructure.instruction, "Bomb") == 0) {
+        if(map->data[real_pos].has_tool != 0 ||
+           map->data[real_pos].passer_num != 0 ||
+           real_pos == 14 ||
+           real_pos == 28 ||
+           real_pos == 35 ||
+           real_pos == 49 ||
+           real_pos == 63
+                )
+        {
+            printf("you can't use bomb here\n");
+        }
+        else
+        if (use_players[route_num].bomb >= 1) {
+            printf("successful use bomb\n");
+            use_players[route_num].bomb--;
+            map->ToolCreat(RichStructure.parameter, 2);
+        } else {
+            printf("you dont have enough bomb\n");
+        }
     }
 }

@@ -4,28 +4,20 @@
 #include "money.h"
 void Set_Init_Money(Player *player)
 {
-    while (true){
-        int if_continue = 1;
-        char str[7] = {0};
-        int first_money = 0;
-        printf("Please enter initial funds\n");
+    char str[7] = {0};
+    int first_money = 10000;
+    printf("Please enter initial funds\n");
 
-        fgets(str, 7, stdin);
-        sscanf(str, "%d", &first_money);
-        printf("Initial funds: %d\n", first_money);
+    fgets(str, 7, stdin);
+    sscanf(str, "%d", &first_money);
+    printf("Initial fund: %d\n", first_money);
 
-        for (char i = 0; i < CELL_MAX_PLAYER; i++) {
-            player[i].money = first_money;
-        }
-        if (first_money<2000||first_money>50000){
-            printf("The initial funds are out of range, please re-enter\n");
-            if_continue = 0;
-            int c;
-            while ((c = getchar()) != '\n' && c != EOF) {}// 清空输入缓冲区
-        }
-        if (if_continue){
-            break;
-        }
+    for (char i = 0; i < CELL_MAX_PLAYER; i++) {
+        player[i].money = first_money;
+    }
+    if (first_money<1000||first_money>50000){
+        printf("The initial fund is out of range, please enter again\n");
+        Set_Init_Money(player);
     }
 }
 
@@ -91,17 +83,12 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
                 }
                 else
                 {
-                    printf("Declined to purchase\n");
+                    printf("Purchasing action declined.\n");
                 }
             }
             else if(cell_owner == 'N' && (now_player->money < cell_cost)) {
-                printf("Arrived at an empty space,out of money,unable to purchase\n");
-            }
-            else
-            {
-                printf("You step on someone else's house, pay the rent\n");
-                pay_rentment(players, map,now_player,cell, pos);
-                printf("You have %d money left\n",now_player->money);
+                //printf("Arrived at an empty space,out of money,unable to purchase\n");
+                printf("You have arrived at an empty property with insufficient fund, unable to purchase it.\n");
             }
         }
     }
@@ -114,7 +101,7 @@ void invest_house_execute(Player *player, Map *map,Cell *cell)
     int house;
     if (player->properties[pos] >= 4)
     {
-        printf("Highest Scale yet, unable to upgrade anymore.\n");
+        printf("Highest Level yet, unable to upgrade anymore.\n");
     }
     else
     {
@@ -129,6 +116,7 @@ void invest_house_execute(Player *player, Map *map,Cell *cell)
             house=map->data[pos].kind;
             house ++;
             map->data[pos].kind = (kind_enum)house;
+            printf("Now you have %d money left\n",player->money);
         }
         else
         {
@@ -169,11 +157,12 @@ void sell_house(Player *player, Map *map, int pos)
         // cell[pos].house_scale = 0;
         player->properties[pos] = 0;
         map->RemoveSpace(pos);
-        printf("Successfully sold!\n");
+        printf("Property sold successfully!\n");
+        printf("Now you have %d money left\n",player->money);
     }
     else
     {
-        printf("This is not your property, you have no authority to sell!\n");
+        printf("This is not your property so you have no authority to sell it!\n");
     }
 }
 

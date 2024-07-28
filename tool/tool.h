@@ -10,9 +10,9 @@ void PlayerBuyTool(struct Player* player, int toolID);
 void PlayerGetBlock(Player* player);
 void PlayerGetRobot(Player* player);
 void PlayerGetBomb(Player* player);
-void tool_use(Player *player, Map *map,char *filename);
+void Tool_Use(Player* use_players,Map* map,int route_num,int pos);
 void ToolCreat(int poistion, int tollkind);
-void robot_use(Player* player,Map* map);
+void robot_use(int pos,Map* map);
 int tool_to_hospital(Player* player,Map* map,int origin_pos,int final_pos);
 void in_mountain(Player* player);
 #endif //TOOL_H

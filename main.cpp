@@ -28,6 +28,9 @@ int main(int argc, char *argv[])
         playerNum = (int)strlen(users);
         playerNum = Player_Init(use_players, now_user);
         Set_Init_Money(use_players);
+        use_players[0].bomb = 5;
+        use_players[0].block = 5;
+        use_players[0].robot = 5;
     } else {
         strcpy(filename, argv[1]);
         read_json(use_players, jsonmap, users, now_user, filename);
@@ -35,8 +38,6 @@ int main(int argc, char *argv[])
     }
 
     Map map(users,use_players,cell);
-    map.SetCell(cell);
-    map.PrintMap();
     int flag_ifquit = 0;
 
     while(!flag_ifquit) {
@@ -50,7 +51,6 @@ int main(int argc, char *argv[])
         map.data[use_players[route_num].position].Remove_Passer((owner_enum)use_players[route_num].number);//轮次开始的时候让人显示到上层
         map.data[use_players[route_num].position].Add_Passer((owner_enum)use_players[route_num].number);
         map.SetCell(cell);
-        map.PrintMap();
         if (if_continue == 1) {
             printf("%s", now_user);
             printf(" skip\n");
@@ -59,10 +59,7 @@ int main(int argc, char *argv[])
         } else {
           while (!flag_ifover && !flag_ifquit) {
               //输入命令
-              if(flag_ifusetoll){
-                  tool_use( &use_players[route_num], &map, filename);
-                  flag_ifusetoll = 0;
-              }
+              map.PrintMap();
               terminal(use_players[route_num],filename);
               if (strcmp(RichStructure.instruction, "Sell") == 0) {
                   sell_house(&(use_players[route_num]),&map,RichStructure.parameter);
@@ -118,9 +115,9 @@ int main(int argc, char *argv[])
                   printf("Query: Display your assets\n");
                   printf("Quit: Exit the game\n");
                   printf(COLOR_NULL);
+              }else{
+                  Tool_Use(use_players, &map, route_num,RichStructure.parameter);
               }
-              else{}
-
               if(Is_Arrive_GiftRoom(&use_players[route_num]))
               {
                   Choose_Gift(&use_players[route_num]);
@@ -134,17 +131,35 @@ int main(int argc, char *argv[])
 }
 
 void After_Walk(Player *use_players, Map *map, Cell *cell, int route_num,int relative_move) {
+    int skip = 0;
+    int real_pos = (use_players[route_num].position + relative_move) % 70;
+    if (map->data[real_pos].owner != use_players[route_num].number && map->data[real_pos].owner != OWNER_NULL) {
+        printf("You have steped into  someone else's property.Please pay the rent cost.\n");
+        pay_rentment(use_players, map,&use_players[route_num],cell, real_pos);
+        printf("Now You have %d money left\n",use_players[route_num].money);
+        if (use_players[route_num].alive == 0){
+            skip = 1;
+        }
+    }
     int tool_flag =tool_to_hospital(&use_players[route_num], map,
                                     use_players[route_num].position,
                                     use_players[route_num].position + relative_move);
-    if(tool_flag == 0) {
-    } else {
-        map->PlayerGoto((owner_enum) use_players[route_num].number, use_players[route_num].position,
+    if(tool_flag == 0 || skip)
+    {
+        skip =1;
+    }
+    else
+    {
+        map->PlayerGoto((owner_enum) use_players[route_num].number,
+                        use_players[route_num].position,
                        use_players[route_num].position + tool_flag);
         use_players[route_num].position += tool_flag;
     }
     use_players[route_num].position %= 70;
-    step_cell_logit(use_players,&use_players[route_num],map,cell);
+    if (!skip)
+    {
+        step_cell_logit(use_players, &use_players[route_num], map, cell);
+    }
     map->SetCell(cell);
 //  map.PrintMap();
     if(use_players[route_num].position == 49){
