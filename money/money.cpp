@@ -4,17 +4,28 @@
 #include "money.h"
 void Set_Init_Money(Player *player)
 {
-    char str[6] = {0};
-    int first_money = 0;
-    printf("Please enter initial funds\n");
+    while (true){
+        int if_continue = 1;
+        char str[7] = {0};
+        int first_money = 0;
+        printf("Please enter initial funds\n");
 
-    fgets(str, 6, stdin);
-    sscanf(str, "%d", &first_money);
-    printf("Initial funds: %d\n", first_money);
+        fgets(str, 7, stdin);
+        sscanf(str, "%d", &first_money);
+        printf("Initial funds: %d\n", first_money);
 
-    for (char i = 0; i < CELL_MAX_PLAYER; i++)
-    {
-        player[i].money = first_money;
+        for (char i = 0; i < CELL_MAX_PLAYER; i++) {
+            player[i].money = first_money;
+        }
+        if (first_money<2000||first_money>50000){
+            printf("The initial funds are out of range, please re-enter\n");
+            if_continue = 0;
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF) {}// 清空输入缓冲区
+        }
+        if (if_continue){
+            break;
+        }
     }
 }
 
