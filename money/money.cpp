@@ -139,17 +139,7 @@ int get_cost(int pos)
 
 void sell_house(Player *player, Map *map, int pos)
 {
-    char owner = 'N';
-    if(player->number == OWNER_Q){
-        owner = 'Q';
-    } else if(player->number == OWNER_A){
-        owner = 'A';
-    } else if(player->number == OWNER_S){
-        owner = 'S';
-    } else if(player->number == OWNER_J){
-        owner = 'J';
-    }
-    if (owner == map->data[pos].owner)
+    if (player->number == map->data[pos].owner)
     {
         int income = map->data[pos].kind * get_cost(pos) * 2;
         player->money += income;
@@ -169,7 +159,14 @@ void sell_house(Player *player, Map *map, int pos)
 void pay_rentment(Player *players, Map *map, Player *now_player,Cell *cell , int pos)
 {
     int rentment = map->data[pos].kind * get_cost(pos) / 2;
-    players[map->data[pos].owner].money += rentment;
+    int owner = 0;
+    for (int i = 0; i < 4; ++i) {
+        if (map->data[pos].owner == players[i].number) {
+            owner = i;
+            break;
+        }
+    }
+    players[owner].money += rentment;
     now_player->money -= rentment;
     chech_out_of_money(now_player, map, cell);
 }

@@ -146,7 +146,7 @@ int tool_to_hospital(Player* player,Map* map,int origin_pos,int final_pos){
         map->PlayerGoto((owner_enum) player->number, origin_pos, 14);
         player->hospital = true;
         player->de_continue = 3;
-        return 0;
+        return -1;
     }
     return final_pos-origin_pos;
 }

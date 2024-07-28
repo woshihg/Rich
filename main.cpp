@@ -141,7 +141,7 @@ void After_Walk(Player *use_players, Map *map, Cell *cell, int route_num,int rel
     int tool_flag =tool_to_hospital(&use_players[route_num], map,
                                     use_players[route_num].position,
                                     use_players[route_num].position + relative_move);
-    if(tool_flag == 0 || skip)
+    if(tool_flag == -1 || skip)
     {
         skip =1;
     }
