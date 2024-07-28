@@ -25,6 +25,7 @@ def run_exe_with_input(exe_path, input_file, json_file):
 def compare_outputs(test_folder):
     total_files = 0
     successful_tests = 0
+    failed_tests = []  # 添加一个列表来存储失败的测试用例名称
 
     for folder in os.listdir(test_folder):
         if os.path.isdir(os.path.join(test_folder, folder)):
@@ -46,12 +47,14 @@ def compare_outputs(test_folder):
             if result == expected_result:
                 print(f"测试用例{folder}通过")
                 successful_tests += 1
-
+            else:
+                failed_tests.append(folder)  # 如果测试失败，将测试用例名称添加到失败列表中
 
             total_files += 1
 
     print(f"总文件数量: {total_files}")
     print(f"成功的测试用例数量: {successful_tests}")
+    print(f"失败的测试用例: {failed_tests}")  # 打印失败的测试用例名称
 
 
 # 指定exe文件的路径
