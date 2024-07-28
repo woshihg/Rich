@@ -1,7 +1,7 @@
 #include "terminal.h"
 
-char inst_table[INSTRUCTION_NUM][10] = {"Roll", "Sell", "Tool", "Query", "Help", "Quit",
-                                            "Step"};
+char inst_table[INSTRUCTION_NUM][10] = {"Roll", "Sell", "Query", "Help", "Quit","Bomb",
+                                            "Block","Robot","Step"};
 char test_table[1][10]={"load"};
 
 Rich RichStructure;
@@ -74,6 +74,9 @@ void Player_Instruction(int* parameter_temp,char* flag,char* str)
     int i=0;
     int result=0;
     result = sscanf(str, "%s %d", RichStructure.instruction, parameter_temp);
+
+    Turn_to_Standard(RichStructure.instruction);
+
     for (i = 0; i < INSTRUCTION_NUM; i++)
     {
         if (strcmp(RichStructure.instruction, inst_table[i]) == 0)
@@ -130,5 +133,23 @@ void Player_Instruction(int* parameter_temp,char* flag,char* str)
             INIT_TERMINAL;
             printf("Quit error，should no parameter\n");
         }
+    }
+}
+
+void Turn_to_Standard(char* instruction)
+{
+    char i=1;
+    if(instruction[0]>=97 && instruction[0]<=122)
+    {
+        instruction[0]-=32;
+    }
+
+    while(instruction[i]!=0)
+    {
+        if(instruction[i]>=65 && instruction[i]<=90)
+        {
+            instruction[i]+=32;
+        }
+        i++;
     }
 }

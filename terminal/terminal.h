@@ -25,5 +25,5 @@ void terminal(Player player,char *filename);
 void Show_Terminal(Player player);
 void Player_Instruction(int* parameter_temp,char* flag,char* str);
 void Test_Instruction(char *filename,char* flag,char* str);
-
+void Turn_to_Standard(char* instruction);
 #endif //THE_RICH_TERMINAL_H
