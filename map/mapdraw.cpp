@@ -199,7 +199,9 @@ Map::Map( char* users,Player* players_data,Cell* cell) {
         if(cell[i].has_tool)     //地图上显示道具
             ToolCreat(i, cell[i].has_tool);
     }
+
     for (int i =0; i<4; ++i) {
+        int* p = players_data[i].properties;
         for(int j =0; j<70; j++) {
             if (players_data[i].properties[j]) {
                 BoughtSpace((owner_enum) players_data[i].number,players_data[i].properties,j);
@@ -373,8 +375,7 @@ void Map::BoughtSpace(owner_enum player, int properties[],int position) {
     }
 
 }
-//void Map::RemoveSpace(int position) {
-//    data[position].base = SPACE;
-//    data[position].kind = SPACE;
-//    data[position].owner = OWNER_NULL;
-//}
+void Map::RemoveSpace(int position) {
+    data[position].kind = SPACE;
+    data[position].owner = OWNER_NULL;
+}
