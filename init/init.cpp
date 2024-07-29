@@ -5,6 +5,7 @@
 #include<string.h>
 #include<stdlib.h>
 #include "init.h"
+#include "../map/mapdraw.h"
 void game_init()
 {
     char input[100];
@@ -14,6 +15,7 @@ void game_init()
     int result;
 
     while (1) {
+        printf(LIGHT_CYAN);
         printf("请输入初始金额\n");
         if (fgets(input, 100, stdin) == NULL) {
             // 处理输入错误或结束的情况
@@ -49,6 +51,5 @@ void game_init()
 
 
     printf("初始金额为：%d\n", cash);
-
-
+    printf(COLOR_NULL);
 }
