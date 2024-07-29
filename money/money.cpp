@@ -223,7 +223,6 @@ void pay_rentment(Player *players, Map *map, Player *now_player,Cell *cell , int
         }
         chech_out_of_money(now_player, map, cell);
     }  else {
-        now_player->_continue --;
         if(now_player->_continue == 0) {
             now_player->buff = false;
         }

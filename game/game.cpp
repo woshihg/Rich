@@ -183,10 +183,13 @@ void Route_Event(Map &map,Player* use_players,int routeNum,char* now_user) {
         printf(COLOR_CYAN);
         printf("Rich Man Power fade\n");
         printf(COLOR_NULL);
-    }else if(richMan_flag){
+    }else if(richMan_flag && map.data[richMan_pos].has_tool == 3){
         printf(COLOR_CYAN);
         printf("Rich Man Power have %d turn\n",15-richMan_route);
         printf(COLOR_NULL);
+    }else if(map.data[richMan_pos].has_tool != 3 && richMan_flag){
+        richMan_route = 0;
+        richMan_flag = 0;
     }
 }
 
@@ -226,6 +229,12 @@ void Game_Start(char *filename,Player *use_players, Map &map, Cell *cell, jsonMa
         } else {
             Route_Event(map,use_players,routeNum,now_user);
             flag_ifquit = Route_Start(use_players, routeNum, now_user, map, cell, filename);
+            if (use_players[routeNum]._continue > 0) {
+                use_players[routeNum]._continue--;
+            }
+            if(use_players[routeNum]._continue == 0) {
+                use_players[routeNum].buff = false;
+            }
             map.SetCell(jsonmap.cells);
             write_json(use_players, jsonmap, users, now_user, filename);
         }

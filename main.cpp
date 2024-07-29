@@ -30,10 +30,8 @@ int main(int argc, char *argv[])
         read_json(use_players, jsonmap, users, now_user, filename);
         playerNum = (int)strlen(users);
     }
-
     Map map(users,use_players,cell);//init map
     map.ReadCell(jsonmap.cells);
-
     Game_Start(filename, use_players, map, cell,jsonmap,users, playerNum, now_user);
     return 0;
 }
