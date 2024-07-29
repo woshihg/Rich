@@ -1,0 +1,3 @@
+robot
+Step 1
+Dump

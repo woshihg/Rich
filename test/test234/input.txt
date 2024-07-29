@@ -1,3 +1,0 @@
-step 32
-n
-Dump

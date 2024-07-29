@@ -1,0 +1,74 @@
+{
+  "MAP": {
+    "tool":[[63,1]]
+  },
+  "users": "1234",
+  "now_user": "1",
+  "players": [
+    {
+      "alive": 1,
+      "money": 0,
+      "point": 0,
+      "number": 1,
+      "tool1": 1,
+      "tool2": 1,
+      "tool3": 0,
+      "buff": 0,
+      "continue": 0,
+      "debuff0": 0,
+      "debuff1": 0,
+      "decontinue": 0,
+      "position": 63,
+      "properties":[[29,3]]
+
+    },
+    {
+      "alive": 1,
+      "money": 0,
+      "point": 0,
+      "number": 3,
+      "tool1": 0,
+      "tool2": 0,
+      "tool3": 0,
+      "buff": 0,
+      "continue": 0,
+      "debuff0": 0,
+      "debuff1": 0,
+      "decontinue": 0,
+      "position": 5,
+      "properties":[]
+    },
+    {
+      "alive": 0,
+      "money": 0,
+      "point": 0,
+      "number": 0,
+      "tool1": 0,
+      "tool2": 0,
+      "tool3": 0,
+      "buff": 0,
+      "continue": 0,
+      "debuff0": 0,
+      "debuff1": 0,
+      "decontinue": 0,
+      "position": 0,
+      "properties":[]
+    },
+    {
+      "alive": 0,
+      "money": 0,
+      "point": 0,
+      "number": 0,
+      "tool1": 0,
+      "tool2": 0,
+      "tool3": 0,
+      "buff": 0,
+      "continue": 0,
+      "debuff0": 0,
+      "debuff1": 0,
+      "decontinue": 0,
+      "position": 0,
+      "properties":[]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+block 1
+block 1
+block -4
+block -2
+block -2
+block -1
+Dump

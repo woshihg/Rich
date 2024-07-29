@@ -54,7 +54,11 @@ def compare_outputs(test_folder):
     print(f"总文件数量: {total_files}")
     print(f"成功的测试用例数量: {successful_tests}")
     print(f"失败的测试用例: {failed_tests}")  # 打印失败的测试用例名称
-
+    # 全部通过
+    if successful_tests == total_files:
+        print("全部通过！！！！！！")
+    else:
+        print("未全部通过")
 
 # 指定exe文件的路径
 exe_path = r"cmake-build-debug\The_Rich.exe"
