@@ -122,6 +122,8 @@ void MapData::Update_Char(){
     }
 }
 
+
+
 int MapData::Add_Passer(owner_enum passer){
     int error = 0;
     if (passer_num < CELL_MAX_PLAYER){
@@ -362,7 +364,9 @@ void Map::ToolCreat(int poistion, int tollkind){
     }
 }
 void Map::ToolRemove(int position) {
-    data[position].has_tool = 0;
+    if(data[position].has_tool  != 3) {
+        data[position].has_tool = 0;
+    }
     data[position].color = (char*)COLOR_NULL;
 }
 //有主地块
@@ -389,6 +393,4 @@ void Map::BoughtSpace(owner_enum player, int properties[],int position) {
 void Map::RemoveSpace(int position) {
     data[position].kind = SPACE;
     data[position].owner = OWNER_NULL;
-    data[position].show = data[position].base;
-    data[position].color = (char*)COLOR_NULL;
 }

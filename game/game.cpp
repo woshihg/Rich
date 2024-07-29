@@ -178,7 +178,8 @@ void Route_Event(Map &map,Player* use_players,int routeNum,char* now_user) {
     }else if (richMan_route == 15){
         richMan_route = 0;
         richMan_flag = 0;
-        map.ToolRemove(richMan_pos);
+        map.data[richMan_pos].color = (char*)COLOR_NULL;
+        map.data[richMan_pos].has_tool = 0;
         printf(COLOR_CYAN);
         printf("Rich Man Power fade\n");
         printf(COLOR_NULL);
