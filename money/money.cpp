@@ -68,7 +68,7 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
     else{
         if (player_name == cell_owner)
         {
-            if(now_player->money >= cell_cost) {
+            if(now_player->money >= cell_cost && (map->data[pos].kind < 4)) {
 
                 printf(LIGHT_CYAN);
                 printf("到达你自己的地产且资金充足，是否升级地产?\n");
@@ -82,6 +82,10 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
                     printf(COLOR_NULL);
                 }
 
+            }else if(map->data[pos].kind >= 4){
+                printf(LIGHT_CYAN);
+                printf("你的地产已经满级，无法升级！\n");
+                printf(COLOR_NULL);
             }
             else {
                 printf(LIGHT_CYAN);

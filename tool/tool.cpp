@@ -178,6 +178,8 @@ int tool_to_hospital(Player* player,Map* map,int origin_pos,int final_pos){
             printf("\n");
             player->buff = true;
             player->_continue = 5;
+            map->data[real_pos].has_tool = 0;
+            map->data[real_pos].color = (char*)COLOR_NULL;
         }
     }
     if(map->data[final_pos%70].has_tool == 2){
