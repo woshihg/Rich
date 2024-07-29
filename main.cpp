@@ -22,6 +22,9 @@ int main(int argc, char *argv[])
     if (argc == 1) {
         playerNum = Player_Init(use_players, now_user);
         Set_Init_Money(use_players);
+        for(int i = 0;i<70;i++) {
+            jsonmap.cells[i].has_tool = 0;
+        }
     } else {
         strcpy(filename, argv[1]);
         read_json(use_players, jsonmap, users, now_user, filename);

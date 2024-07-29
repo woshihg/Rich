@@ -14,7 +14,7 @@ void Set_Init_Money(Player *player)
 
     fgets(str, 7, stdin);
     sscanf(str, "%d", &first_money);
-
+    fflush(stdin);
     printf(LIGHT_CYAN);
     printf("初始资金是: %d\n", first_money);
     printf(COLOR_NULL);
