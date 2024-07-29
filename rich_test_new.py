@@ -64,7 +64,7 @@ def compare_outputs(test_folder):
 exe_path = r"cmake-build-debug\The_Rich.exe"
 
 # 指定包含测试文件夹的路径
-test_folder = r"test"
+test_folder = r"test2"
 
 # 运行比对程序输出和预期输出
 compare_outputs(test_folder)

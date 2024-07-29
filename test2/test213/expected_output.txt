@@ -1,0 +1,56 @@
+MAP:
+Tool positions and kinds:
+
+Users: 321
+Current User: 2
+
+Players:
+Player 1:
+  Alive: 1
+  Money: 400
+  Point: 0
+  Number: 3
+  Tool1 (Block): 0
+  Tool2 (Bomb): 0
+  Tool3 (Robot): 0
+  Buff: 0
+  Continue: 0
+  Debuff0 (Prison): 0
+  Debuff1 (Hospital): 0
+  Decontinue: 0
+  Position: 36
+  Properties:
+    Property ID: 36, Value: 0
+
+Player 2:
+  Alive: 1
+  Money: 1000
+  Point: 0
+  Number: 2
+  Tool1 (Block): 0
+  Tool2 (Bomb): 0
+  Tool3 (Robot): 0
+  Buff: 0
+  Continue: 0
+  Debuff0 (Prison): 0
+  Debuff1 (Hospital): 0
+  Decontinue: 0
+  Position: 0
+  Properties:
+
+Player 3:
+  Alive: 1
+  Money: 1000
+  Point: 0
+  Number: 1
+  Tool1 (Block): 0
+  Tool2 (Bomb): 0
+  Tool3 (Robot): 0
+  Buff: 0
+  Continue: 0
+  Debuff0 (Prison): 0
+  Debuff1 (Hospital): 0
+  Decontinue: 0
+  Position: 0
+  Properties:
+

@@ -1,0 +1,53 @@
+{
+	"MAP":	{
+		"tool":	[]
+	},
+	"now_user":	"2",
+	"users":	"234",
+	"players":	[{
+			"number":	2,
+			"money":	0,
+			"point":	0,
+			"tool1":	0,
+			"tool2":	0,
+			"tool3":	0,
+			"buff":	0,
+			"continue":	0,
+			"debuff0":	0,
+			"debuff1":	0,
+			"decontinue":	0,
+			"position":	0,
+			"alive":	1,
+			"properties":	[]
+		}, {
+			"number":	3,
+			"money":	0,
+			"point":	0,
+			"tool1":	0,
+			"tool2":	0,
+			"tool3":	0,
+			"buff":	0,
+			"continue":	0,
+			"debuff0":	0,
+			"debuff1":	0,
+			"decontinue":	0,
+			"position":	0,
+			"alive":	1,
+			"properties":	[]
+		}, {
+			"number":	4,
+			"money":	0,
+			"point":	0,
+			"tool1":	0,
+			"tool2":	0,
+			"tool3":	0,
+			"buff":	0,
+			"continue":	0,
+			"debuff0":	0,
+			"debuff1":	0,
+			"decontinue":	0,
+			"position":	4,
+			"alive":	1,
+			"properties":	[]
+		}]
+}
