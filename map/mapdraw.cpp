@@ -32,8 +32,12 @@ void MapData::Show_Char()  {
         }
         else if (has_tool == 1){
             show = '#';
-            color = (char*)COLOR_NULL;
+            color = (char*)Red_background_black_word;
             }
+        else if(has_tool == 3){
+            show = 'F';
+            color = (char*)COLOR_SPARK_YELLOW;
+        }
         else if(owner != OWNER_NULL){
             switch (owner) {
                 case OWNER_Q:
@@ -154,31 +158,35 @@ Map::Map( char* users,Player* players_data,Cell* cell) {
         switch (i) {
             case 0:
                 data[i].base = 'S';
-            data[i].show = 'S';
+                data[i].show = 'S';
             break;
             case 14:
-                data[i].base = 'H';
-            data[i].show = 'H';
+//                data[i].base = 'H';
+//            data[i].show = 'H';
+                data[i].base = 'P';
+                data[i].show = 'P';
             break;
             case 28:
                 data[i].base = 'T';
-            data[i].show = 'T';
+                data[i].show = 'T';
             break;
             case 35:
                 data[i].base = 'G';
-            data[i].show = 'G';
+                data[i].show = 'G';
             break;
             case 49:
                 data[i].base = 'P';
-            data[i].show = 'P';
+                data[i].show = 'P';
             break;
             case 63:
-                data[i].base = 'M';
-            data[i].show = 'M';
+                data[i].base = 'P';
+                data[i].show = 'P';
+//                data[i].base = 'M';
+//                data[i].show = 'M';
             break;
             default:
                 data[i].base = '0';
-            data[i].show = '0';
+                data[i].show = '0';
             break;
         }
     }
@@ -349,9 +357,13 @@ void Map::ToolCreat(int poistion, int tollkind){
     else if(tollkind==2){
         data[poistion].has_tool = 2;
     }
+    else if(tollkind==3){
+        data[poistion].has_tool = 3;
+    }
 }
 void Map::ToolRemove(int position) {
     data[position].has_tool = 0;
+    data[position].color = (char*)COLOR_NULL;
 }
 //有主地块
 void Map::BoughtSpace(owner_enum player, int properties[],int position) {

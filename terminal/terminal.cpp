@@ -1,7 +1,7 @@
 #include "terminal.h"
 
 char inst_table[INSTRUCTION_NUM][10] = {"Roll", "Sell", "Query", "Help", "Quit","Bomb",
-                                            "Block","Robot","Step"};
+                                            "Block","Robot","Step" ,"Rich",""};
 char test_table[1][10]={"load"};
 
 Rich RichStructure;

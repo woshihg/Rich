@@ -115,7 +115,7 @@ void PlayerGetBomb(Player* player) {
 //机器娃娃
 void robot_use(int pos,Map* map) {
     //清理路障
-    for(int i=0;i<10;i++) {
+    for(int i=0;i<11;i++) {
         (&(map-> data[(pos+i)%70]))->has_tool = 0;
     }
 }
@@ -128,20 +128,36 @@ void robot_use(int pos,Map* map) {
 int tool_to_hospital(Player* player,Map* map,int origin_pos,int final_pos){
     //遍历原位置和最终位置上的地块的道具
     int i;
-    for(i=0;i<final_pos-origin_pos;i++) {
+    for(i=0;i<final_pos-origin_pos+1;i++) {
         //路障启动
         int real_pos = (origin_pos+i)%70;
         if(map->data[real_pos].has_tool == 1) {
             map->ToolRemove(real_pos);
+            printf(COLOR_RED);
             printf("you are in block and stop!\n");
+            printf(COLOR_NULL);
+            printf("\n");
             return i;
+        }else
+        if(map->data[real_pos].has_tool == 3){
+            map->ToolRemove(real_pos);
+            printf(COLOR_YELLOW);
+            printf("you get the rich man power !");
+            printf(COLOR_NULL);
+            printf("\n");
+            player->buff = true;
+            player->_continue = 5;
         }
     }
     if(map->data[final_pos%70].has_tool == 2){
         printf(COLOR_RED);
-        printf("B O M B!\n");
+        printf(">>>  B O M B ! <<<");
         printf(COLOR_NULL);
-        printf("you are in hospital!\n");
+        printf("\n");
+        printf(COLOR_RED);
+        printf("you are in hospital!");
+        printf(COLOR_NULL);
+        printf("\n");
         map->ToolRemove(final_pos%70);
         map->PlayerGoto((owner_enum) player->number, origin_pos, 14);
         player->hospital = true;

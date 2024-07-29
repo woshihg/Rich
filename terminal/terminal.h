@@ -10,7 +10,7 @@
 #include "string.h"
 #include "../json/json.h"
 
-#define INSTRUCTION_NUM         9
+#define INSTRUCTION_NUM         11
 #define INSTRUCTION_MAX_LEN     256
 #define INIT_TERMINAL           {*flag = 0;parameter_temp = 0;}
 

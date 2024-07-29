@@ -8,7 +8,9 @@
 #include "../map/mapdraw.h"
 int roll_dice();
 int Player_Route_Start(Player *players,int routeNum, Map *map, Cell pCell[70],int max_player_num);
-//void Route_Num_Change(Player * players,char* now_user,int max_player_num);
-int Find_Player_Num(Player* players, const char* now_user,int max_player_num);
+void After_Walk(Player *use_players, Map *map, Cell *cell, int route_num,int relative_move);
+owner_enum get_player_num(char player_char);
+char get_player_char(owner_enum player_num);
+//int Find_Player_Num(Player* players, const char* now_user,int max_player_num);
 int Player_Init(Player* players, char* now_user);
 #endif //PLAYER_H
