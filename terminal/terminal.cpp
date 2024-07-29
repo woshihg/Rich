@@ -36,19 +36,24 @@ void Show_Terminal(Player player)
     switch(player.number)
     {
         case 1:
-            printf("\033[3;30;41mQian\033[m>");
+            printf(COLOR_RED);
+            printf("钱夫人>");
             break;
         case 2:
-            printf("\033[3;30;42mAtubo\033[m>");
+            printf(COLOR_GREEN);
+            printf("阿土伯>");
             break;
         case 3:
-            printf("\033[3;30;44mSun\033[m>");
+            printf(COLOR_BLUE);
+            printf("孙小美>");
             break;
         case 4:
-            printf("\033[3;30;43mJing\033[m>");
+            printf(COLOR_YELLOW);
+            printf("金贝贝>");
             break;
         default:break;
     }
+    printf(COLOR_NULL);
 }
 
 void Test_Instruction(char *filename,char* flag,char* str)
@@ -65,7 +70,7 @@ void Test_Instruction(char *filename,char* flag,char* str)
         {
             filename[i] = 0;
         }
-        printf("Error : input wrong\n");
+        printf("输入错误\n");
     }
 }
 
@@ -89,49 +94,49 @@ void Player_Instruction(int* parameter_temp,char* flag,char* str)
     if (i == INSTRUCTION_NUM)
     {
         INIT_TERMINAL;
-        printf("Error : input wrong\n");
+        printf("输入错误\n");
     }
     else
     {
         if(strcmp(RichStructure.instruction,"Roll")==0 && result!=1 )
         {
             INIT_TERMINAL;
-            printf("Roll error，should no parameter\n");
+            printf("Roll指令错误，不应有参数\n");
         }
         else if(strcmp(RichStructure.instruction,"Sell")==0 && (RichStructure.parameter<0 || RichStructure.parameter>69))
         {
             INIT_TERMINAL;
-            printf("Sell error，should be 0~69\n");
+            printf("Sell指令错误，参数范围为0~69\n");
         }
         else if(strcmp(RichStructure.instruction,"Block")==0 && (RichStructure.parameter<-10 || RichStructure.parameter>10))
         {
             INIT_TERMINAL;
-            printf("Block error，should be -10~10\n");
+            printf("Block指令错误，参数范围为-10~10\n");
         }
         else if(strcmp(RichStructure.instruction,"Bomb")==0 && (RichStructure.parameter<-10 || RichStructure.parameter>10))
         {
             INIT_TERMINAL;
-            printf("Bomb error，should be -10~10\n");
+            printf("Bomb指令错误，参数范围为-10~10\n");
         }
         else if(strcmp(RichStructure.instruction,"Robot")==0 && result!=1)
         {
             INIT_TERMINAL;
-            printf("Robot error，should no parameter\n");
+            printf("Robot指令错误，不应有参数\n");
         }
         else if(strcmp(RichStructure.instruction,"Query")==0 && result!=1)
         {
             INIT_TERMINAL;
-            printf("Query error，should no parameter\n");
+            printf("Query指令错误，不应有参数\n");
         }
         else if(strcmp(RichStructure.instruction,"Help")==0 && result!=1)
         {
             INIT_TERMINAL;
-            printf("Help error，should no parameter\n");
+            printf("Help指令错误，不应有参数\n");
         }
         else if(strcmp(RichStructure.instruction,"Quit")==0 && result!=1)
         {
             INIT_TERMINAL;
-            printf("Quit error，should no parameter\n");
+            printf("Quit指令错误，不应有参数\n");
         }
     }
 }

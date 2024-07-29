@@ -21,141 +21,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="143539dc-07f4-47ff-b048-9f87988c71b9" name="更改" comment="框架">
-      <change afterPath="$PROJECT_DIR$/test/test301/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test302/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test302/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test309/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test309/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test309/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test310/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test310/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test310/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test310/矿山" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test311/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test311/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test311/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test312/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test312/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test312/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test313/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test313/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test313/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test313/道具" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test314/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test314/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test314/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test315/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test315/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test315/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test316/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test316/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test316/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test317/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test317/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test317/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test318/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test318/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test318/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test319/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test319/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test319/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test320/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test320/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test320/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test321/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test321/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test321/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test322/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test322/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test322/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test323/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test323/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test323/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test324/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test324/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test324/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test325/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test325/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test325/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test325/卖出" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test326/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test326/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test326/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test327/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test327/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test327/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test328/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test328/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test328/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test329/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test329/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test329/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test330/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test330/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test330/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test331/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test331/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test331/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test332/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test332/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test332/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test333/expected_output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test333/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test333/user.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Rich man.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Rich man.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test101/expected_output.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/test301/expected_output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test101/input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test101/user.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/test301/user.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test201/expected_output.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test201/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test308/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test201/user.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test202/expected_output.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test202/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test302/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test202/user.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test203/expected_output.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test203/input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test203/user.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test204/expected_output.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test204/input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test204/user.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test205/expected_output.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test205/input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test205/user.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test206/expected_output.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test206/input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test206/user.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test207/expected_output.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test207/input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test207/user.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test3/expected_output.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/test303/expected_output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test3/expected_output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test306/expected_output.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test3/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test303/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test3/result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test3/user.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/test303/user.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test4/expected_output.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/test304/expected_output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test4/expected_output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test307/expected_output.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test4/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test304/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test4/result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test4/user.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/test304/user.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test5/expected_output.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/test305/expected_output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test5/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test305/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test5/user.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/test305/user.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test6/expected_output.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/test306/expected_output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test6/expected_output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test308/expected_output.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test6/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test306/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test6/user.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/test306/user.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test7/expected_output.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/test307/expected_output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test7/expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test7/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test307/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test7/result.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/test307/result.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test7/user.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/test307/user.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test8/expected_output.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/test308/expected_output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test8/expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test8/input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test8/result.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/test308/result.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test8/user.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/test308/user.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/giftroom/gift.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/giftroom/gift.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terminal/terminal.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/terminal/terminal.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terminal/terminal.h" beforeDir="false" afterPath="$PROJECT_DIR$/terminal/terminal.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,12 +53,12 @@
     &quot;assignee&quot;: &quot;First-light&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/woshihg/Rich.git&quot;,
-    &quot;accountId&quot;: &quot;e86eb92c-09a5-4cfd-a945-418b3f969c4f&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/woshihg/Rich.git",
+    "accountId": "fc46dbef-b416-40b5-b199-01fe25b2b6ad"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock://C:/Users/MECHREVO/CLionProjects/Rich/giftroom/gift.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/MECHREVO/CLionProjects/Rich/giftroom/gift.h" root0="SKIP_HIGHLIGHTING" />
@@ -268,6 +139,7 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "CMake Application.The_Rich.executor": "Run",
     "CMake 应用程序.The_Rich.executor": "Run",
+    "Python.rich_test_new.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -286,6 +158,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
+    "structure.view.defaults.are.configured": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -301,17 +174,39 @@
       <recent name="E:\The Rich\json" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="CMake 应用程序.The_Rich">
     <configuration name="The_Rich" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="The_Rich" TARGET_NAME="The_Rich" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="The_Rich" RUN_TARGET_NAME="The_Rich">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
+    <configuration name="rich_test_new" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Rich man" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/rich_test_new.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.rich_test_new" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -326,6 +221,7 @@
       <workItem from="1721963525374" duration="7612000" />
       <workItem from="1721973447151" duration="83000" />
       <workItem from="1721979175465" duration="577000" />
+      <workItem from="1722227989526" duration="5514000" />
     </task>
     <task id="LOCAL-00001" summary="框架">
       <created>1721921635524</created>

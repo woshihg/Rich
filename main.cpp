@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 {
     jsonMap jsonmap;
     char users[10];
-
+    char* name_ch = 0;
     Player use_players[4] = {0};
     Cell cell[70] = {0};
 
@@ -54,17 +54,23 @@ int main(int argc, char *argv[])
             }
         }
         if (count == 1){
-            char win = 0;
+            char* win = 0;
             if(winner == OWNER_Q){
-                win = 'Q';
+                win = "钱夫人";
+                printf(COLOR_RED);
             } else if(winner == OWNER_A){
-                win = 'A';
+                win = "阿土伯";
+                printf(COLOR_GREEN);
             } else if(winner == OWNER_S){
-                win = 'S';
+                win = "孙小美";
+                printf(COLOR_BLUE);
             } else if(winner == OWNER_J) {
-                win = 'J';
+                win = "金贝贝";
+                printf(COLOR_YELLOW);
             }
-            printf("Player %c win!\n",win);
+            printf("%s",win);
+            printf(COLOR_NULL);
+            printf("胜利!\n");
             break;
         }
 
@@ -73,8 +79,8 @@ int main(int argc, char *argv[])
         if_continue = Player_Route_Start(use_players, routeNum, &map, cell, playerNum);
         map.SetCell(cell);
         if (if_continue == 1) {
-            printf("%s", now_user);
-            printf(" skip\n");
+            printf("%s", name_ch);
+            printf(" 跳过\n");
         } else {
             map.data[use_players[routeNum].position].Remove_Passer((owner_enum)use_players[routeNum].number);//轮次开始的时候让人显示到上层
             map.data[use_players[routeNum].position].Add_Passer((owner_enum)use_players[routeNum].number);
@@ -83,20 +89,24 @@ int main(int argc, char *argv[])
                 switch(use_players[routeNum].number)
                 {
                     case 1:
-                        printf("\033[3;30;41m");
+                        name_ch="钱夫人";
+                        printf(COLOR_RED);
                         break;
                     case 2:
-                        printf("\033[3;30;42m");
+                        name_ch="阿土伯";
+                        printf(COLOR_GREEN);
                         break;
                     case 3:
-                        printf("\033[3;30;44m");
+                        name_ch="孙小美";
+                        printf(COLOR_BLUE);
                         break;
                     case 4:
-                        printf("\033[3;30;43m");
+                        name_ch="金贝贝";
+                        printf(COLOR_YELLOW);
                         break;
                     default:break;
                 }
-              printf("@ Now is %s turn", now_user);
+              printf("@ 现在是 %s 的回合", name_ch);
               printf(COLOR_NULL);
               printf("\n");
               map.SetCell(cell);
@@ -106,27 +116,27 @@ int main(int argc, char *argv[])
                   sell_house(&(use_players[routeNum]),&map,RichStructure.parameter);
               }else
               if (strcmp(RichStructure.instruction, "Query") == 0) {
-                  printf("@ Player : ");
-                  printf("%c\n", now_user[0]);
-                  printf("\tMoney : ");
+                  printf("@ 玩家 : ");
+                  printf("%s\n",name_ch);
+                  printf("\t资金 : ");
                   printf("%d\n", use_players[routeNum].money);
-                  printf("\tPoint : ");
+                  printf("\t点数 : ");
                   printf("%d\n", use_players[routeNum].point);
-                  printf("You have %d set(s) of property altogether.Details as follows",use_players[routeNum].property_count);
+                  printf("你一共拥有 %d 套房产。细节如下",use_players[routeNum].property_count);
                   //printf("\tProperties details: ");
                   for(int j =0; j<70; j++) {
                       if (use_players[routeNum].properties[j]) {
-                          printf(" [Position: %d Level: %d]",j,use_players[routeNum].properties[j] - 1);
+                          printf(" [位置: %d 等级: %d]",j,use_players[routeNum].properties[j] - 1);
                       }
                   }
                   printf("\n");
-                  printf("\tBlock : ");
+                  printf("\t路障 : ");
                   printf("%d\n", use_players[routeNum].block);
-                  printf("\tBomb : ");
-                  printf("%d\n", use_players[routeNum].bomb);
-                  printf("\tRobot : ");
+//                  printf("\tBomb : ");
+//                  printf("%d\n", use_players[routeNum].bomb);
+                  printf("\t机器娃娃 : ");
                   printf("%d\n", use_players[routeNum].robot);
-                  printf("\tRich Man Power : ");
+                  printf("\t正面增益及持续时间 : ");
                   printf("%d %d\n", use_players[routeNum].buff, use_players[routeNum]._continue);
               }else
               if (strcmp(RichStructure.instruction, "Quit") == 0) {
@@ -142,19 +152,17 @@ int main(int argc, char *argv[])
                   flag_ifover = 1;
               }else
               if(strcmp(RichStructure.instruction, "Help") == 0) {
-                  printf("\033[3;30;47mYou can use the following commands.\033[m\n");
-                  printf(COLOR_PURPLE);
-                  printf("Roll: Dice roll command. Walk randomly for 1~6 steps.\n");
-                  printf(COLOR_RED);
-                  printf("\033[3;30;45mSell n: You can sell your property in location n for twice the total cost of the investment\033[m\n");
-                  printf(BROWN);
-                  printf("Block n: Place a barricade in relative position n to block the player.\n");
                   printf(LIGHT_CYAN);
-                  printf("Bomb n: Place a bomb in relative position n to damage the player\n");
-                  printf("Robot: Clear the tools for a certain path ahead\n");
-                  printf(LIGHT_GRAY);
-                  printf("Query: Display your assets\n");
-                  printf("Quit: Exit the game\n");
+                  printf("你可以使用下列指令。\n");
+//                  printf(COLOR_RED);
+                  printf("Roll: 掷骰子，随机走1~6步。\n");
+                  printf("Sell n: 你可以卖出任意一套属于你的房产，卖出获得的金钱为你在该房产处花费资金的两倍。\n");
+//                  printf(BROWN);
+                  printf("Block n: 在前后10格以内放置一个路障。\n");
+//                  printf("Bomb n: Place a bomb in relative position n to damage the player\n");
+                  printf("Robot: 清除前方10格以内的所有障碍。\n");
+                  printf("Query: 显示你的资产\n");
+                  printf("Quit: 强制退出游戏\n");
                   printf(COLOR_NULL);
               }else{
                   Tool_Use(use_players, &map, routeNum,RichStructure.parameter);
@@ -207,13 +215,13 @@ void After_Walk(Player *use_players, Map *map, Cell *cell, int route_num,int rel
     {
         if (map->data[use_players[route_num].position].owner != use_players[route_num].number
         && map->data[use_players[route_num].position].owner != OWNER_NULL) {
-            printf("You have steped into  someone else's property.Please pay the rent cost.\n");
+            printf("你走到了别人的房产处，请付租金。\n");
             pay_rentment(use_players, map,&(use_players[route_num]),cell, use_players[route_num].position);
             if (use_players[route_num].alive == 0){
                 skip = 1;
             }else
             {
-                printf("Now You have %d money left\n",use_players[route_num].money);
+                printf("现在你还剩下 %d 元\n",use_players[route_num].money);
             }
         }
         in_mountain(&use_players[route_num]);

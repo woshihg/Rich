@@ -9,6 +9,7 @@
 #include "stdlib.h"
 #include "string.h"
 #include "../json/json.h"
+#include "../map/mapdraw.h"
 
 #define INSTRUCTION_NUM         9
 #define INSTRUCTION_MAX_LEN     256
