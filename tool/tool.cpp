@@ -147,7 +147,7 @@ void PlayerGetBomb(Player* player) {
 void robot_use(int pos,Map* map) {
     //清理路障
     for(int i=0;i<11;i++) {
-        (&(map-> data[(pos+i)%70]))->has_tool = 0;
+        map->ToolRemove((pos+i)%70);
     }
 }
 /*

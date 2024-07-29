@@ -26,6 +26,7 @@ MapData::MapData(){
 void MapData::Show_Char()  {
     if(!passer_num) {
         show = base;
+        color = (char*)COLOR_NULL;
         if(has_tool == 2) {
             show = '@';
             color = (char*)Red_background_black_word;
@@ -367,7 +368,7 @@ void Map::ToolRemove(int position) {
     if(data[position].has_tool  != 3) {
         data[position].has_tool = 0;
     }
-    data[position].color = (char*)COLOR_NULL;
+   // data[position].color = (char*)COLOR_NULL;
 }
 //有主地块
 void Map::BoughtSpace(owner_enum player, int properties[],int position) {

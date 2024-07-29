@@ -21,7 +21,7 @@ void Print_Query(Player *use_players, int routeNum, char *now_user) {
     printf("%d\n", use_players[routeNum].money);
     printf("\t点数 : ");
     printf("%d\n", use_players[routeNum].point);
-    printf("你一共拥有 %d 套房产。细节如下",use_players[routeNum].property_count);
+    printf("\t你一共拥有 %d 套房产。细节如下\n",use_players[routeNum].property_count);
     //printf("\tProperties details: ");
     for(int j =0; j<70; j++) {
         if (use_players[routeNum].properties[j]) {
