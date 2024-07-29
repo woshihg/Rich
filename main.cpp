@@ -69,8 +69,9 @@ int main(int argc, char *argv[])
                 printf(COLOR_YELLOW);
             }
             printf("%s",win);
-            printf(COLOR_NULL);
+            printf(LIGHT_CYAN);
             printf("胜利!\n");
+            printf(COLOR_NULL);
             break;
         }
 
@@ -116,6 +117,7 @@ int main(int argc, char *argv[])
                   sell_house(&(use_players[routeNum]),&map,RichStructure.parameter);
               }else
               if (strcmp(RichStructure.instruction, "Query") == 0) {
+                  printf(LIGHT_CYAN);
                   printf("@ 玩家 : ");
                   printf("%s\n",name_ch);
                   printf("\t资金 : ");
@@ -138,6 +140,7 @@ int main(int argc, char *argv[])
                   printf("%d\n", use_players[routeNum].robot);
                   printf("\t正面增益及持续时间 : ");
                   printf("%d %d\n", use_players[routeNum].buff, use_players[routeNum]._continue);
+                  printf(COLOR_NULL);
               }else
               if (strcmp(RichStructure.instruction, "Quit") == 0) {
                   flag_ifquit = 1;
@@ -188,6 +191,8 @@ int main(int argc, char *argv[])
         }
 //        Route_Num_Change(use_players, now_user, playerNum);
     }
+
+    system("pause");
     return 0;
 }
 
@@ -215,13 +220,17 @@ void After_Walk(Player *use_players, Map *map, Cell *cell, int route_num,int rel
     {
         if (map->data[use_players[route_num].position].owner != use_players[route_num].number
         && map->data[use_players[route_num].position].owner != OWNER_NULL) {
+            printf(LIGHT_CYAN);
             printf("你走到了别人的房产处，请付租金。\n");
+            printf(COLOR_NULL);
             pay_rentment(use_players, map,&(use_players[route_num]),cell, use_players[route_num].position);
             if (use_players[route_num].alive == 0){
                 skip = 1;
             }else
             {
+                printf(LIGHT_CYAN);
                 printf("现在你还剩下 %d 元\n",use_players[route_num].money);
+                printf(COLOR_NULL);
             }
         }
         in_mountain(&use_players[route_num]);

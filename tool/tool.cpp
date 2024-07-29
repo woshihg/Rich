@@ -9,40 +9,55 @@
 #include <cstdlib>
 #include "../terminal/terminal.h"
 #include"../map/mapdraw.h"
+
 //todo 触发道具屋
 void PlayerTool(Player* player ) {
     char input[100];
     char* token;
     int tool_id;
-    printf("Welcome to the tool shop, please select the tool you need:\n");
-    printf("1. Roadblock 50 points\n");
-    printf("2. Robot 30 points\n");
-    printf("3. Bomb 50 points\n");
-    printf("You currently have points: %d points\n",player->point);
-    printf("Each player can have up to 10 tools, you currently have:\n");
+
+    printf(LIGHT_CYAN);
+    printf("欢迎来到道具屋，请选择你需要的道具:\n");
+    printf("1. 路障: 50 点\n");
+    printf("2. 机器娃娃: 30 点\n");
+//    printf("3. Bomb 50 points\n");
+    printf("你现在拥有的点数: %d 点\n",player->point);
+    printf("每个玩家最多拥有10个道具, 你现在拥有:\n");
     //printf("Bombs: %d\n",player->bomb_count);
-    printf("Roadblocks: %d\n",player->block);
-    printf("Robots: %d\n",player->robot);
-    printf("bombs: %d\n",player->bomb);
-    printf("Total: %d\n",player->block+player->robot+player->bomb);//player->bomb_count+player->barrier_count+player->robot_count);
+    printf("路障: %d\n",player->block);
+    printf("机器娃娃: %d\n",player->robot);
+//    printf("bombs: %d\n",player->bomb);
+    printf("总数: %d\n",player->block+player->robot+player->bomb);//player->bomb_count+player->barrier_count+player->robot_count);
+    printf(COLOR_NULL);
+
     if (player->point < 30){
-        printf("You do not have enough points to buy any tools, automatically exit the tool shop\n");
+        printf(LIGHT_CYAN);
+        printf("你的点数不足，自动退出道具屋！\n");
+        printf(COLOR_NULL);
         return;
     }
-    printf("Please enter the tool ID you want to buy, press 'F' to manually exit the tool shop:");
+
+    printf(LIGHT_CYAN);
+    printf("请输入你想买的道具ID，输入F放弃购买:");
+    printf(COLOR_NULL);
+
     while(fgets(input, 100, stdin)) {
         // Split the input string
         token = strtok(input, " ");
         while(token != NULL) {
             // If the input is "F" or "f", exit
             if (token[0] == 'F'  || token[0] == 'f') {
-                printf("You have exited the tool shop\n");
+                printf(LIGHT_CYAN);
+                printf("你退出了道具屋\n");
+                printf(COLOR_NULL);
                 return;
             }
             // Try to convert the input string to a number
             tool_id = atoi(token);
             if (tool_id < 1 || tool_id > 3) {
-                printf("Invalid tool ID entered! Please enter 1 or 2.\n");
+                printf(LIGHT_CYAN);
+                printf("错误的道具ID，请输入1 或 2\n");
+                printf(COLOR_NULL);
             }
             // Buy the tool
             PlayerBuyTool(player, tool_id);
@@ -50,7 +65,9 @@ void PlayerTool(Player* player ) {
             token = strtok(NULL, " ");
         }
         if (player->point < 30){
-            printf("You do not have enough points to buy any tools, automatically exit the tool shop\n");
+            printf(LIGHT_CYAN);
+            printf("你的点数不足，自动退出道具屋！\n");
+            printf(COLOR_NULL);
             return;
         }
     }
@@ -59,34 +76,45 @@ void PlayerBuyTool(struct Player* player, int toolID) {
     // Ensure that the total number of tools the player owns does not exceed 10
     int total_tool_count = player->block + player->robot;//player->bomb_count + player->barrier_count + player->robot_count;
     if (total_tool_count >= 10) {
-        printf("Your tool box is full and you cannot continue to buy\n");
+        printf(LIGHT_CYAN);
+        printf("你的道具数量达到上限，不能继续购买\n");
+        printf(COLOR_NULL);
         return;
     }
     if (toolID == 1) {
         if (player->point >= 50) {
             player->point -= 50;
             PlayerGetBlock(player);
-            printf("Successfully purchased roadblock!\n");
+            printf(LIGHT_CYAN);
+            printf("购买路障成功!\n");
+            printf(COLOR_NULL);
         } else {
-            printf("Not enough points to buy a roadblock!\n");
+            printf(LIGHT_CYAN);
+            printf("点数不足，无法购买路障!\n");
+            printf(COLOR_NULL);
         }
     } else if (toolID == 2) {
         if (player->point >= 30) {
             player->point -= 30;
             PlayerGetRobot(player);
-            printf("Successfully purchased robot!\n");
+            printf(LIGHT_CYAN);
+            printf("成功购买机器娃娃!\n");
+            printf(COLOR_NULL);
         } else {
-            printf("Not enough points to buy a robot!\n");
-        }
-    }else if(toolID == 3) {
-        if(player->point >=50) {
-            player->point-=50;
-            PlayerGetBomb(player);
-            printf("Successfully purchased bomb!\n");
-        }else {
-            printf("Not enough points to buy a bomb!\n");
+            printf(LIGHT_CYAN);
+            printf("点数不足，无法购买机器娃娃!\n");
+            printf(COLOR_NULL);
         }
     }
+//    else if(toolID == 3) {
+//        if(player->point >=50) {
+//            player->point-=50;
+//            PlayerGetBomb(player);
+//            printf("Successfully purchased bomb!\n");
+//        }else {
+//            printf("Not enough points to buy a bomb!\n");
+//        }
+//    }
 }
 void PlayerGetBlock(Player* player) {
     player->block++;
@@ -133,47 +161,61 @@ int tool_to_hospital(Player* player,Map* map,int origin_pos,int final_pos){
         int real_pos = (origin_pos+i)%70;
         if(map->data[real_pos].has_tool == 1) {
             map->ToolRemove(real_pos);
-            printf("you are in block and stop!\n");
+            printf(LIGHT_CYAN);
+            printf("你遇到了路障!\n");
+            printf(COLOR_NULL);
             return i;
         }
     }
-    if(map->data[final_pos%70].has_tool == 2){
-        printf(COLOR_RED);
-        printf("B O M B!\n");
-        printf(COLOR_NULL);
-        printf("you are in hospital!\n");
-        map->ToolRemove(final_pos%70);
-        map->PlayerGoto((owner_enum) player->number, origin_pos, 14);
-        player->hospital = true;
-        player->de_continue = 3;
-        return -1;
-    }
+//    if(map->data[final_pos%70].has_tool == 2){
+//        printf(COLOR_RED);
+//        printf("B O M B!\n");
+//        printf(COLOR_NULL);
+//        printf("you are in hospital!\n");
+//        map->ToolRemove(final_pos%70);
+//        map->PlayerGoto((owner_enum) player->number, origin_pos, 14);
+//        player->hospital = true;
+//        player->de_continue = 3;
+//        return -1;
+//    }
     return final_pos-origin_pos;
 }
 void in_mountain(Player* player) {
     switch(player->position) {
         case 69:
-            printf("you get 20 points\n");
+            printf(LIGHT_CYAN);
+            printf("你获得了20点\n");
+            printf(COLOR_NULL);
             player->point += 20;
             break;
         case 68:
-            printf("you get 80 points\n");
+            printf(LIGHT_CYAN);
+            printf("你获得了80点\n");
+            printf(COLOR_NULL);
             player->point += 80;
             break;
         case 67:
-            printf("you get 100 points\n");
+            printf(LIGHT_CYAN);
+            printf("你获得了100点\n");
+            printf(COLOR_NULL);
             player->point += 100;
             break;
         case 66:
-            printf("you get 40 points\n");
+            printf(LIGHT_CYAN);
+            printf("你获得了40点\n");
+            printf(COLOR_NULL);
             player->point += 40;
             break;
         case 65:
-            printf("you get 80 points\n");
+            printf(LIGHT_CYAN);
+            printf("你获得了80点\n");
+            printf(COLOR_NULL);
             player->point += 80;
             break;
         case 64:
-            printf("you get 60 points\n");
+            printf(LIGHT_CYAN);
+            printf("你获得了60点\n");
+            printf(COLOR_NULL);
             player->point += 60;
             break;
         default:
@@ -194,25 +236,35 @@ void Tool_Use(Player* use_players,Map* map,int route_num,int pos) {
            real_pos == 63
            )
         {
-            printf("you can't use block here\n");
+            printf(LIGHT_CYAN);
+            printf("你不能在这里使用路障\n");
+            printf(COLOR_NULL);
         }
         else
         if (use_players[route_num].block >= 1) {
-            printf("successful use block\n");
+            printf(LIGHT_CYAN);
+            printf("使用路障成功\n");
+            printf(LIGHT_CYAN);
             use_players[route_num].block--;
             map->ToolCreat(real_pos, 1);
         }
         else
         {
-            printf("you dont have enough block\n");
+            printf(LIGHT_CYAN);
+            printf("你没有足够的路障\n");
+            printf(COLOR_NULL);
         }
     } else if (strcmp(RichStructure.instruction, "Robot") == 0) {
         if (use_players[route_num].robot >= 1) {
-            printf("successful use robot\n");
+            printf(LIGHT_CYAN);
+            printf("使用机器娃娃成功\n");
+            printf(COLOR_NULL);
             use_players[route_num].robot--;
             robot_use(use_players[route_num].position, map);
         } else {
-            printf("you dont have enough Robot\n");
+            printf(LIGHT_CYAN);
+            printf("你没有足够的机器娃娃\n");
+            printf(COLOR_NULL);
         }
     } else if (strcmp(RichStructure.instruction, "Bomb") == 0) {
         if(map->data[real_pos].has_tool != 0 ||

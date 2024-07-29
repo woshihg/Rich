@@ -70,7 +70,9 @@ void Test_Instruction(char *filename,char* flag,char* str)
         {
             filename[i] = 0;
         }
+        printf(LIGHT_CYAN);
         printf("输入错误\n");
+        printf(COLOR_NULL);
     }
 }
 
@@ -94,49 +96,67 @@ void Player_Instruction(int* parameter_temp,char* flag,char* str)
     if (i == INSTRUCTION_NUM)
     {
         INIT_TERMINAL;
+        printf(LIGHT_CYAN);
         printf("输入错误\n");
+        printf(COLOR_NULL);
     }
     else
     {
         if(strcmp(RichStructure.instruction,"Roll")==0 && result!=1 )
         {
             INIT_TERMINAL;
+            printf(LIGHT_CYAN);
             printf("Roll指令错误，不应有参数\n");
+            printf(COLOR_NULL);
         }
         else if(strcmp(RichStructure.instruction,"Sell")==0 && (RichStructure.parameter<0 || RichStructure.parameter>69))
         {
             INIT_TERMINAL;
+            printf(LIGHT_CYAN);
             printf("Sell指令错误，参数范围为0~69\n");
+            printf(COLOR_NULL);
         }
         else if(strcmp(RichStructure.instruction,"Block")==0 && (RichStructure.parameter<-10 || RichStructure.parameter>10))
         {
             INIT_TERMINAL;
+            printf(LIGHT_CYAN);
             printf("Block指令错误，参数范围为-10~10\n");
+            printf(COLOR_NULL);
         }
         else if(strcmp(RichStructure.instruction,"Bomb")==0 && (RichStructure.parameter<-10 || RichStructure.parameter>10))
         {
             INIT_TERMINAL;
+            printf(LIGHT_CYAN);
             printf("Bomb指令错误，参数范围为-10~10\n");
+            printf(COLOR_NULL);
         }
         else if(strcmp(RichStructure.instruction,"Robot")==0 && result!=1)
         {
             INIT_TERMINAL;
+            printf(LIGHT_CYAN);
             printf("Robot指令错误，不应有参数\n");
+            printf(COLOR_NULL);
         }
         else if(strcmp(RichStructure.instruction,"Query")==0 && result!=1)
         {
             INIT_TERMINAL;
+            printf(LIGHT_CYAN);
             printf("Query指令错误，不应有参数\n");
+            printf(COLOR_NULL);
         }
         else if(strcmp(RichStructure.instruction,"Help")==0 && result!=1)
         {
             INIT_TERMINAL;
+            printf(LIGHT_CYAN);
             printf("Help指令错误，不应有参数\n");
+            printf(COLOR_NULL);
         }
         else if(strcmp(RichStructure.instruction,"Quit")==0 && result!=1)
         {
             INIT_TERMINAL;
+            printf(LIGHT_CYAN);
             printf("Quit指令错误，不应有参数\n");
+            printf(COLOR_NULL);
         }
     }
 }

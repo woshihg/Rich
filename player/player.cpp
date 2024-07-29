@@ -35,13 +35,22 @@ int Player_Init(Player* players, char* now_user){
         int if_continue = 1;
         int i = 0;
         char input_user[5] = {0};
-        printf("Please enter the ID of players,e.g. 1234\n");
+        printf(LIGHT_CYAN);
+        printf("请输入玩家ID，e.g. 1234\n");
+        printf("1:钱夫人\n");
+        printf("2:阿土伯\n");
+        printf("3:孙小美\n");
+        printf("4:金贝贝\n");
+        printf(COLOR_NULL);
         scanf("%s", input_user);
         int c;
         while ((c = getchar()) != '\n' && c != EOF) {}// 清空输入缓冲区
         input_user[4] = '\0';
 //        sort_string(input_user);
-        printf("Players : %s\n", input_user);
+        printf(LIGHT_CYAN);
+        printf("玩家ID : %s\n", input_user);
+        printf(COLOR_NULL);
+
         for (i = 0; i < CELL_MAX_PLAYER; ++i) {
             if (input_user[i] == '\0') {
                 break;
@@ -64,17 +73,21 @@ int Player_Init(Player* players, char* now_user){
                     players[i].alive = true;
                     break;
                 default:
-                    printf("Error:player input wrong :");
+                    printf(LIGHT_CYAN);
+                    printf("玩家选择错误 :");
                     printf(" %c",input_user[i]);
                     printf("\n");
+                    printf(COLOR_NULL);
                     if_continue = 0;
                     break;
             }
         }
         if (if_continue){
             max_player_num = i;
-            printf("Player init success : %s\n", input_user);
-            printf("Max Player Num : %d\n",max_player_num);
+            printf(LIGHT_CYAN);
+            printf("玩家选择成功 : %s\n", input_user);
+            printf("最大玩家数为 : %d\n",max_player_num);
+            printf(COLOR_NULL);
             break;
         }
     }
@@ -96,7 +109,9 @@ int Find_Player_Num(Player* players, const char* now_user,int max_player_num) {
             return i;
         }
     }
-    printf("error: can't find player\n");
+    printf(LIGHT_CYAN);
+    printf("错误：找不到玩家\n");
+    printf(COLOR_NULL);
     return 0;
 }
 
@@ -139,6 +154,8 @@ int Player_Route_Start(Player *players, int route_num, Map *map, Cell pCell[70],
 int roll_dice() {
     srand(static_cast<unsigned>(std::time(nullptr))); // Seed the random number generator
     int dice = rand() % 6 + 1;
-    printf("the dice is %d\n",dice);
+    printf(LIGHT_CYAN);
+    printf("骰子点数为 %d\n",dice);
+    printf(COLOR_NULL);
     return dice; // Generate a random number between 1 and 6
 }
