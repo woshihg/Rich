@@ -11,45 +11,42 @@
 
 using namespace std;
 
+char * name_ch=0;
+
 void Print_Query(Player *use_players, int routeNum, char *now_user) {
-    printf("@ Player : ");
-    printf("%c\n", now_user[0]);
-    printf("\tMoney : ");
+    printf(LIGHT_CYAN);
+    printf("@ 玩家 : ");
+    printf("%s\n",name_ch);
+    printf("\t资金 : ");
     printf("%d\n", use_players[routeNum].money);
-    printf("\tPoint : ");
+    printf("\t点数 : ");
     printf("%d\n", use_players[routeNum].point);
-    printf("You have %d set(s) of property altogether.Details as follows",use_players[routeNum].property_count);
+    printf("你一共拥有 %d 套房产。细节如下",use_players[routeNum].property_count);
     //printf("\tProperties details: ");
     for(int j =0; j<70; j++) {
         if (use_players[routeNum].properties[j]) {
-            printf(" [Position: %d Level: %d]",j,use_players[routeNum].properties[j] - 1);
+            printf(" [位置: %d 等级: %d]",j,use_players[routeNum].properties[j] - 1);
         }
     }
     printf("\n");
-    printf("\tBlock : ");
+    printf("\t路障 : ");
     printf("%d\n", use_players[routeNum].block);
-    printf("\tBomb : ");
-    printf("%d\n", use_players[routeNum].bomb);
-    printf("\tRobot : ");
+    printf("\t机器娃娃 : ");
     printf("%d\n", use_players[routeNum].robot);
-    printf("\tRich Man Power : ");
+    printf("\t正面增益及持续时间 : ");
     printf("%d %d\n", use_players[routeNum].buff, use_players[routeNum]._continue);
+    printf(COLOR_NULL);
 }
 
 void Print_Help(){
-    printf("\033[3;30;47mYou can use the following commands.\033[m\n");
-    printf(COLOR_PURPLE);
-    printf("Roll: Dice roll command. Walk randomly for 1~6 steps.\n");
-    printf(COLOR_RED);
-    printf("\033[3;30;45mSell n: You can sell your property in location n for twice the total cost of the investment\033[m\n");
-    printf(BROWN);
-    printf("Block n: Place a barricade in relative position n to block the player.\n");
     printf(LIGHT_CYAN);
-    printf("Bomb n: Place a bomb in relative position n to damage the player\n");
-    printf("Robot: Clear the tools for a certain path ahead\n");
-    printf(COLOR_LIGHT_GRAY);
-    printf("Query: Display your assets\n");
-    printf("Quit: Exit the game\n");
+    printf("你可以使用下列指令。\n");
+    printf("Roll: 掷骰子，随机走1~6步。\n");
+    printf("Sell n: 你可以卖出任意一套属于你的房产，卖出获得的金钱为你在该房产处花费资金的两倍。\n");
+    printf("Block n: 在前后10格以内放置一个路障。\n");
+    printf("Robot: 清除前方10格以内的所有障碍。\n");
+    printf("Query: 显示你的资产\n");
+    printf("Quit: 强制退出游戏\n");
     printf(COLOR_NULL);
 }
 
@@ -57,20 +54,24 @@ void Print_PlayerTurn(Player *use_players, int routeNum, char *now_user,int turn
     switch(use_players[routeNum].number)
     {
         case 1:
-            printf("\033[3;30;41m");
+            name_ch="钱夫人";
+            printf(COLOR_RED);
             break;
         case 2:
-            printf("\033[3;30;42m");
+            name_ch="阿土伯";
+            printf(COLOR_GREEN);
             break;
         case 3:
-            printf("\033[3;30;44m");
+            name_ch="孙小美";
+            printf(COLOR_BLUE);
             break;
         case 4:
-            printf("\033[3;30;43m");
+            name_ch="金贝贝";
+            printf(COLOR_YELLOW);
             break;
         default:break;
     }
-    printf("@ Now is %s turn , it`s turn %d", now_user,turn_num);
+    printf("@ 现在是 %s 的回合", name_ch);
     printf(COLOR_NULL);
     printf("\n");
 }
@@ -79,20 +80,24 @@ void Print_PlayerOver(Player *use_players, int routeNum, char *now_user) {
     switch(use_players[routeNum].number)
     {
         case 1:
-            printf("\033[3;30;41m");
+            name_ch="钱夫人";
+            printf(COLOR_RED);
             break;
         case 2:
-            printf("\033[3;30;42m");
+            name_ch="阿土伯";
+            printf(COLOR_GREEN);
             break;
         case 3:
-            printf("\033[3;30;44m");
+            name_ch="孙小美";
+            printf(COLOR_BLUE);
             break;
         case 4:
-            printf("\033[3;30;43m");
+            name_ch="金贝贝";
+            printf(COLOR_YELLOW);
             break;
         default:break;
     }
-    printf("vvv %s turn is over vvv", now_user);
+    printf("@ %s 的回合结束了", name_ch);
     printf(COLOR_NULL);
     printf("\n");
 }
@@ -162,8 +167,8 @@ void Route_Event(Map &map,Player* use_players,int routeNum,char* now_user) {
                     map.data[richMan_pos].kind != GIFTSHOP &&
                     map.data[richMan_pos].has_tool == 0)
                 {
-                    printf(COLOR_CYAN);
-                    printf("Rich Man Power in %d . Hurry up!\n",richMan_pos);
+                    printf(LIGHT_CYAN);
+                    printf("财神在 %d . 加油!\n",richMan_pos);
                     printf(COLOR_NULL);
                     map.ToolCreat(richMan_pos,3);
                     richMan_flag = 1;
@@ -180,12 +185,12 @@ void Route_Event(Map &map,Player* use_players,int routeNum,char* now_user) {
         richMan_flag = 0;
         map.data[richMan_pos].color = (char*)COLOR_NULL;
         map.data[richMan_pos].has_tool = 0;
-        printf(COLOR_CYAN);
-        printf("Rich Man Power fade\n");
+        printf(LIGHT_CYAN);
+        printf("财神消失\n");
         printf(COLOR_NULL);
     }else if(richMan_flag && map.data[richMan_pos].has_tool == 3){
-        printf(COLOR_CYAN);
-        printf("Rich Man Power have %d turn\n",15-richMan_route);
+        printf(LIGHT_CYAN);
+        printf("离财神消失还有 %d 轮\n",15-richMan_route);
         printf(COLOR_NULL);
     }else if(map.data[richMan_pos].has_tool != 3 && richMan_flag){
         richMan_route = 0;
@@ -196,7 +201,6 @@ void Route_Event(Map &map,Player* use_players,int routeNum,char* now_user) {
 void Game_Start(char *filename,Player *use_players, Map &map, Cell *cell, jsonMap &jsonmap,char* users, int playerNum, char *now_user) {
     int routeNum = 0;
     int flag_ifquit = 0;
-
     while(!flag_ifquit) {
         int count = 0;
         int winner = 0;
@@ -211,7 +215,22 @@ void Game_Start(char *filename,Player *use_players, Map &map, Cell *cell, jsonMa
         if (count == 1){
             char win = 0;
             win = get_player_char((owner_enum)winner);
-            printf("Player %c win!\n",win);
+            if(win == 'Q'){
+                printf(COLOR_RED);
+                printf("钱夫人");
+            } else if(win == 'A'){
+                printf(COLOR_GREEN);
+                printf("阿土伯");
+            } else if(win == 'S'){
+                printf(COLOR_BLUE);
+                printf("孙小美");
+            } else if(win == 'J') {
+                printf(COLOR_YELLOW);
+                printf("金贝贝");
+            }
+            printf(LIGHT_CYAN);
+            printf("胜利!\n");
+            printf(COLOR_NULL);
             break;
         }
 
@@ -224,8 +243,10 @@ void Game_Start(char *filename,Player *use_players, Map &map, Cell *cell, jsonMa
         now_user[0] = get_player_char((owner_enum)use_players[routeNum].number);
 
         if (if_continue) {
-            printf("%s", now_user);
-            printf(" skip\n");
+            printf(LIGHT_CYAN);
+            printf("%s", name_ch);
+            printf(" 跳过\n");
+            printf(COLOR_NULL);
         } else {
             Route_Event(map,use_players,routeNum,now_user);
             flag_ifquit = Route_Start(use_players, routeNum, now_user, map, cell, filename);

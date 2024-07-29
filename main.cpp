@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
     Map map(users,use_players,cell);//init map
     map.ReadCell(jsonmap.cells);
     Game_Start(filename, use_players, map, cell,jsonmap,users, playerNum, now_user);
+
     return 0;
 }
 

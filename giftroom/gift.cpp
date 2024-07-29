@@ -25,6 +25,8 @@ void Choose_Gift(Player* player)
     printf(LIGHT_CYAN);
     printf("请选择你的礼品\n");
     printf("输入1，2选择对应的礼品，或者输入F放弃选择\n");
+    printf("1:2000资金\n");
+    printf("2:200点数\n");
     printf(COLOR_NULL);
     scanf("%c",&gift_num);
     tmp=getchar();

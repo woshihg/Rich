@@ -215,13 +215,17 @@ void After_Walk(Player *use_players, Map *map, Cell *cell, int route_num,int rel
     {
         if (map->data[use_players[route_num].position].owner != use_players[route_num].number
             && map->data[use_players[route_num].position].owner != OWNER_NULL) {
-            printf("You have steped into  someone else's property.Please pay the rent cost.\n");
+            printf(LIGHT_CYAN);
+            printf("你走到了别人的地产，需要交租金.\n");
+            printf(COLOR_NULL);
             pay_rentment(use_players, map,&(use_players[route_num]),cell, use_players[route_num].position);
             if (use_players[route_num].alive == 0){
                 skip = 1;
             }else
             {
-                printf("Now You have %d money left\n",use_players[route_num].money);
+                printf(LIGHT_CYAN);
+                printf("现在你剩下 %d 元\n",use_players[route_num].money);
+                printf(COLOR_NULL);
             }
         }
         in_mountain(&use_players[route_num]);

@@ -9,5 +9,4 @@
 
 void Game_Start(char *filename,Player *use_players, Map &map, Cell *cell, jsonMap &jsonmap,char* users, int playerNum, char *now_user);
 
-
 #endif //THE_RICH_GAME_H
