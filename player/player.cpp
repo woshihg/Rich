@@ -3,15 +3,6 @@
 //
 
 #include "player.h"
-#include "../json/json.h"
-#include<cstdio>
-#include<cstring>
-#include"../map/mapdraw.h"
-#include "../terminal/terminal.h"
-#include "../tool/tool.h"
-#include "../money/money.h"
-#include "../giftroom/gift.h"
-#include <ctime>
 
 //players[4] 玩家结构体数组
 
@@ -21,6 +12,18 @@ int compare_chars(const void* a, const void* b) {
 void sort_string(char* str) {
     qsort(str, strlen(str), sizeof(char), compare_chars);
 }
+
+int hasDuplicateChars(const std::string& str) {
+    std::unordered_set<char> charSet;
+    for (char c : str) {
+        if (charSet.count(c)) {
+            return 1;
+        }
+        charSet.insert(c);
+    }
+    return 0;
+}
+
 
 int Player_Init(Player* players, char* now_user){
     int max_player_num = 0;
@@ -53,7 +56,12 @@ int Player_Init(Player* players, char* now_user){
         printf(LIGHT_CYAN);
         printf("玩家ID : %s\n", input_user);
         printf(COLOR_NULL);
-
+        if (hasDuplicateChars(input_user)) {
+            printf(LIGHT_CYAN);
+            printf("玩家ID重复\n");
+            printf(COLOR_NULL);
+            continue;
+        }
         for (i = 0; i < CELL_MAX_PLAYER; ++i) {
             if (input_user[i] == '\0') {
                 break;

@@ -140,7 +140,7 @@ void invest_house_execute(Player *player, Map *map,Cell *cell)
     }
     else
     {
-        if (player->money - cost)
+        if (player->money - cost>= 0)
         {
             printf(LIGHT_CYAN);
             printf("地产升级成功！\n");

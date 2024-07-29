@@ -3,6 +3,7 @@ import time
 import filecmp
 import subprocess
 import json
+from collections import OrderedDict
 
 process = None
 # b'step5\r\nN\r\nquit\r\n'
@@ -36,15 +37,13 @@ def compare_outputs(test_folder):
 
             # 执行程序，将input.txt作为输入
             run_exe_with_input(exe_path, input_file, json_file)
-            # 等待0.1S
-            time.sleep(0.1)
             # 判断是否存在并比较result.json和expected_output.json
-            # 使用json内容比较两个文件
+            # 使用json内容比较两个文件，忽略json文件成员的顺序
             with open(result_file, 'r') as f:
                 result = json.load(f)
             with open(expected_result_file, 'r') as f:
                 expected_result = json.load(f)
-            if result == expected_result:
+            if json.dumps(result, sort_keys=True) == json.dumps(expected_result, sort_keys=True):
                 print(f"测试用例{folder}通过")
                 successful_tests += 1
             else:

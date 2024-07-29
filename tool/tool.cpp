@@ -17,16 +17,19 @@ void PlayerTool(Player* player ) {
     printf("Welcome to the tool shop, please select the tool you need:\n");
     printf("1. Roadblock 50 points\n");
     printf("2. Robot 30 points\n");
-    printf("3. Bomb 50 points\n");
+//    printf("3. Bomb 50 points\n");
     printf("You currently have points: %d points\n",player->point);
     printf("Each player can have up to 10 tools, you currently have:\n");
     //printf("Bombs: %d\n",player->bomb_count);
     printf("Roadblocks: %d\n",player->block);
     printf("Robots: %d\n",player->robot);
-    printf("bombs: %d\n",player->bomb);
+//    printf("bombs: %d\n",player->bomb);
     printf("Total: %d\n",player->block+player->robot+player->bomb);//player->bomb_count+player->barrier_count+player->robot_count);
     if (player->point < 30){
         printf("You do not have enough points to buy any tools, automatically exit the tool shop\n");
+        return;
+    }else if(player->block+player->robot+player->bomb >= 10){
+        printf("Your tool box is full and you cannot continue to buy\n");
         return;
     }
     printf("Please enter the tool ID you want to buy, press 'F' to manually exit the tool shop:");
@@ -41,7 +44,7 @@ void PlayerTool(Player* player ) {
             }
             // Try to convert the input string to a number
             tool_id = atoi(token);
-            if (tool_id < 1 || tool_id > 3) {
+            if (tool_id < 1 || tool_id > 2) {
                 printf("Invalid tool ID entered! Please enter 1 or 2.\n");
             }
             // Buy the tool
@@ -78,15 +81,17 @@ void PlayerBuyTool(struct Player* player, int toolID) {
         } else {
             printf("Not enough points to buy a robot!\n");
         }
-    }else if(toolID == 3) {
-        if(player->point >=50) {
-            player->point-=50;
-            PlayerGetBomb(player);
-            printf("Successfully purchased bomb!\n");
-        }else {
-            printf("Not enough points to buy a bomb!\n");
-        }
     }
+//    else
+//        if(toolID == 3) {
+//        if(player->point >=50) {
+//            player->point-=50;
+//            PlayerGetBomb(player);
+//            printf("Successfully purchased bomb!\n");
+//        }else {
+//            printf("Not enough points to buy a bomb!\n");
+//        }
+//    }
 }
 void PlayerGetBlock(Player* player) {
     player->block++;

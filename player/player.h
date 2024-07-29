@@ -5,7 +5,15 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "../json/json.h"
-#include "../map/mapdraw.h"
+#include<cstdio>
+#include<cstring>
+#include"../map/mapdraw.h"
+#include "../terminal/terminal.h"
+#include "../tool/tool.h"
+#include "../money/money.h"
+#include "../giftroom/gift.h"
+#include <ctime>
+#include <unordered_set>
 int roll_dice();
 int Player_Route_Start(Player *players,int routeNum, Map *map, Cell pCell[70],int max_player_num);
 void After_Walk(Player *use_players, Map *map, Cell *cell, int route_num,int relative_move);
