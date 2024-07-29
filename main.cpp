@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     int routeNum = 0;
     if (argc == 1) {
         strcpy(filename, "../user.json");
-        read_json(use_players, jsonmap, users, now_user, "../user.json");
+        read_json(use_players, jsonmap, users, now_user, "../test/test204/user.json");
         playerNum = (int)strlen(users);
         playerNum = Player_Init(use_players, now_user);
         Set_Init_Money(use_players);
@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
     }
 
     Map map(users,use_players,cell);
+    map.ReadCell(jsonmap.cells);
     int flag_ifquit = 0;
 
     while(!flag_ifquit) {

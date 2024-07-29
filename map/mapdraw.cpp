@@ -276,6 +276,13 @@ void Map::SetCell(Cell* cell){
 //    PrintMap();//test
 }
 
+void Map::ReadCell(Cell* cell){
+    for (int i = 0; i < 70; ++i) {
+        data[i].has_tool = cell[i].has_tool;
+    }
+//    PrintMap();//test
+}
+
 void Map::PrintMap() {
     for (int i = 0; i <= 28; i++) {
         data[i].Show_Char();

@@ -195,6 +195,7 @@ void chech_out_of_money(Player *players, Map *map,Cell* cell) {
             if (players->properties[i] != 0) {
                 map->RemoveSpace(i);
             }
+            players->properties[i] = 0;
         }
     }
 }

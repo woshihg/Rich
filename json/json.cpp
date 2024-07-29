@@ -209,12 +209,11 @@ void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_
     if (players != nullptr) {
         cJSON_AddItemToObject(root, "players", players);
 
-        for (int j = 0; j < strlen(users); ++j) {
+        for (int index = 0; index < strlen(users); ++index) {
             temp_player = cJSON_CreateObject();
             if (temp_player == nullptr) {
                 goto end;
             }
-            int index = findNthSmallestNumPos(users, j + 1);
             cJSON_AddItemToArray(players, temp_player);
             cJSON_AddItemToObject(temp_player, "alive", cJSON_CreateNumber(use_players[index].alive));
             cJSON_AddItemToObject(temp_player, "money", cJSON_CreateNumber(use_players[index].money));

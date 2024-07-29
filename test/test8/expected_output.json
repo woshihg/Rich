@@ -8,7 +8,7 @@
     "alive":	1,
     "money":	1000,
     "point":	0,
-    "number":	1,
+    "number":	3,
     "tool1":	0,
     "tool2":	0,
     "tool3":	0,
@@ -17,7 +17,7 @@
     "debuff0":	0,
     "debuff1":	0,
     "decontinue":	0,
-    "position":	0,
+    "position":	28,
     "properties":	[]
   }, {
     "alive":	1,
@@ -38,7 +38,7 @@
     "alive":	1,
     "money":	1000,
     "point":	0,
-    "number":	3,
+    "number":	1,
     "tool1":	0,
     "tool2":	0,
     "tool3":	0,
@@ -47,7 +47,7 @@
     "debuff0":	0,
     "debuff1":	0,
     "decontinue":	0,
-    "position":	28,
+    "position":	0,
     "properties":	[]
   }]
 }
