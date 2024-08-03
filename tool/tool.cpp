@@ -5,42 +5,39 @@
 // Created by Zhang Junling on 24-7-27.
 //
 #include "tool.h"
-#include <cstdio>
-#include <cstdlib>
-#include "../terminal/terminal.h"
+
 #include"../map/mapdraw.h"
-//todo è§¦å‘é“å…·å±‹
 void PlayerTool(Player* player ) {
     char input[100];
     char* token;
     int tool_id;
     printf(LIGHT_CYAN);
-    printf("æ¬¢è¿æ¥åˆ°é“å…·å±‹ï¼Œè¯·é€‰æ‹©ä½ éœ€è¦çš„é“å…·:\n");
-    printf("1. è·¯éšœ: 50 ç‚¹\n");
-    printf("2. æœºå™¨å¨ƒå¨ƒ: 30 ç‚¹\n");
+    printf("»¶Ó­À´µ½µÀ¾ßÎİ£¬ÇëÑ¡ÔñÄãĞèÒªµÄµÀ¾ß:\n");
+    printf("1. Â·ÕÏ: 50 µã\n");
+    printf("2. »úÆ÷ÍŞÍŞ: 30 µã\n");
 //    printf("3. Bomb 50 points\n");
-    printf("ä½ ç°åœ¨æ‹¥æœ‰çš„ç‚¹æ•°: %d ç‚¹\n",player->point);
-    printf("æ¯ä¸ªç©å®¶æœ€å¤šæ‹¥æœ‰10ä¸ªé“å…·, ä½ ç°åœ¨æ‹¥æœ‰:\n");
+    printf("ÄãÏÖÔÚÓµÓĞµÄµãÊı: %d µã\n",player->point);
+    printf("Ã¿¸öÍæ¼Ò×î¶àÓµÓĞ10¸öµÀ¾ß, ÄãÏÖÔÚÓµÓĞ:\n");
     //printf("Bombs: %d\n",player->bomb_count);
-    printf("è·¯éšœ: %d\n",player->block);
-    printf("æœºå™¨å¨ƒå¨ƒ: %d\n",player->robot);
+    printf("Â·ÕÏ: %d\n",player->block);
+    printf("»úÆ÷ÍŞÍŞ: %d\n",player->robot);
 //    printf("bombs: %d\n",player->bomb);
-    printf("æ€»æ•°: %d\n",player->block+player->robot+player->bomb);//player->bomb_count+player->barrier_count+player->robot_count);
+    printf("×ÜÊı: %d\n",player->block+player->robot+player->bomb);//player->bomb_count+player->barrier_count+player->robot_count);
     printf(COLOR_NULL);
     if (player->point < 30){
         printf(LIGHT_CYAN);
-        printf("ä½ çš„ç‚¹æ•°ä¸è¶³ï¼Œè‡ªåŠ¨é€€å‡ºé“å…·å±‹ï¼\n");
+        printf("ÄãµÄµãÊı²»×ã£¬×Ô¶¯ÍË³öµÀ¾ßÎİ£¡\n");
         printf(COLOR_NULL);
         return;
     }else if(player->block+player->robot+player->bomb >= 10){
         printf(LIGHT_CYAN);
-        printf("ä½ çš„é“å…·è¾¾åˆ°ä¸Šé™ï¼Œè‡ªåŠ¨é€€å‡ºé“å…·å±‹\n");
+        printf("ÄãµÄµÀ¾ß´ïµ½ÉÏÏŞ£¬×Ô¶¯ÍË³öµÀ¾ßÎİ\n");
         printf(COLOR_NULL);
         return;
     }
 
     printf(LIGHT_CYAN);
-    printf("è¯·è¾“å…¥ä½ æƒ³ä¹°çš„é“å…·IDï¼Œè¾“å…¥Fæ”¾å¼ƒè´­ä¹°:");
+    printf("ÇëÊäÈëÄãÏëÂòµÄµÀ¾ßID£¬ÊäÈëF·ÅÆú¹ºÂò:");
     printf(COLOR_NULL);
 
     while(fgets(input, 100, stdin)) {
@@ -50,7 +47,7 @@ void PlayerTool(Player* player ) {
             // If the input is "F" or "f", exit
             if (token[0] == 'F'  || token[0] == 'f') {
                 printf(LIGHT_CYAN);
-                printf("ä½ é€€å‡ºäº†é“å…·å±‹\n");
+                printf("ÄãÍË³öÁËµÀ¾ßÎİ\n");
                 printf(COLOR_NULL);
                 return;
             }
@@ -58,7 +55,7 @@ void PlayerTool(Player* player ) {
             tool_id = atoi(token);
             if (tool_id < 1 || tool_id > 2) {
                 printf(LIGHT_CYAN);
-                printf("é”™è¯¯çš„é“å…·IDï¼Œè¯·è¾“å…¥1 æˆ– 2\n");
+                printf("´íÎóµÄµÀ¾ßID£¬ÇëÊäÈë1 »ò 2\n");
                 printf(COLOR_NULL);
             }
             // Buy the tool
@@ -68,7 +65,7 @@ void PlayerTool(Player* player ) {
         }
         if (player->point < 30){
             printf(LIGHT_CYAN);
-            printf("ä½ çš„ç‚¹æ•°ä¸è¶³ï¼Œè‡ªåŠ¨é€€å‡ºé“å…·å±‹ï¼\n");
+            printf("ÄãµÄµãÊı²»×ã£¬×Ô¶¯ÍË³öµÀ¾ßÎİ£¡\n");
             printf(COLOR_NULL);
             return;
         }
@@ -79,7 +76,7 @@ void PlayerBuyTool(struct Player* player, int toolID) {
     int total_tool_count = player->block + player->robot;//player->bomb_count + player->barrier_count + player->robot_count;
     if (total_tool_count >= 10) {
         printf(LIGHT_CYAN);
-        printf("ä½ çš„é“å…·æ•°é‡è¾¾åˆ°ä¸Šé™ï¼Œä¸èƒ½ç»§ç»­è´­ä¹°\n");
+        printf("ÄãµÄµÀ¾ßÊıÁ¿´ïµ½ÉÏÏŞ£¬²»ÄÜ¼ÌĞø¹ºÂò\n");
         printf(COLOR_NULL);
         return;
     }
@@ -88,11 +85,11 @@ void PlayerBuyTool(struct Player* player, int toolID) {
             player->point -= 50;
             PlayerGetBlock(player);
             printf(LIGHT_CYAN);
-            printf("è´­ä¹°è·¯éšœæˆåŠŸ!\n");
+            printf("¹ºÂòÂ·ÕÏ³É¹¦!\n");
             printf(COLOR_NULL);
         } else {
             printf(LIGHT_CYAN);
-            printf("ç‚¹æ•°ä¸è¶³ï¼Œæ— æ³•è´­ä¹°è·¯éšœ!\n");
+            printf("µãÊı²»×ã£¬ÎŞ·¨¹ºÂòÂ·ÕÏ!\n");
             printf(COLOR_NULL);
         }
     } else if (toolID == 2) {
@@ -100,11 +97,11 @@ void PlayerBuyTool(struct Player* player, int toolID) {
             player->point -= 30;
             PlayerGetRobot(player);
             printf(LIGHT_CYAN);
-            printf("æˆåŠŸè´­ä¹°æœºå™¨å¨ƒå¨ƒ!\n");
+            printf("³É¹¦¹ºÂò»úÆ÷ÍŞÍŞ!\n");
             printf(COLOR_NULL);
         } else {
             printf(LIGHT_CYAN);
-            printf("ç‚¹æ•°ä¸è¶³ï¼Œæ— æ³•è´­ä¹°æœºå™¨å¨ƒå¨ƒ!\n");
+            printf("µãÊı²»×ã£¬ÎŞ·¨¹ºÂò»úÆ÷ÍŞÍŞ!\n");
             printf(COLOR_NULL);
         }
     }
@@ -136,36 +133,35 @@ void PlayerGetBomb(Player* player) {
 //    char *token;
 //    while(fgets(input, 100, stdin)) {
 //        token = strtok(input, "\n");
-//        //åˆ†å‰²å­—ç¬¦ä¸² block n ;bomb n;robot
+//        //·Ö¸î×Ö·û´® block n ;bomb n;robot
 //        terminal(*player,filename);
 //        printf("%s\n",RichStructure.instruction);
 //        printf("%d\n", RichStructure.parameter);
 //
 //    }
 //}
-//æœºå™¨å¨ƒå¨ƒ
+//»úÆ÷ÍŞÍŞ
 void robot_use(int pos,Map* map) {
-    //æ¸…ç†è·¯éšœ
+    //ÇåÀíÂ·ÕÏ
     for(int i=0;i<11;i++) {
         map->ToolRemove((pos+i)%70);
     }
 }
 /*
  parameter:
-    map åœ°å›¾æŒ‡é’ˆ
-    player ç”¨æˆ·ç»“æ„ä½“æŒ‡é’ˆ
+    map µØÍ¼Ö¸Õë
+    player ÓÃ»§½á¹¹ÌåÖ¸Õë
  */
-//todo è·¯éšœæ‹¦äºº ç‚¸å¼¹ç‚¸äºº
 int tool_to_hospital(Player* player,Map* map,int origin_pos,int final_pos){
-    //éå†åŸä½ç½®å’Œæœ€ç»ˆä½ç½®ä¸Šçš„åœ°å—çš„é“å…·
+    //±éÀúÔ­Î»ÖÃºÍ×îÖÕÎ»ÖÃÉÏµÄµØ¿éµÄµÀ¾ß
     int i;
     for(i=0;i<final_pos-origin_pos+1;i++) {
-        //è·¯éšœå¯åŠ¨
+        //Â·ÕÏÆô¶¯
         int real_pos = (origin_pos+i)%70;
         if(map->data[real_pos].has_tool == 1) {
             map->ToolRemove(real_pos);
             printf(LIGHT_CYAN);
-            printf("ä½ é‡åˆ°äº†è·¯éšœ!\n");
+            printf("ÄãÓöµ½ÁËÂ·ÕÏ!\n");
             printf(COLOR_NULL);
             printf("\n");
             return i;
@@ -173,7 +169,7 @@ int tool_to_hospital(Player* player,Map* map,int origin_pos,int final_pos){
         if(map->data[real_pos].has_tool == 3){
             map->ToolRemove(real_pos);
             printf(LIGHT_CYAN);
-            printf("ä½ é‡åˆ°äº†è´¢ç¥!\n");
+            printf("ÄãÓöµ½ÁË²ÆÉñ!\n");
             printf(COLOR_NULL);
             printf("\n");
             player->buff = true;
@@ -203,37 +199,37 @@ void in_mountain(Player* player) {
     switch(player->position) {
         case 69:
             printf(LIGHT_CYAN);
-            printf("ä½ è·å¾—äº†20ç‚¹\n");
+            printf("Äã»ñµÃÁË20µã\n");
             printf(COLOR_NULL);
             player->point += 20;
             break;
         case 68:
             printf(LIGHT_CYAN);
-            printf("ä½ è·å¾—äº†80ç‚¹\n");
+            printf("Äã»ñµÃÁË80µã\n");
             printf(COLOR_NULL);
             player->point += 80;
             break;
         case 67:
             printf(LIGHT_CYAN);
-            printf("ä½ è·å¾—äº†100ç‚¹\n");
+            printf("Äã»ñµÃÁË100µã\n");
             printf(COLOR_NULL);
             player->point += 100;
             break;
         case 66:
             printf(LIGHT_CYAN);
-            printf("ä½ è·å¾—äº†40ç‚¹\n");
+            printf("Äã»ñµÃÁË40µã\n");
             printf(COLOR_NULL);
             player->point += 40;
             break;
         case 65:
             printf(LIGHT_CYAN);
-            printf("ä½ è·å¾—äº†80ç‚¹\n");
+            printf("Äã»ñµÃÁË80µã\n");
             printf(COLOR_NULL);
             player->point += 80;
             break;
         case 64:
             printf(LIGHT_CYAN);
-            printf("ä½ è·å¾—äº†60ç‚¹\n");
+            printf("Äã»ñµÃÁË60µã\n");
             printf(COLOR_NULL);
             player->point += 60;
             break;
@@ -256,13 +252,13 @@ void Tool_Use(Player* use_players,Map* map,int route_num,int pos) {
            )
         {
             printf(LIGHT_CYAN);
-            printf("ä½ ä¸èƒ½åœ¨è¿™é‡Œä½¿ç”¨è·¯éšœ\n");
+            printf("Äã²»ÄÜÔÚÕâÀïÊ¹ÓÃÂ·ÕÏ\n");
             printf(COLOR_NULL);
         }
         else
         if (use_players[route_num].block >= 1) {
             printf(LIGHT_CYAN);
-            printf("ä½¿ç”¨è·¯éšœæˆåŠŸ\n");
+            printf("Ê¹ÓÃÂ·ÕÏ³É¹¦\n");
             printf(LIGHT_CYAN);
             use_players[route_num].block--;
             map->ToolCreat(real_pos, 1);
@@ -270,19 +266,19 @@ void Tool_Use(Player* use_players,Map* map,int route_num,int pos) {
         else
         {
             printf(LIGHT_CYAN);
-            printf("ä½ æ²¡æœ‰è¶³å¤Ÿçš„è·¯éšœ\n");
+            printf("ÄãÃ»ÓĞ×ã¹»µÄÂ·ÕÏ\n");
             printf(COLOR_NULL);
         }
     } else if (strcmp(RichStructure.instruction, "Robot") == 0) {
         if (use_players[route_num].robot >= 1) {
             printf(LIGHT_CYAN);
-            printf("ä½¿ç”¨æœºå™¨å¨ƒå¨ƒæˆåŠŸ\n");
+            printf("Ê¹ÓÃ»úÆ÷ÍŞÍŞ³É¹¦\n");
             printf(COLOR_NULL);
             use_players[route_num].robot--;
             robot_use(use_players[route_num].position, map);
         } else {
             printf(LIGHT_CYAN);
-            printf("ä½ æ²¡æœ‰è¶³å¤Ÿçš„æœºå™¨å¨ƒå¨ƒ\n");
+            printf("ÄãÃ»ÓĞ×ã¹»µÄ»úÆ÷ÍŞÍŞ\n");
             printf(COLOR_NULL);
         }
     } else if (strcmp(RichStructure.instruction, "Bomb") == 0) {

@@ -1,10 +1,13 @@
 //
-// Created by Âº†Â≥ªÈ¢Ü on 24-7-27.
+// Created by ’≈æ˛¡Ï on 24-7-27.
 //
 #ifndef TOOL_H
 #define TOOL_H
 #include "../json/json.h"
 #include "../map/mapdraw.h"
+#include <cstdio>
+#include <cstdlib>
+#include "../terminal/terminal.h"
 void PlayerTool(Player* player);
 void PlayerBuyTool(struct Player* player, int toolID);
 void PlayerGetBlock(Player* player);
