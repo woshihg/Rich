@@ -1,13 +1,12 @@
 #include "terminal.h"
 
 char inst_table[INSTRUCTION_NUM][10] = {"Roll", "Sell", "Query", "Help", "Quit","Bomb",
-                                            "Block","Robot","Step" ,"Rich",""};
+                                            "Block","Robot","Step" ,"Rich","Dump",""};
 char test_table[1][10]={"load"};
 
 Rich RichStructure;
 
-void terminal(Player player,char *filename)
-{
+void terminal(Player player,char *filename,const int debug){
     char str[INSTRUCTION_MAX_LEN] = {0};
     char flag = 0;
     int parameter_temp = 0;
@@ -16,16 +15,16 @@ void terminal(Player player,char *filename)
     {
         flag = 1;
 
-        //æ˜¾ç¤ºæ§åˆ¶å°
+        //ÏÔÊ¾¿ØÖÆÌ¨
         Show_Terminal(player);
 
-        //è¾“å…¥å‘½ä»¤
+        //ÊäÈëÃüÁî
         fgets(str, INSTRUCTION_MAX_LEN, stdin);
         sscanf(str, "%s", RichStructure.instruction);
 
-        //åˆ†è¾¨æµ‹è¯•å‘½ä»¤
+        //·Ö±æ²âÊÔÃüÁî
         if(strcmp(RichStructure.instruction,"load")!=0)
-            Player_Instruction(&parameter_temp,&flag,str);
+            Player_Instruction(&parameter_temp,&flag,str,debug);
         else
             Test_Instruction(filename,&flag,str);
     }
@@ -37,19 +36,19 @@ void Show_Terminal(Player player)
     {
         case 1:
             printf(COLOR_RED);
-            printf("é’±å¤«äºº>");
+            printf("Ç®·òÈË>");
             break;
         case 2:
             printf(COLOR_GREEN);
-            printf("é˜¿åœŸä¼¯>");
+            printf("°¢ÍÁ²®>");
             break;
         case 3:
             printf(COLOR_BLUE);
-            printf("å­™å°ç¾>");
+            printf("ËïĞ¡ÃÀ>");
             break;
         case 4:
             printf(COLOR_YELLOW);
-            printf("é‡‘è´è´>");
+            printf("½ğ±´±´>");
             break;
         default:break;
     }
@@ -71,12 +70,12 @@ void Test_Instruction(char *filename,char* flag,char* str)
             filename[i] = 0;
         }
         printf(LIGHT_CYAN);
-        printf("è¾“å…¥é”™è¯¯\n");
+        printf("ÊäÈë´íÎó\n");
         printf(COLOR_NULL);
     }
 }
 
-void Player_Instruction(int* parameter_temp,char* flag,char* str)
+void Player_Instruction(int* parameter_temp,char* flag,char* str,const int debug)
 {
     int i=0;
     int result=0;
@@ -93,11 +92,12 @@ void Player_Instruction(int* parameter_temp,char* flag,char* str)
         }
     }
 
-    if (i == INSTRUCTION_NUM)
+    //·Çµ÷ÊÔÄ£Ê½ÏÂ£¬ÆÁ±ÎdumpÖ¸Áî
+    if ((i == INSTRUCTION_NUM && debug == 1) || ((i == INSTRUCTION_NUM - 2 || i == INSTRUCTION_NUM ) && debug != 1))
     {
         INIT_TERMINAL;
         printf(LIGHT_CYAN);
-        printf("è¾“å…¥é”™è¯¯\n");
+        printf("ÊäÈë´íÎó\n");
         printf(COLOR_NULL);
     }
     else
@@ -106,56 +106,63 @@ void Player_Instruction(int* parameter_temp,char* flag,char* str)
         {
             INIT_TERMINAL;
             printf(LIGHT_CYAN);
-            printf("RollæŒ‡ä»¤é”™è¯¯ï¼Œä¸åº”æœ‰å‚æ•°\n");
+            printf("RollÖ¸Áî´íÎó£¬²»Ó¦ÓĞ²ÎÊı\n");
             printf(COLOR_NULL);
         }
         else if(strcmp(RichStructure.instruction,"Sell")==0 && (RichStructure.parameter<0 || RichStructure.parameter>69))
         {
             INIT_TERMINAL;
             printf(LIGHT_CYAN);
-            printf("SellæŒ‡ä»¤é”™è¯¯ï¼Œå‚æ•°èŒƒå›´ä¸º0~69\n");
+            printf("SellÖ¸Áî´íÎó£¬²ÎÊı·¶Î§Îª0~69\n");
             printf(COLOR_NULL);
         }
         else if(strcmp(RichStructure.instruction,"Block")==0 && (RichStructure.parameter<-10 || RichStructure.parameter>10))
         {
             INIT_TERMINAL;
             printf(LIGHT_CYAN);
-            printf("BlockæŒ‡ä»¤é”™è¯¯ï¼Œå‚æ•°èŒƒå›´ä¸º-10~10\n");
+            printf("BlockÖ¸Áî´íÎó£¬²ÎÊı·¶Î§Îª-10~10\n");
             printf(COLOR_NULL);
         }
         else if(strcmp(RichStructure.instruction,"Bomb")==0 && (RichStructure.parameter<-10 || RichStructure.parameter>10))
         {
             INIT_TERMINAL;
             printf(LIGHT_CYAN);
-            printf("BombæŒ‡ä»¤é”™è¯¯ï¼Œå‚æ•°èŒƒå›´ä¸º-10~10\n");
+            printf("BombÖ¸Áî´íÎó£¬²ÎÊı·¶Î§Îª-10~10\n");
             printf(COLOR_NULL);
         }
         else if(strcmp(RichStructure.instruction,"Robot")==0 && result!=1)
         {
             INIT_TERMINAL;
             printf(LIGHT_CYAN);
-            printf("RobotæŒ‡ä»¤é”™è¯¯ï¼Œä¸åº”æœ‰å‚æ•°\n");
+            printf("RobotÖ¸Áî´íÎó£¬²»Ó¦ÓĞ²ÎÊı\n");
             printf(COLOR_NULL);
         }
         else if(strcmp(RichStructure.instruction,"Query")==0 && result!=1)
         {
             INIT_TERMINAL;
             printf(LIGHT_CYAN);
-            printf("QueryæŒ‡ä»¤é”™è¯¯ï¼Œä¸åº”æœ‰å‚æ•°\n");
+            printf("QueryÖ¸Áî´íÎó£¬²»Ó¦ÓĞ²ÎÊı\n");
             printf(COLOR_NULL);
         }
         else if(strcmp(RichStructure.instruction,"Help")==0 && result!=1)
         {
             INIT_TERMINAL;
             printf(LIGHT_CYAN);
-            printf("HelpæŒ‡ä»¤é”™è¯¯ï¼Œä¸åº”æœ‰å‚æ•°\n");
+            printf("HelpÖ¸Áî´íÎó£¬²»Ó¦ÓĞ²ÎÊı\n");
             printf(COLOR_NULL);
         }
         else if(strcmp(RichStructure.instruction,"Quit")==0 && result!=1)
         {
             INIT_TERMINAL;
             printf(LIGHT_CYAN);
-            printf("QuitæŒ‡ä»¤é”™è¯¯ï¼Œä¸åº”æœ‰å‚æ•°\n");
+            printf("QuitÖ¸Áî´íÎó£¬²»Ó¦ÓĞ²ÎÊı\n");
+            printf(COLOR_NULL);
+        }
+        else if(strcmp(RichStructure.instruction,"Dump")==0 && result!=1)
+        {
+            INIT_TERMINAL;
+            printf(LIGHT_CYAN);
+            printf("DumpÖ¸Áî´íÎó£¬²»Ó¦ÓĞ²ÎÊı\n");
             printf(COLOR_NULL);
         }
     }

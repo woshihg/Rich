@@ -1,5 +1,5 @@
 //
-// Created by å¼ å³»é¢† on 24-7-27.
+// Created by ÕÅ¾şÁì on 24-7-27.
 //
 
 #ifndef PLAYER_H
@@ -20,5 +20,5 @@ void After_Walk(Player *use_players, Map *map, Cell *cell, int route_num,int rel
 owner_enum get_player_num(char player_char);
 char get_player_char(owner_enum player_num);
 //int Find_Player_Num(Player* players, const char* now_user,int max_player_num);
-int Player_Init(Player* players, char* now_user);
+int Player_Init(Player* players, char* now_user,const int init_money);
 #endif //PLAYER_H

@@ -3,11 +3,7 @@
 //
 
 #include "game.h"
-#include "../terminal/terminal.h"
-#include "../money/money.h"
-#include "../tool/tool.h"
-#include <cstdlib>
-#include <ctime>
+
 
 using namespace std;
 
@@ -15,38 +11,38 @@ char * name_ch=0;
 
 void Print_Query(Player *use_players, int routeNum, char *now_user) {
     printf(LIGHT_CYAN);
-    printf("@ çŽ©å®¶ : ");
+    printf("@ Íæ¼Ò : ");
     printf("%s\n",name_ch);
-    printf("\tèµ„é‡‘ : ");
+    printf("\t×Ê½ð : ");
     printf("%d\n", use_players[routeNum].money);
-    printf("\tç‚¹æ•° : ");
+    printf("\tµãÊý : ");
     printf("%d\n", use_players[routeNum].point);
-    printf("\tä½ ä¸€å…±æ‹¥æœ‰ %d å¥—æˆ¿äº§ã€‚ç»†èŠ‚å¦‚ä¸‹\n",use_players[routeNum].property_count);
+    printf("\tÄãÒ»¹²ÓµÓÐ %d Ì×·¿²ú¡£Ï¸½ÚÈçÏÂ\n",use_players[routeNum].property_count);
     //printf("\tProperties details: ");
     for(int j =0; j<70; j++) {
         if (use_players[routeNum].properties[j]) {
-            printf(" [ä½ç½®: %d ç­‰çº§: %d]",j,use_players[routeNum].properties[j] - 1);
+            printf(" [Î»ÖÃ: %d µÈ¼¶: %d]",j,use_players[routeNum].properties[j] - 1);
         }
     }
     printf("\n");
-    printf("\tè·¯éšœ : ");
+    printf("\tÂ·ÕÏ : ");
     printf("%d\n", use_players[routeNum].block);
-    printf("\tæœºå™¨å¨ƒå¨ƒ : ");
+    printf("\t»úÆ÷ÍÞÍÞ : ");
     printf("%d\n", use_players[routeNum].robot);
-    printf("\tæ­£é¢å¢žç›ŠåŠæŒç»­æ—¶é—´ : ");
+    printf("\tÕýÃæÔöÒæ¼°³ÖÐøÊ±¼ä : ");
     printf("%d %d\n", use_players[routeNum].buff, use_players[routeNum]._continue);
     printf(COLOR_NULL);
 }
 
 void Print_Help(){
     printf(LIGHT_CYAN);
-    printf("ä½ å¯ä»¥ä½¿ç”¨ä¸‹åˆ—æŒ‡ä»¤ã€‚\n");
-    printf("Roll: æŽ·éª°å­ï¼Œéšæœºèµ°1~6æ­¥ã€‚\n");
-    printf("Sell n: ä½ å¯ä»¥å–å‡ºä»»æ„ä¸€å¥—å±žäºŽä½ çš„æˆ¿äº§ï¼Œå–å‡ºèŽ·å¾—çš„é‡‘é’±ä¸ºä½ åœ¨è¯¥æˆ¿äº§å¤„èŠ±è´¹èµ„é‡‘çš„ä¸¤å€ã€‚\n");
-    printf("Block n: åœ¨å‰åŽ10æ ¼ä»¥å†…æ”¾ç½®ä¸€ä¸ªè·¯éšœã€‚\n");
-    printf("Robot: æ¸…é™¤å‰æ–¹10æ ¼ä»¥å†…çš„æ‰€æœ‰éšœç¢ã€‚\n");
-    printf("Query: æ˜¾ç¤ºä½ çš„èµ„äº§\n");
-    printf("Quit: å¼ºåˆ¶é€€å‡ºæ¸¸æˆ\n");
+    printf("Äã¿ÉÒÔÊ¹ÓÃÏÂÁÐÖ¸Áî¡£\n");
+    printf("Roll: ÖÀ÷»×Ó£¬Ëæ»ú×ß1~6²½¡£\n");
+    printf("Sell n: Äã¿ÉÒÔÂô³öÈÎÒâÒ»Ì×ÊôÓÚÄãµÄ·¿²ú£¬Âô³ö»ñµÃµÄ½ðÇ®ÎªÄãÔÚ¸Ã·¿²ú´¦»¨·Ñ×Ê½ðµÄÁ½±¶¡£\n");
+    printf("Block n: ÔÚÇ°ºó10¸ñÒÔÄÚ·ÅÖÃÒ»¸öÂ·ÕÏ¡£\n");
+    printf("Robot: Çå³ýÇ°·½10¸ñÒÔÄÚµÄËùÓÐÕÏ°­¡£\n");
+    printf("Query: ÏÔÊ¾ÄãµÄ×Ê²ú\n");
+    printf("Quit: Ç¿ÖÆÍË³öÓÎÏ·\n");
     printf(COLOR_NULL);
 }
 
@@ -54,24 +50,24 @@ void Print_PlayerTurn(Player *use_players, int routeNum, char *now_user,int turn
     switch(use_players[routeNum].number)
     {
         case 1:
-            name_ch="é’±å¤«äºº";
+            name_ch="Ç®·òÈË";
             printf(COLOR_RED);
             break;
         case 2:
-            name_ch="é˜¿åœŸä¼¯";
+            name_ch="°¢ÍÁ²®";
             printf(COLOR_GREEN);
             break;
         case 3:
-            name_ch="å­™å°ç¾Ž";
+            name_ch="ËïÐ¡ÃÀ";
             printf(COLOR_BLUE);
             break;
         case 4:
-            name_ch="é‡‘è´è´";
+            name_ch="½ð±´±´";
             printf(COLOR_YELLOW);
             break;
         default:break;
     }
-    printf("@ çŽ°åœ¨æ˜¯ %s çš„å›žåˆ", name_ch);
+    printf("@ ÏÖÔÚÊÇ %s µÄ»ØºÏ", name_ch);
     printf(COLOR_NULL);
     printf("\n");
 }
@@ -80,64 +76,65 @@ void Print_PlayerOver(Player *use_players, int routeNum, char *now_user) {
     switch(use_players[routeNum].number)
     {
         case 1:
-            name_ch="é’±å¤«äºº";
+            name_ch="Ç®·òÈË";
             printf(COLOR_RED);
             break;
         case 2:
-            name_ch="é˜¿åœŸä¼¯";
+            name_ch="°¢ÍÁ²®";
             printf(COLOR_GREEN);
             break;
         case 3:
-            name_ch="å­™å°ç¾Ž";
+            name_ch="ËïÐ¡ÃÀ";
             printf(COLOR_BLUE);
             break;
         case 4:
-            name_ch="é‡‘è´è´";
+            name_ch="½ð±´±´";
             printf(COLOR_YELLOW);
             break;
         default:break;
     }
-    printf("@ %s çš„å›žåˆç»“æŸäº†", name_ch);
+    printf("@ %s µÄ»ØºÏ½áÊøÁË", name_ch);
     printf(COLOR_NULL);
     printf("\n");
 }
 
-int Route_Start(Player *use_players,int routeNum,char* now_user,Map &map,Cell *cell,char *filename) {
+int Route_Start(Player *use_players, int routeNum, char *now_user, Map &map, Cell *cell, char *filename, int& dump, const int debug) {
     int flag_ifwalk = 1;
     int flag_ifover = 0;
     int flag_ifshop = 1;
-    int flag_ifusetoll =1;
+    int flag_ifusetoll = 1;
     int flag_ifquit = 0;
-    map.data[use_players[routeNum].position].Remove_Passer((owner_enum)use_players[routeNum].number);//è½®æ¬¡å¼€å§‹çš„æ—¶å€™è®©äººæ˜¾ç¤ºåˆ°ä¸Šå±‚
-    map.data[use_players[routeNum].position].Add_Passer((owner_enum)use_players[routeNum].number);
+    map.data[use_players[routeNum].position].Remove_Passer((owner_enum) use_players[routeNum].number);//ÂÖ´Î¿ªÊ¼µÄÊ±ºòÈÃÈËÏÔÊ¾µ½ÉÏ²ã
+    map.data[use_players[routeNum].position].Add_Passer((owner_enum) use_players[routeNum].number);
     while (!flag_ifover && !flag_ifquit) {
         map.SetCell(cell);
         map.PrintMap();
-        //è¾“å…¥å‘½ä»¤
-        terminal(use_players[routeNum],filename);
+        //ÊäÈëÃüÁî
+        terminal(use_players[routeNum], filename, debug);
 
         if (strcmp(RichStructure.instruction, "Sell") == 0) {
-            sell_house(&(use_players[routeNum]),&map,RichStructure.parameter);
-        }else
-        if (strcmp(RichStructure.instruction, "Query") == 0) {
+            sell_house(&(use_players[routeNum]), &map, RichStructure.parameter);
+        } else if (strcmp(RichStructure.instruction, "Query") == 0) {
             Print_Query(use_players, routeNum, now_user);
-        }else
-        if (strcmp(RichStructure.instruction, "Quit") == 0) {
+        } else if (strcmp(RichStructure.instruction, "Quit") == 0) {
             flag_ifquit = 1;
-        }else
-        if (strcmp(RichStructure.instruction, "Step") == 0) {
-            After_Walk(use_players, &map, cell, routeNum,RichStructure.parameter);
+        } else if (strcmp(RichStructure.instruction, "Step") == 0) {
+            After_Walk(use_players, &map, cell, routeNum, RichStructure.parameter);
             flag_ifover = 1;
-        }else
-        if (strcmp(RichStructure.instruction, "Roll") == 0 ||
-            strcmp(RichStructure.instruction, "") == 0){ // initåˆå§‹åŒ–åœ°å›¾å’Œç”¨æˆ·
-            After_Walk(use_players, &map, cell, routeNum,roll_dice());
+        } else if (strcmp(RichStructure.instruction, "Roll") == 0 ||
+                   strcmp(RichStructure.instruction, "") == 0) { // init³õÊ¼»¯µØÍ¼ºÍÓÃ»§
+            After_Walk(use_players, &map, cell, routeNum, roll_dice());
             flag_ifover = 1;
-        }else
-        if(strcmp(RichStructure.instruction, "Help") == 0) {
+        } else if (strcmp(RichStructure.instruction, "Help") == 0) {
             Print_Help();
-        }else{
-            Tool_Use(use_players, &map, routeNum,RichStructure.parameter);
+        } else if (strcmp(RichStructure.instruction, "Dump") == 0) {
+            dump = 1;
+            printf(LIGHT_CYAN);
+            printf("µ¼³öÊý¾Ý³É¹¦\n");
+            printf(COLOR_NULL);
+        }
+        else {
+            Tool_Use(use_players, &map, routeNum, RichStructure.parameter);
         }
     }
     return flag_ifquit;
@@ -168,7 +165,7 @@ void Route_Event(Map &map,Player* use_players,int routeNum,char* now_user) {
                     map.data[richMan_pos].has_tool == 0)
                 {
                     printf(LIGHT_CYAN);
-                    printf("è´¢ç¥žåœ¨ %d . åŠ æ²¹!\n",richMan_pos);
+                    printf("²ÆÉñÔÚ %d . ¼ÓÓÍ!\n",richMan_pos);
                     printf(COLOR_NULL);
                     map.ToolCreat(richMan_pos,3);
                     richMan_flag = 1;
@@ -186,11 +183,11 @@ void Route_Event(Map &map,Player* use_players,int routeNum,char* now_user) {
         map.data[richMan_pos].color = (char*)COLOR_NULL;
         map.data[richMan_pos].has_tool = 0;
         printf(LIGHT_CYAN);
-        printf("è´¢ç¥žæ¶ˆå¤±\n");
+        printf("²ÆÉñÏûÊ§\n");
         printf(COLOR_NULL);
     }else if(richMan_flag && map.data[richMan_pos].has_tool == 3){
         printf(LIGHT_CYAN);
-        printf("ç¦»è´¢ç¥žæ¶ˆå¤±è¿˜æœ‰ %d è½®\n",15-richMan_route);
+        printf("Àë²ÆÉñÏûÊ§»¹ÓÐ %d ÂÖ\n",15-richMan_route);
         printf(COLOR_NULL);
     }else if(map.data[richMan_pos].has_tool != 3 && richMan_flag){
         richMan_route = 0;
@@ -198,14 +195,14 @@ void Route_Event(Map &map,Player* use_players,int routeNum,char* now_user) {
     }
 }
 
-void Game_Start(char *filename,Player *use_players, Map &map, Cell *cell, jsonMap &jsonmap,char* users, int playerNum, char *now_user) {
+void Game_Start(char *filename,Player *use_players, Map &map, Cell *cell, jsonMap &jsonmap,char* users, int playerNum, char *now_user, int debug) {
     int routeNum = 0;
     int flag_ifquit = 0;
     while(!flag_ifquit) {
         int count = 0;
         int winner = 0;
         int if_continue;
-
+        int dump_flag = 0;
         for (int i = 0; i < 4; ++i) {
             if (use_players[i].alive){
                 ++count;
@@ -217,20 +214,30 @@ void Game_Start(char *filename,Player *use_players, Map &map, Cell *cell, jsonMa
             win = get_player_char((owner_enum)winner);
             if(win == 'Q'){
                 printf(COLOR_RED);
-                printf("é’±å¤«äºº");
+                printf("Ç®·òÈË");
             } else if(win == 'A'){
                 printf(COLOR_GREEN);
-                printf("é˜¿åœŸä¼¯");
+                printf("°¢ÍÁ²®");
             } else if(win == 'S'){
                 printf(COLOR_BLUE);
-                printf("å­™å°ç¾Ž");
+                printf("ËïÐ¡ÃÀ");
             } else if(win == 'J') {
                 printf(COLOR_YELLOW);
-                printf("é‡‘è´è´");
+                printf("½ð±´±´");
             }
             printf(LIGHT_CYAN);
-            printf("èƒœåˆ©!\n");
+            printf("Ê¤Àû!\n");
             printf(COLOR_NULL);
+//            µÈ´ýÓÃ»§ÊäÈë
+            char c;
+            printf("ÊäÈëqÍË³öÓÎÏ·\n");
+            while (1) {
+                c = getchar();
+                if (c == 'q') {
+                    flag_ifquit = 1;
+                    break;
+                }
+            }
             break;
         }
 
@@ -245,23 +252,27 @@ void Game_Start(char *filename,Player *use_players, Map &map, Cell *cell, jsonMa
         if (if_continue) {
             printf(LIGHT_CYAN);
             printf("%s", name_ch);
-            printf(" è·³è¿‡\n");
+            printf(" Ìø¹ý\n");
             printf(COLOR_NULL);
         } else {
             Route_Event(map,use_players,routeNum,now_user);
-            flag_ifquit = Route_Start(use_players, routeNum, now_user, map, cell, filename);
+            flag_ifquit = Route_Start(use_players, routeNum, now_user, map, cell, filename, dump_flag, debug);
             if (use_players[routeNum]._continue > 0) {
                 use_players[routeNum]._continue--;
             }
             if(use_players[routeNum]._continue == 0) {
                 use_players[routeNum].buff = false;
             }
+            if (debug) {
+                map.SetCell(jsonmap.cells);
+                write_json(use_players, jsonmap, users, now_user, filename);
+            }
+        }
+        Print_PlayerOver(use_players,routeNum,now_user);
+        if(dump_flag == 1 && debug == 1) {
             map.SetCell(jsonmap.cells);
             write_json(use_players, jsonmap, users, now_user, filename);
         }
-        Print_PlayerOver(use_players,routeNum,now_user);
-        map.SetCell(jsonmap.cells);
-        write_json(use_players, jsonmap, users, now_user, filename);
         routeNum++;
         if (routeNum == playerNum) {
             routeNum = 0;

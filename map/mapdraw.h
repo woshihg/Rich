@@ -7,10 +7,10 @@
 
 #include "../json/json.h"
 #define COLOR_NULL "\033[0m"
-#define COLOR_RED "\033[31m"    //é’±å¤«äºº
-#define COLOR_GREEN "\033[32m"  //é˜¿åœŸä¼¯
-#define COLOR_YELLOW "\033[33m" //é‡‘è´è´
-#define COLOR_BLUE "\033[34m"   //å­™å°ç¾
+#define COLOR_RED "\033[31m"    //Ç®·òÈË
+#define COLOR_GREEN "\033[32m"  //°¢ÍÁ²®
+#define COLOR_YELLOW "\033[33m" //½ğ±´±´
+#define COLOR_BLUE "\033[34m"   //ËïĞ¡ÃÀ
 #define COLOR_PURPLE "\033[35m"
 #define COLOR_LIGHT_GRAY  "\033[0;37m"
 #define COLOR_CYAN "\033[36m"
@@ -23,17 +23,17 @@
 
 
 typedef enum{
-    START, //èµ·ç‚¹
-    SPACE, //ç©ºåœ°
-    COTTAGE, //èŒ…å±‹
-    HOUSE, //æ´‹æˆ¿
-    SKYSCRAPER, //æ‘©å¤©å¤§æ¥¼
-    TOOLSHOP, //é“å…·å±‹ 
-    GIFTSHOP, //ç¤¼å“
-    MAGICSHOP, //é­”æ³•
-    HOSPITAL, //åŒ»é™¢
-    PRISON, //ç›‘ç‹±
-    MINERAL, //çŸ¿åœ°
+    START, //Æğµã
+    SPACE, //¿ÕµØ
+    COTTAGE, //Ã©Îİ
+    HOUSE, //Ñó·¿
+    SKYSCRAPER, //Ä¦Ìì´óÂ¥
+    TOOLSHOP, //µÀ¾ßÎİ 
+    GIFTSHOP, //ÀñÆ·
+    MAGICSHOP, //Ä§·¨
+    HOSPITAL, //Ò½Ôº
+    PRISON, //¼àÓü
+    MINERAL, //¿óµØ
 }kind_enum;
 
 typedef enum{
@@ -44,26 +44,26 @@ typedef enum{
 }rank_enum;
 
 typedef enum{
-    OWNER_NULL, //æ— ä¸»
-    OWNER_Q, //é’±å¤«äºº
-    OWNER_A, //é˜¿åœŸä¼¯
-    OWNER_S, //å­™å°ç¾
-    OWNER_J, //é‡‘è´è´
+    OWNER_NULL, //ÎŞÖ÷
+    OWNER_Q, //Ç®·òÈË
+    OWNER_A, //°¢ÍÁ²®
+    OWNER_S, //ËïĞ¡ÃÀ
+    OWNER_J, //½ğ±´±´
 }owner_enum;
 
 
 
 class MapData {
 public:
-    char base; //å±•ç¤ºçš„å­—ç¬¦
+    char base; //Õ¹Ê¾µÄ×Ö·û
     char show{};
-    char* color; //é¢œè‰²
-    kind_enum kind;   //åœ°å—ç§ç±»
-    rank_enum rank;   //åœ°æ®µ
+    char* color; //ÑÕÉ«
+    kind_enum kind;   //µØ¿éÖÖÀà
+    rank_enum rank;   //µØ¶Î
     int has_tool;
-    owner_enum owner;  //åœ°ä¸»
-    int passer_num;  //è·¯è¿‡çš„ç©å®¶æ•°é‡
-    owner_enum passers[CELL_MAX_PLAYER]{};  //è·¯è¿‡çš„ç©å®¶
+    owner_enum owner;  //µØÖ÷
+    int passer_num;  //Â·¹ıµÄÍæ¼ÒÊıÁ¿
+    owner_enum passers[CELL_MAX_PLAYER]{};  //Â·¹ıµÄÍæ¼Ò
 
     MapData();
 //    ~MapData();

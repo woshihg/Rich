@@ -2,7 +2,6 @@
 // Created by admin on 2024/7/26.
 //
 
-#include <filesystem>
 #include "json.h"
 
 void read_json(Player use_players[], jsonMap &jsonmap, char users[], char *now_user,const char string[]) {
@@ -45,7 +44,7 @@ void read_json(Player use_players[], jsonMap &jsonmap, char users[], char *now_u
         jsonmap.cells[tool_cell[i]].has_tool = tool_kind[i];
     }
 
-    //MAP��ȡ���/////////////////////////////////////////////////////////////
+    //MAP??????/////////////////////////////////////////////////////////////
     strcpy(users, cJSON_GetObjectItem(root, "users")->valuestring);
     char test[10];
     strcpy(test, users);
@@ -116,7 +115,7 @@ void read_json(Player use_players[], jsonMap &jsonmap, char users[], char *now_u
             }
         }
     }
-    //players��ȡ���/////////////////////////////////////////////////////////////////
+    //players??????/////////////////////////////////////////////////////////////////
     cJSON_Delete(root);
 }
 
@@ -163,7 +162,7 @@ char *read_file(const char *filename) {
     return data;
 }
 
-//����ʵ���϶��Ǿ�̬�Ĵ洢��
+//????????????????��??
 void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_user, const char name_string[256]) {
     char resultname[256] = {};
     strcpy(resultname, name_string);
@@ -189,7 +188,7 @@ void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_
         }
     }
 
-    //���������ʹ��forѭ�������޸�
+    //????????????for??????????
 
     cJSON_AddItemToObject(map, "tool", tool);
     cJSON_AddStringToObject(root, "users", users);
@@ -233,7 +232,7 @@ void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_
                 goto end;
             }
             cJSON_AddItemToObject(temp_player, "properties", properties);
-            //���������ʹ��forѭ�������޸�
+            //????????????for??????????
             for(int i=0;i<70;i++){
                 if(use_players[index].properties[i]!=0){
                     cJSON* temp = cJSON_CreateArray();
@@ -257,13 +256,13 @@ void write_json(Player use_players[], jsonMap &use_map, char users[], char *now_
 
 int write_file(const char *filename, const char *data) {
     FILE *file = fopen(filename, "w");
-    if (!file) return 0; // ����0��ʾ���ļ�ʧ��
+    if (!file) return 0; // ????0???????????
 
     size_t length = strlen(data);
     size_t written = fwrite(data, 1, length, file);
     fclose(file);
 
-    // ���ʵ��д����ֽ��������ݳ�����ȣ��򷵻�1�����򷵻�0��ʾд��ʧ��
+    // ??????��????????????????????????1???????0???��?????
     return written == length;
 }
 
@@ -289,9 +288,9 @@ void replaceString(char* str, const char* from, const char* to) {
 //    strcpy(resultname, filename);
 //    replaceString(resultname, "test", "result");
 //    cJSON *root = NULL, *temp1 = NULL, *temp2 = NULL, *temp3 = NULL;
-//    // �����ʵ����͵�cJSON�
+//    // ????????????cJSON?��
 //    root = cJSON_CreateObject();
-//    // ����ӵ�ָ���Ķ���
+//    // ???????????????
 //    cJSON_AddItemToObject(root, "map", temp1 = cJSON_CreateObject());
 //    cJSON_AddItemToObject(temp1, "username", cJSON_CreateString("admin"));
 //    cJSON_AddItemToObject(temp1, "password", cJSON_CreateString("123456"));
@@ -300,11 +299,11 @@ void replaceString(char* str, const char* from, const char* to) {
 //
 //    char str[3][10] = {"Ikaros", "Nymph", "Astleya"};
 //    int num[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-//    // �����ʵ����͵�cJSON�
+//    // ????????????cJSON?��
 //    temp2 = cJSON_CreateArray();
 //    for (i = 0; i < 3; i++)
 //    {
-//        // ����ӵ�ָ���Ķ���
+//        // ???????????????
 //        cJSON_AddItemToArray(temp2, temp3 = cJSON_CreateObject());
 //        cJSON_AddStringToObject(temp3, "username", str[i]);
 //        cJSON_AddStringToObject(temp3, "password", "666");
@@ -318,7 +317,7 @@ void replaceString(char* str, const char* from, const char* to) {
 //
 //    int len = 0;
 //    len = strlen(out);
-//    // ���ļ�
+//    // ?????
 //    fp = fopen(filename, "w");
 //    if(NULL == fp)
 //    {
@@ -329,7 +328,7 @@ void replaceString(char* str, const char* from, const char* to) {
 //    fclose(fp);
 //    out = NULL;
 //
-//    // ɾ��һ��cJSONʵ���������ʵ�塣
+//    // ??????cJSON????????????�^
 //    cJSON_Delete(root);
 //    return 1;
 //}

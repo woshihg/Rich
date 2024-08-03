@@ -4,29 +4,27 @@
 #include "money.h"
 #include "../terminal/terminal.h"
 
-void Set_Init_Money(Player *player)
+void Set_Init_Money(int& init_money)
 {
     char str[7] = {0};
     int first_money = 10000;
     printf(LIGHT_CYAN);
-    printf("è¯·è¾“å…¥åˆå§‹èµ„é‡‘ï¼ˆ1000~50000ï¼‰\n");
+    printf("ÇëÊäÈë³õÊ¼×Ê½ğ£¨1000~50000£©\n");
     printf(COLOR_NULL);
 
     fgets(str, 7, stdin);
     sscanf(str, "%d", &first_money);
     fflush(stdin);
     printf(LIGHT_CYAN);
-    printf("åˆå§‹èµ„é‡‘æ˜¯: %d\n", first_money);
+    printf("³õÊ¼×Ê½ğÊÇ: %d\n", first_money);
     printf(COLOR_NULL);
 
-    for (char i = 0; i < CELL_MAX_PLAYER; i++) {
-        player[i].money = first_money;
-    }
+    init_money = first_money;
     if (first_money<1000||first_money>50000){
         printf(LIGHT_CYAN);
-        printf("åˆå§‹èµ„é‡‘è¶…å‡ºå…è®¸èŒƒå›´ï¼Œè¯·é‡æ–°è¾“å…¥ï¼\n");
+        printf("³õÊ¼×Ê½ğ³¬³öÔÊĞí·¶Î§£¬ÇëÖØĞÂÊäÈë£¡\n");
         printf(COLOR_NULL);
-        Set_Init_Money(player);
+        Set_Init_Money(init_money);
     }
 }
 
@@ -62,7 +60,7 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
     // now_player_char = get_player_name();
     if(pos == 0||pos == 28||pos == 35||pos == 49||pos == 63||pos == 64||pos == 14||pos == 65||pos == 66||pos == 67||pos == 68||pos == 69) {
         printf(LIGHT_CYAN);
-        printf("è¿™æ˜¯ä¸€ä¸ªç‰¹æ®Šåœ°å—ï¼Œä¸èƒ½è´­ä¹°ï¼\n");
+        printf("ÕâÊÇÒ»¸öÌØÊâµØ¿é£¬²»ÄÜ¹ºÂò£¡\n");
         printf(COLOR_NULL);
     }
     else{
@@ -71,25 +69,25 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
             if(now_player->money >= cell_cost && (map->data[pos].kind < 4)) {
 
                 printf(LIGHT_CYAN);
-                printf("åˆ°è¾¾ä½ è‡ªå·±çš„åœ°äº§ä¸”èµ„é‡‘å……è¶³ï¼Œæ˜¯å¦å‡çº§åœ°äº§?\n");
+                printf("µ½´ïÄã×Ô¼ºµÄµØ²úÇÒ×Ê½ğ³ä×ã£¬ÊÇ·ñÉı¼¶µØ²ú?\n");
                 printf(COLOR_NULL);
 
                 fgets(str, INSTRUCTION_MAX_LEN, stdin);
                 if(str[0] == 'Y'||str[0] == 'y') invest_house_execute(now_player, map,cell);
                 else {
                     printf(LIGHT_CYAN);
-                    printf("æ”¾å¼ƒå‡çº§\n");
+                    printf("·ÅÆúÉı¼¶\n");
                     printf(COLOR_NULL);
                 }
 
             }else if(map->data[pos].kind >= 4){
                 printf(LIGHT_CYAN);
-                printf("ä½ çš„åœ°äº§å·²ç»æ»¡çº§ï¼Œæ— æ³•å‡çº§ï¼\n");
+                printf("ÄãµÄµØ²úÒÑ¾­Âú¼¶£¬ÎŞ·¨Éı¼¶£¡\n");
                 printf(COLOR_NULL);
             }
             else {
                 printf(LIGHT_CYAN);
-                printf("åˆ°è¾¾ä½ è‡ªå·±çš„åœ°äº§ä½†èµ„é‡‘ä¸è¶³ï¼Œæ— æ³•å‡çº§ï¼\n");
+                printf("µ½´ïÄã×Ô¼ºµÄµØ²úµ«×Ê½ğ²»×ã£¬ÎŞ·¨Éı¼¶£¡\n");
                 printf(COLOR_NULL);
             }
         }
@@ -98,15 +96,15 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
             if (cell_owner == 'N' && (now_player->money >= cell_cost))
             {
                 printf(LIGHT_CYAN);
-                printf("åˆ°è¾¾ä¸€å—ç©ºåœ°ä¸”èµ„é‡‘å……è¶³ï¼Œæ˜¯å¦è´­ä¹°\n");
+                printf("µ½´ïÒ»¿é¿ÕµØÇÒ×Ê½ğ³ä×ã£¬ÊÇ·ñ¹ºÂò\n");
                 printf(COLOR_NULL);
 
                 fgets(str, INSTRUCTION_MAX_LEN, stdin);
                 if(str[0] == 'Y'||str[0] == 'y')
                 {
                     printf(LIGHT_CYAN);
-                    printf("è´­ä¹°æˆåŠŸ\nèŠ±è´¹äº† %d\n",cell_cost);
-                    printf("ä½ å‰©ä¸‹ %d å…ƒ\n",now_player->money - cell_cost);
+                    printf("¹ºÂò³É¹¦\n»¨·ÑÁË %d\n",cell_cost);
+                    printf("ÄãÊ£ÏÂ %d Ôª\n",now_player->money - cell_cost);
                     printf(COLOR_NULL);
                     (now_player->properties)[pos]++;
                     map->data[pos].owner = (owner_enum)now_player->number;
@@ -117,21 +115,21 @@ void step_cell_logit(Player *players, Player *now_player, Map *map, Cell *cell) 
                 else
                 {
                     printf(LIGHT_CYAN);
-                    printf("æ”¾å¼ƒè´­ä¹°\n");
+                    printf("·ÅÆú¹ºÂò\n");
                     printf(COLOR_NULL);
                 }
             }
             else if(cell_owner == 'N' && (now_player->money < cell_cost)) {
                 //printf("Arrived at an empty space,out of money,unable to purchase\n");
                 printf(LIGHT_CYAN);
-                printf("åˆ°è¾¾ä¸€å—ç©ºåœ°ä½†èµ„é‡‘ä¸è¶³ï¼Œæ— æ³•è´­ä¹°\n");
+                printf("µ½´ïÒ»¿é¿ÕµØµ«×Ê½ğ²»×ã£¬ÎŞ·¨¹ºÂò\n");
                 printf(COLOR_NULL);
             }
         }
     }
 }
 
-void invest_house_execute(Player *player, Map *map,Cell *cell)
+void invest_house_execute(Player *player, Map *map, Cell *cell)
 {
     int pos = player->position;
     int cost = get_cost(pos);
@@ -139,7 +137,7 @@ void invest_house_execute(Player *player, Map *map,Cell *cell)
     if (player->properties[pos] >= 4)
     {
         printf(LIGHT_CYAN);
-        printf("åœ°äº§ç­‰çº§è¾¾åˆ°æœ€é«˜ï¼Œæ— æ³•ç»§ç»­å‡çº§\n");
+        printf("µØ²úµÈ¼¶´ïµ½×î¸ß£¬ÎŞ·¨¼ÌĞøÉı¼¶\n");
         printf(COLOR_NULL);
     }
     else
@@ -147,7 +145,7 @@ void invest_house_execute(Player *player, Map *map,Cell *cell)
         if (player->money - cost>= 0)
         {
             printf(LIGHT_CYAN);
-            printf("åœ°äº§å‡çº§æˆåŠŸï¼\n");
+            printf("µØ²úÉı¼¶³É¹¦£¡\n");
             printf(COLOR_NULL);
             if (player->properties[pos] == 0)
                 player->property_count++;
@@ -158,13 +156,13 @@ void invest_house_execute(Player *player, Map *map,Cell *cell)
             house ++;
             map->data[pos].kind = (kind_enum)house;
             printf(LIGHT_CYAN);
-            printf("ç°åœ¨ä½ å‰©ä¸‹ %d å…ƒ\n",player->money);
+            printf("ÏÖÔÚÄãÊ£ÏÂ %d Ôª\n",player->money);
             printf(COLOR_NULL);
         }
         else
         {
             printf(LIGHT_CYAN);
-            printf("èµ„é‡‘ä¸è¶³ï¼\n");
+            printf("×Ê½ğ²»×ã£¡\n");
             printf(COLOR_NULL);
         }
     }
@@ -193,14 +191,14 @@ void sell_house(Player *player, Map *map, int pos)
         player->properties[pos] = 0;
         map->RemoveSpace(pos);
         printf(LIGHT_CYAN);
-        printf("åœ°äº§æˆåŠŸå–å‡º!\n");
-        printf("ç°åœ¨ä½ å‰©ä¸‹ %d å…ƒ\n",player->money);
+        printf("µØ²ú³É¹¦Âô³ö!\n");
+        printf("ÏÖÔÚÄãÊ£ÏÂ %d Ôª\n",player->money);
         printf(COLOR_NULL);
     }
     else
     {
         printf(LIGHT_CYAN);
-        printf("è¿™ä¸æ˜¯ä½ çš„åœ°äº§ï¼Œä¸èƒ½å–å‡º\n");
+        printf("Õâ²»ÊÇÄãµÄµØ²ú£¬²»ÄÜÂô³ö\n");
         printf(COLOR_NULL);
     }
 }
@@ -222,7 +220,7 @@ void pay_rentment(Player *players, Map *map, Player *now_player,Cell *cell , int
             players[owner].money += rentment;
         else {
             printf(LIGHT_CYAN);
-            printf("è¯¥ç©å®¶å·²ç ´äº§ï¼Œæ— é’±äº¤æˆ¿ç§Ÿ\n");
+            printf("¸ÃÍæ¼ÒÒÑÆÆ²ú£¬ÎŞÇ®½»·¿×â\n");
             printf(COLOR_NULL);
         }
         chech_out_of_money(now_player, map, cell);
@@ -231,7 +229,7 @@ void pay_rentment(Player *players, Map *map, Player *now_player,Cell *cell , int
             now_player->buff = false;
         }
         printf(LIGHT_CYAN);
-        printf("æœ‰è´¢ç¥æŠ¤ä½‘ï¼Œæ— éœ€äº¤ç§Ÿï¼\n");
+        printf("ÓĞ²ÆÉñ»¤ÓÓ£¬ÎŞĞè½»×â£¡\n");
         printf(COLOR_NULL);
     }
 }
@@ -240,7 +238,7 @@ void pay_rentment(Player *players, Map *map, Player *now_player,Cell *cell , int
 void chech_out_of_money(Player *players, Map *map,Cell* cell) {
     if(players->money < 0) {
         printf(LIGHT_CYAN);
-        printf("ä½ ç ´äº§äº†ï¼\n");
+        printf("ÄãÆÆ²úÁË£¡\n");
         printf(COLOR_NULL);
         players->money=0;
         players->alive = false;
@@ -256,4 +254,4 @@ void chech_out_of_money(Player *players, Map *map,Cell* cell) {
 
 
 
-// ç ´äº§  æˆ¿äº§æ•°  æŸ¥è¯¢ Help
+// ÆÆ²ú  ·¿²úÊı  ²éÑ¯ Help

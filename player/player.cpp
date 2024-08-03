@@ -1,10 +1,10 @@
 //
-// Created by å¼ å³»é¢† on 24-7-27.
+// Created by ÕÅ¾şÁì on 24-7-27.
 //
 
 #include "player.h"
 
-//players[4] ç©å®¶ç»“æ„ä½“æ•°ç»„
+//players[4] Íæ¼Ò½á¹¹ÌåÊı×é
 
 int compare_chars(const void* a, const void* b) {
     return *(const char*)a - *(const char*)b;
@@ -25,12 +25,12 @@ int hasDuplicateChars(const std::string& str) {
 }
 
 
-int Player_Init(Player* players, char* now_user){
+int Player_Init(Player* players, char* now_user, const int money){
     int max_player_num = 0;
     for (int i = 0; i < CELL_MAX_PLAYER; ++i) {
         players[i].number = i;
         players[i].position = 0;
-        players[i].money = 0;
+        players[i].money = money;
         players[i].point = 0;
         players[i].prison = false;
         players[i].hospital = false;
@@ -42,23 +42,23 @@ int Player_Init(Player* players, char* now_user){
         int i = 0;
         char input_user[5] = {0};
         printf(LIGHT_CYAN);
-        printf("è¯·è¾“å…¥ç©å®¶IDï¼Œe.g. 1234\n");
-        printf("1:é’±å¤«äºº\n");
-        printf("2:é˜¿åœŸä¼¯\n");
-        printf("3:å­™å°ç¾\n");
-        printf("4:é‡‘è´è´\n");
+        printf("ÇëÊäÈëÍæ¼ÒID£¬e.g. 1234\n");
+        printf("1:Ç®·òÈË\n");
+        printf("2:°¢ÍÁ²®\n");
+        printf("3:ËïĞ¡ÃÀ\n");
+        printf("4:½ğ±´±´\n");
         printf(COLOR_NULL);
         scanf("%s", input_user);
         int c;
-        while ((c = getchar()) != '\n' && c != EOF) {}// æ¸…ç©ºè¾“å…¥ç¼“å†²åŒº
+        while ((c = getchar()) != '\n' && c != EOF) {}// Çå¿ÕÊäÈë»º³åÇø
         input_user[4] = '\0';
 //        sort_string(input_user);
         printf(LIGHT_CYAN);
-        printf("ç©å®¶ID : %s\n", input_user);
+        printf("Íæ¼ÒID : %s\n", input_user);
         printf(COLOR_NULL);
         if (hasDuplicateChars(input_user)) {
             printf(LIGHT_CYAN);
-            printf("ç©å®¶IDé‡å¤\n");
+            printf("Íæ¼ÒIDÖØ¸´\n");
             printf(COLOR_NULL);
             continue;
         }
@@ -85,7 +85,7 @@ int Player_Init(Player* players, char* now_user){
                     break;
                 default:
                     printf(LIGHT_CYAN);
-                    printf("ç©å®¶é€‰æ‹©é”™è¯¯ :");
+                    printf("Íæ¼ÒÑ¡Ôñ´íÎó :");
                     printf(" %c",input_user[i]);
                     printf("\n");
                     printf(COLOR_NULL);
@@ -96,8 +96,8 @@ int Player_Init(Player* players, char* now_user){
         if (if_continue){
             max_player_num = i;
             printf(LIGHT_CYAN);
-            printf("ç©å®¶é€‰æ‹©æˆåŠŸ : %s\n", input_user);
-            printf("æœ€å¤§ç©å®¶æ•°ä¸º : %d\n",max_player_num);
+            printf("Íæ¼ÒÑ¡Ôñ³É¹¦ : %s\n", input_user);
+            printf("×î´óÍæ¼ÒÊıÎª : %d\n",max_player_num);
             printf(COLOR_NULL);
             break;
         }
@@ -113,7 +113,7 @@ int Find_Player_Num(Player* players, const char* now_user,int max_player_num) {
         }
     }
     printf(LIGHT_CYAN);
-    printf("é”™è¯¯ï¼šæ‰¾ä¸åˆ°ç©å®¶\n");
+    printf("´íÎó£ºÕÒ²»µ½Íæ¼Ò\n");
     printf(COLOR_NULL);
     return 0;
 }
@@ -163,12 +163,12 @@ owner_enum get_player_num(char player_char) {
 //    }
 //}
 
-int Player_Route_Start(Player *players, int route_num, Map *map, Cell pCell[70],int max_player_num) {//å›åˆå¼€å§‹
+int Player_Route_Start(Player *players, int route_num, Map *map, Cell pCell[70],int max_player_num) {//»ØºÏ¿ªÊ¼
 //    static int route_num = 0;
 ////    route_num = Find_Player_Num(players, now_user,max_player_num);
     int if_continue = 0;
     if (players[route_num].prison || players[route_num].hospital || !players[route_num].alive) {
-        //ç”¨æˆ·è½®ç©º
+        //ÓÃ»§ÂÖ¿Õ
         players[route_num].de_continue--;
         if (players[route_num].de_continue == 0) {
             players[route_num].prison = false;
@@ -185,7 +185,7 @@ int roll_dice() {
     srand(static_cast<unsigned>(std::time(nullptr))); // Seed the random number generator
     int dice = rand() % 6 + 1;
     printf(LIGHT_CYAN);
-    printf("éª°å­ç‚¹æ•°ä¸º %d\n",dice);
+    printf("÷»×ÓµãÊıÎª %d\n",dice);
     printf(COLOR_NULL);
     return dice; // Generate a random number between 1 and 6
 }
@@ -216,7 +216,7 @@ void After_Walk(Player *use_players, Map *map, Cell *cell, int route_num,int rel
         if (map->data[use_players[route_num].position].owner != use_players[route_num].number
             && map->data[use_players[route_num].position].owner != OWNER_NULL) {
             printf(LIGHT_CYAN);
-            printf("ä½ èµ°åˆ°äº†åˆ«äººçš„åœ°äº§ï¼Œéœ€è¦äº¤ç§Ÿé‡‘.\n");
+            printf("Äã×ßµ½ÁË±ğÈËµÄµØ²ú£¬ĞèÒª½»×â½ğ.\n");
             printf(COLOR_NULL);
             pay_rentment(use_players, map,&(use_players[route_num]),cell, use_players[route_num].position);
             if (use_players[route_num].alive == 0){
@@ -224,7 +224,7 @@ void After_Walk(Player *use_players, Map *map, Cell *cell, int route_num,int rel
             }else
             {
                 printf(LIGHT_CYAN);
-                printf("ç°åœ¨ä½ å‰©ä¸‹ %d å…ƒ\n",use_players[route_num].money);
+                printf("ÏÖÔÚÄãÊ£ÏÂ %d Ôª\n",use_players[route_num].money);
                 printf(COLOR_NULL);
             }
         }

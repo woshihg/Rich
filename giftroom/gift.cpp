@@ -9,7 +9,7 @@ int Is_Arrive_GiftRoom(Player* player)
     if(player->position==35)
     {
         printf(LIGHT_CYAN);
-        printf("æ¬¢è¿Žæ¥åˆ°ç¤¼å“å±‹\n");
+        printf("»¶Ó­À´µ½ÀñÆ·ÎÝ\n");
         printf(COLOR_NULL);
         return 1;
     }
@@ -23,10 +23,10 @@ void Choose_Gift(Player* player)
     char tmp=0;
     int i=0;
     printf(LIGHT_CYAN);
-    printf("è¯·é€‰æ‹©ä½ çš„ç¤¼å“\n");
-    printf("è¾“å…¥1ï¼Œ2é€‰æ‹©å¯¹åº”çš„ç¤¼å“ï¼Œæˆ–è€…è¾“å…¥Fæ”¾å¼ƒé€‰æ‹©\n");
-    printf("1:2000èµ„é‡‘\n");
-    printf("2:200ç‚¹æ•°\n");
+    printf("ÇëÑ¡ÔñÄãµÄÀñÆ·\n");
+    printf("ÊäÈë1£¬2Ñ¡Ôñ¶ÔÓ¦µÄÀñÆ·£¬»òÕßÊäÈëF·ÅÆúÑ¡Ôñ\n");
+    printf("1:2000×Ê½ð\n");
+    printf("2:200µãÊý\n");
     printf(COLOR_NULL);
     scanf("%c",&gift_num);
     tmp=getchar();
@@ -34,12 +34,10 @@ void Choose_Gift(Player* player)
         Choose_Money(player);
     else if(gift_num=='2' && tmp=='\n')
         Choose_Point(player);
-//    else if(gift_num=='3' && tmp=='\n')
-//        Choose_God(player);
     else
     {
         printf(LIGHT_CYAN);
-        printf("é€‰æ‹©ç¤¼å“å¤±è´¥ï¼\n");
+        printf("Ñ¡ÔñÀñÆ·Ê§°Ü£¡\n");
         printf(COLOR_NULL);
     }
 
@@ -49,7 +47,7 @@ void Choose_Money(Player* player)
 {
     player->money+=2000;
     printf(LIGHT_CYAN);
-    printf("ä½ çš„èµ„é‡‘æ˜¯ %d\n",player->money);
+    printf("ÄãµÄ×Ê½ðÊÇ %d\n",player->money);
     printf(COLOR_NULL);
 }
 
@@ -57,16 +55,8 @@ void Choose_Point(Player* player)
 {
     player->point+=200;
     printf(LIGHT_CYAN);
-    printf("ä½ çš„ç‚¹æ•°æ˜¯ %d\n",player->point);
+    printf("ÄãµÄµãÊýÊÇ %d\n",player->point);
     printf(COLOR_NULL);
 }
-
-//void Choose_God(Player* player)
-//{
-//    player->buff=1;
-//    player->_continue=5;
-//    printf("Choose God success!\n");
-//    printf("Now you won't pay any rent in 5 rounds!\n");
-//}
 
 

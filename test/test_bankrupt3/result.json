@@ -3,10 +3,10 @@
 		"tool":	[]
 	},
 	"users":	"12",
-	"now_user":	"2",
+	"now_user":	"1",
 	"players":	[{
 			"alive":	1,
-			"money":	100,
+			"money":	300,
 			"point":	0,
 			"number":	1,
 			"tool1":	0,
@@ -17,11 +17,11 @@
 			"debuff0":	0,
 			"debuff1":	0,
 			"decontinue":	0,
-			"position":	4,
-			"properties":	[]
+			"position":	5,
+			"properties":	[[5, 0]]
 		}, {
 			"alive":	1,
-			"money":	5400,
+			"money":	5000,
 			"point":	0,
 			"number":	2,
 			"tool1":	0,
@@ -32,7 +32,7 @@
 			"debuff0":	0,
 			"debuff1":	0,
 			"decontinue":	0,
-			"position":	0,
+			"position":	4,
 			"properties":	[[4, 3]]
 		}]
 }

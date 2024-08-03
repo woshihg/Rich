@@ -19,7 +19,7 @@ MapData::MapData(){
     has_tool = 0;
     owner = OWNER_NULL;
     passer_num = 0;
-    for (auto & passer : passers) //éå†passersæ•°ç»„
+    for (auto & passer : passers) //±éÀúpassersÊı×é
         passer = OWNER_NULL;
 }
 
@@ -149,7 +149,7 @@ int MapData::Remove_Passer(owner_enum passer){
                 Update_Char();
                 break;
             }
-            if (i == CELL_MAX_PLAYER-1){ //å¦‚æœæ²¡æœ‰æ‰¾åˆ°
+            if (i == CELL_MAX_PLAYER-1){ //Èç¹ûÃ»ÓĞÕÒµ½
                 error = 2;
             }
         }
@@ -199,7 +199,7 @@ Map::Map( char* users,Player* players_data,Cell* cell) {
     }
     //    int count = (int)strlen(players);
     for(int i = 0;i<70;i++) {
-        if(cell[i].has_tool)     //åœ°å›¾ä¸Šæ˜¾ç¤ºé“å…·
+        if(cell[i].has_tool)     //µØÍ¼ÉÏÏÔÊ¾µÀ¾ß
             ToolCreat(i, cell[i].has_tool);
     }
 
@@ -228,7 +228,7 @@ void Map::PlayerCreate(owner_enum player,int to){
 }
 
 void Map::PlayerGoto(owner_enum player,int from,int to){
-    while(to > 69){ //å¦‚æœtoè¶…å‡ºåœ°å›¾èŒƒå›´
+    while(to > 69){ //Èç¹ûto³¬³öµØÍ¼·¶Î§
         to -= 70;
     }
     int error = 0;
@@ -352,7 +352,7 @@ void Map::TXTMap(char* filename) {
 
     outfile.close();
 }
-//åœ°å›¾é“å…·æ˜¾ç¤ºä¸ä¿®æ”¹
+//µØÍ¼µÀ¾ßÏÔÊ¾ÓëĞŞ¸Ä
 void Map::ToolCreat(int poistion, int tollkind){
     if(tollkind==1) {
         data[poistion].has_tool = 1;
@@ -370,7 +370,7 @@ void Map::ToolRemove(int position) {
     }
    // data[position].color = (char*)COLOR_NULL;
 }
-//æœ‰ä¸»åœ°å—
+//ÓĞÖ÷µØ¿é
 void Map::BoughtSpace(owner_enum player, int properties[],int position) {
     data[position].owner = player;
     switch (properties[position]) {
